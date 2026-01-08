@@ -2,7 +2,6 @@ package com.andreafilice.lavorami;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
@@ -11,15 +10,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import kotlin.ParameterName;
-
-public class MainActivity extends AppCompatActivity {
+public class LinesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_lines);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -27,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //*NAVBAR
-        ImageButton btnLines = (ImageButton) findViewById(R.id.linesButton);
-        btnLines.setOnClickListener(v -> {
-            changeActivity(LinesActivity.class);
+        ImageButton btnHome = (ImageButton) findViewById(R.id.homeButton);
+        btnHome.setOnClickListener(v -> {
+            changeActivity(MainActivity.class);
         });
 
         ImageButton btnSettings = (ImageButton) findViewById(R.id.settingsButton);
@@ -43,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         /// Class<?> destinationLayout is a destination activity which this function change.
 
         //*CHANGE LAYOUT
-        Intent layoutChange = new Intent(MainActivity.this, destinationLayout); //*CREATE THE INTENT WITH THE DESTINATION
+        Intent layoutChange = new Intent(LinesActivity.this, destinationLayout); //*CREATE THE INTENT WITH THE DESTINATION
         startActivity(layoutChange); //*CHANGE LAYOUT
     }
 }
