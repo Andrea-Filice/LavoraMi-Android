@@ -10,12 +10,79 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="241dp"
-        android:layout_height="51dp"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+        android:fontFamily="@font/archivo_medium"
         android:text="@string/lavoriInCorso"
-        android:textAlignment="textStart"
-        android:textColor="@color/design_default_color_on_secondary"
-        android:textSize="35sp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="57dp" />
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.123" />
+
+    <ImageButton
+        android:id="@+id/buttonRefresh"
+        android:layout_width="42dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="33dp"
+        android:background="@android:color/transparent"
+        android:backgroundTintMode="add"
+        android:foregroundTint="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.132"
+        app:srcCompat="@drawable/ic_refresh" />
+
+    <LinearLayout
+        android:id="@+id/customBottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:orientation="horizontal"
+        android:background="?android:attr/colorBackground"
+        android:weightSum="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/homeIcon"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:padding="12dp"
+            android:tint="#FD272D"
+            android:background="?android:attr/colorBackground"
+            app:srcCompat="@drawable/ic_home" />
+
+        <ImageButton
+            android:id="@+id/linesButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:padding="12dp"
+            android:tint="?attr/colorControlNormal"
+            android:background="?android:attr/colorBackground"
+            app:srcCompat="@drawable/ic_lines" />
+
+        <ImageButton
+            android:id="@+id/imageButton7"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:padding="12dp"
+            android:tint="?attr/colorControlNormal"
+            android:background="?android:attr/colorBackground"
+            app:srcCompat="@drawable/ic_setting" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
