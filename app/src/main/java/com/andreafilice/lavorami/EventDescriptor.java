@@ -46,7 +46,6 @@ public class EventDescriptor {
 
             default:
                 return R.drawable.empty_image;
-
         }
 
     }
@@ -61,7 +60,6 @@ public class EventDescriptor {
                 return R.drawable.outline_tram_24;
             default:
                 return R.drawable.empty_image;
-
         }
 
     }
