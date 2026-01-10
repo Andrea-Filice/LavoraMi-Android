@@ -2,12 +2,15 @@ package com.andreafilice.lavorami;
 
 import static com.andreafilice.lavorami.EventDescriptor.formattaData;
 
+import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
+import androidx.core.widget.ImageViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -48,6 +51,12 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
 
         String finalStartDate=formattaData(item.getStartDate());
         String finalEndDate=formattaData(item.getEndDate());
+        // 2. Applica il colore dinamico (bianco nel tema scuro, nero nel chiaro)
+        // Recuperiamo il colore "text_primary" che abbiamo definito nei file colors.xml
+        int color = ContextCompat.getColor(holder.itemView.getContext(), R.color.text_primary);
+
+        // Applichiamo il colore all'icona
+        ImageViewCompat.setImageTintList(holder.cardImage, ColorStateList.valueOf(color));
         // Imposta immagine dinamicamente
         holder.cardImage.setImageResource(item.getCardImageID());
 
@@ -58,6 +67,8 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
         holder.endDateText.setText("Al: " + finalEndDate);
         holder.companyText.setText(item.getCompany());
         holder.descriptionText.setText(item.getDetails());
+
+
     }
 
     @Override

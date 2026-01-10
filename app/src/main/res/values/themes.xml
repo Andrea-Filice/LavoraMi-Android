@@ -3,6 +3,11 @@
     <style name="Base.Theme.LavoraMi" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+            <item name="android:statusBarColor">@color/background_app</item>
+            <item name="android:windowLightStatusBar">true</item>
+            <item name="android:navigationBarColor">@color/background_app</item>
+            <item name="android:windowBackground">@color/background_app</item>
+
     </style>
 
     <style name="Theme.LavoraMi" parent="Base.Theme.LavoraMi" />

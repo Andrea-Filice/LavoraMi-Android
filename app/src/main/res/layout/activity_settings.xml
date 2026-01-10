@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_app"
     tools:context=".SettingsActivity">
 
     <LinearLayout
@@ -12,11 +13,25 @@
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:orientation="horizontal"
-        android:background="?android:attr/colorBackground"
+        android:background="@color/background_app"
         android:weightSum="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/archivo_medium"
+            android:text="@string/lavoriInCorso"
+            android:textColor="@color/text_primary"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.7" />
 
         <ImageButton
             android:id="@+id/homeButton"
@@ -25,8 +40,8 @@
             android:layout_weight="1"
             android:scaleType="fitCenter"
             android:padding="12dp"
-            android:tint="?attr/colorControlNormal"
-            android:background="?android:attr/colorBackground"
+            app:tint="?attr/colorControlNormal"
+            android:background="@color/background_app"
             app:srcCompat="@drawable/ic_home" />
 
         <ImageButton
@@ -34,10 +49,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="?android:attr/colorBackground"
+            android:background="@color/background_app"
             android:padding="12dp"
             android:scaleType="fitCenter"
-            android:tint="?attr/colorControlNormal"
+            app:tint="?attr/colorControlNormal"
             app:srcCompat="@drawable/ic_lines" />
 
         <ImageButton
@@ -47,8 +62,8 @@
             android:layout_weight="1"
             android:scaleType="fitCenter"
             android:padding="12dp"
-            android:tint="#FD272D"
-            android:background="?android:attr/colorBackground"
+            app:tint="#FD272D"
+            android:background="@color/background_app"
             app:srcCompat="@drawable/ic_setting" />
 
     </LinearLayout>
