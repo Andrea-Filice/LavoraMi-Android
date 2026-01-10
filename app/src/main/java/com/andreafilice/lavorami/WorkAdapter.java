@@ -1,5 +1,7 @@
 package com.andreafilice.lavorami;
 
+import static com.andreafilice.lavorami.EventDescriptor.formattaData;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,14 +46,16 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position){
         EventDescriptor item = eventList.get(position);
 
+        String finalStartDate=formattaData(item.getStartDate());
+        String finalEndDate=formattaData(item.getEndDate());
         // Imposta immagine dinamicamente
         holder.cardImage.setImageResource(item.getCardImageID());
 
         // Popola testo
         holder.titleText.setText(item.getTitle());
         holder.trattaText.setText(item.getRoads());
-        holder.startDateText.setText("Da: " + item.getStartDate());
-        holder.endDateText.setText("A: " + item.getEndDate());
+        holder.startDateText.setText("Dal: " + finalStartDate);
+        holder.endDateText.setText("Al: " + finalEndDate);
         holder.companyText.setText(item.getCompany());
         holder.descriptionText.setText(item.getDetails());
     }

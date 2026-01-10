@@ -1,5 +1,8 @@
 package com.andreafilice.lavorami;
-
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 public class EventDescriptor {
     protected String title;
     protected String titleIcon;
@@ -34,7 +37,7 @@ public class EventDescriptor {
                 return R.drawable.baseline_access_time_filled_24;
             case "clock.badge.fill":
                 return R.drawable.baseline_access_alarm_24;
-            case "clock.badge.exclamation.fill":
+            case "clock.badge.exclamationmark.fill":
                 return R.drawable.baseline_crisis_alert_24;
             case "exclamationmark.triangle.fill":
                 return R.drawable.warning_triangle_filled;
@@ -96,5 +99,21 @@ public class EventDescriptor {
 
     public String getCompany() {
         return company;
+    }
+
+    public static String formattaData(String initialDate) {
+        try {
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault());
+            inputFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+            Date finalDate = inputFormat.parse(initialDate);
+
+            SimpleDateFormat outputFormat = new SimpleDateFormat("dd MMM yyyy", Locale.ITALY);
+
+            return outputFormat.format(finalDate);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return initialDate; // In caso di errore, restituisce la data originale
+        }
     }
 }
