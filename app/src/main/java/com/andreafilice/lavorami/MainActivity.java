@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
     }
 
     public void changeActivity(Class<?> destinationLayout){
@@ -75,6 +78,10 @@ public class MainActivity extends AppCompatActivity {
 
                     //TODO RecyclerView
 
+                    RecyclerView recyclerView = findViewById(R.id.recyclerView);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+                    WorkAdapter adapter = new WorkAdapter(events);
+                    recyclerView.setAdapter(adapter);
                     Log.d("SUCCESS","Oggetti caricati:" +events.size());
                 }
             }

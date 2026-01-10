@@ -22,7 +22,10 @@ public class EventDescriptor {
         this.details = details;
         this.company = company;
     }
-
+    // Restituisce l'ID dell'immagine della card direttamente dal titolo
+    public int getCardImageID() {
+        return getTitleIconID(this.titleIcon);
+    }
     public int getTitleIconID(String swiftIconName){
         switch(swiftIconName) {
             case "arrow.branch":
