@@ -3,12 +3,15 @@ package com.andreafilice.lavorami;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.google.gson.internal.GsonBuildConfig;
 
 public class SettingsActivity extends AppCompatActivity {
 

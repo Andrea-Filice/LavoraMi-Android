@@ -8,6 +8,83 @@
     android:background="@color/background_app"
     tools:context=".SettingsActivity">
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/archivo_medium"
+        android:text="@string/settings"
+        android:textColor="@color/text_primary"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.08"
+        app:layout_constraintWidth_percent="0.7" />
+
+    <TextView
+        android:id="@+id/generalSettings"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/archivo_medium"
+        android:text="@string/general"
+        android:textColor="@color/text_primary"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.409"
+        app:layout_constraintWidth_percent="0.7" />
+
+    <TextView
+        android:id="@+id/infoSettings"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/archivo_medium"
+        android:text="Informazioni"
+        android:textColor="@color/text_primary"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.639"
+        app:layout_constraintWidth_percent="0.7" />
+
+    <TextView
+        android:id="@+id/infoSettings2"
+        android:layout_width="167dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/archivo_medium"
+        android:text="Versione:"
+        android:textColor="@color/text_primary"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.697"
+        app:layout_constraintWidth_percent="0.7" />
+
+    <TextView
+        android:id="@+id/versionNumber"
+        android:layout_width="59dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="344dp"
+        android:fontFamily="@font/archivo_medium"
+        android:text="@string/app_version"
+        tools:text="1.0.0"
+        android:textAlignment="textEnd"
+        android:textColor="@color/text_primary"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.699"
+        app:layout_constraintWidth_percent="0.7" />
+
     <LinearLayout
         android:id="@+id/customBottomBar"
         android:layout_width="match_parent"
@@ -67,5 +144,20 @@
             app:srcCompat="@drawable/ic_setting" />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/fonts"
+        android:layout_width="407dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="66dp"
+        android:backgroundTint="#E61414"
+        android:fontFamily="@font/archivo_medium"
+        android:text="Fonti &amp; Sviluppo"
+        android:textColor="@color/text_primary"
+        android:textColorLink="#CE1E1E"
+        app:layout_constraintBottom_toTopOf="@+id/customBottomBar"
+        app:layout_constraintTop_toBottomOf="@+id/infoSettings"
+        app:layout_constraintVertical_bias="0.047"
+        tools:layout_editor_absoluteX="4dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
