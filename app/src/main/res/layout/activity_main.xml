@@ -57,7 +57,7 @@
             android:layout_weight="1"
             android:scaleType="fitCenter"
             android:padding="12dp"
-            android:tint="#FD272D"
+            app:tint="#FD272D"
             android:background="?android:attr/colorBackground"
             app:srcCompat="@drawable/ic_home" />
 
@@ -68,7 +68,7 @@
             android:layout_weight="1"
             android:scaleType="fitCenter"
             android:padding="12dp"
-            android:tint="?attr/colorControlNormal"
+            app:tint="?attr/colorControlNormal"
             android:background="?android:attr/colorBackground"
             app:srcCompat="@drawable/ic_lines" />
 
@@ -79,10 +79,11 @@
             android:layout_weight="1"
             android:scaleType="fitCenter"
             android:padding="12dp"
-            android:tint="?attr/colorControlNormal"
+            app:tint="?attr/colorControlNormal"
             android:background="?android:attr/colorBackground"
             app:srcCompat="@drawable/ic_setting" />
 
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

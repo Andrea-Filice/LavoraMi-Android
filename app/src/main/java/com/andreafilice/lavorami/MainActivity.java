@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //*RIEMPIMENTO STRUTTURA DATI CONTENENTE DATI EVENTI
         downloadJSONData();
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         btnSettings.setOnClickListener(v -> {
             changeActivity(SettingsActivity.class);
         });
-        //*RIEMPIMENTO STRUTTURA DATI CONTENENTE DATI EVENTI
+
 
     }
 

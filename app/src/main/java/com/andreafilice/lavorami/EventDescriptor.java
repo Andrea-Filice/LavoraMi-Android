@@ -31,22 +31,16 @@ public class EventDescriptor {
                 return R.drawable.baseline_access_time_filled_24;
             case "clock.badge.fill":
                 return R.drawable.baseline_access_alarm_24;
-
             case "clock.badge.exclamation.fill":
                 return R.drawable.baseline_crisis_alert_24;
-
             case "exclamationmark.triangle.fill":
                 return R.drawable.warning_triangle_filled;
-
             case "hand.raised.fill":
                 return R.drawable.baseline_back_hand_24;
-
             case "door.sliding.left.hand.closed":
                 return R.drawable.baseline_door_sliding_24;
-
             default:
                 return R.drawable.empty_image;
-
         }
 
     }
@@ -61,7 +55,6 @@ public class EventDescriptor {
                 return R.drawable.outline_tram_24;
             default:
                 return R.drawable.empty_image;
-
         }
 
     }
