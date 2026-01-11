@@ -51,14 +51,17 @@
 
         <!-- LINEE COINVOLTE -->
         <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroupLines"
+            android:id="@+id/chipGroupLinee"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:singleLine="true"
+            android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@id/txtRoute"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="12dp" />
+            app:chipSpacingHorizontal="6dp"
+            app:chipSpacingVertical="6dp"
+            app:lineSpacing="0dp" />
+
 
         <!-- DATA INIZIO -->
         <TextView
@@ -67,7 +70,7 @@
             android:layout_height="wrap_content"
             android:textSize="12sp"
             android:textColor="@color/text_primary"
-            app:layout_constraintTop_toBottomOf="@id/chipGroupLines"
+            app:layout_constraintTop_toBottomOf="@id/chipGroupLinee"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="12dp" />
 

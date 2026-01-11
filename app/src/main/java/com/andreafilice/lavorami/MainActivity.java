@@ -40,11 +40,6 @@ public class MainActivity extends AppCompatActivity {
         //*INITIALIZE THE LOADING LAYOUT
         loadingLayout = findViewById(R.id.loadingLayout);
 
-        if(loadingLayout != null){
-            loadingLayout.setVisibility(View.VISIBLE);
-            findViewById(R.id.recyclerView).setVisibility(View.GONE);
-        }
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -77,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
         //*CHANGE LAYOUT
         Intent layoutChange = new Intent(MainActivity.this, destinationLayout); //*CREATE THE INTENT WITH THE DESTINATION
         startActivity(layoutChange); //*CHANGE LAYOUT
-        overridePendingTransition(1, 0);
     }
 
     public void downloadJSONData(){
