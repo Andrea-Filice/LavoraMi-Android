@@ -2,6 +2,7 @@ package com.andreafilice.lavorami;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -37,6 +38,11 @@ public class SettingsActivity extends AppCompatActivity {
             changeActivity(MainActivity.class);
         });
 
+        //*SETTINGS BUTTONS
+        Button btnSourcesAndDevelopment = (Button) findViewById(R.id.fonts);
+        btnSourcesAndDevelopment.setOnClickListener(v -> {
+            changeActivity(SourcesDevelopment.class);
+        });
     }
 
     public void changeActivity(Class<?> destinationLayout){
