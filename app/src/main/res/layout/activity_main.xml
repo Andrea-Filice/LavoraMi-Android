@@ -15,7 +15,6 @@
         android:background="@color/background_app"
         android:paddingTop="40dp"
         android:paddingBottom="16dp"
-        android:elevation="8dp"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -45,6 +44,88 @@
             app:srcCompat="@drawable/ic_refresh" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <EditText
+        android:id="@+id/editSearch"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/background_app"
+        android:drawableStart="@android:drawable/ic_menu_search"
+        android:drawablePadding="10dp"
+        android:hint="Cerca linea (es. S5, RE8)..."
+        android:paddingStart="15dp"
+        android:textColor="@android:color/white"
+        android:textColorHint="#666666"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/headerLayout" />
+
+    <HorizontalScrollView
+        android:id="@+id/filterScroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/editSearch">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/filterChipGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            app:selectionRequired="false"
+            app:singleLine="true"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTreno"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Treno"
+                android:textColor="@android:color/white"
+                app:chipBackgroundColor="@color/selector_chip_filter" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipMetro"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Metropolitana"
+                android:textColor="@android:color/white"
+                app:chipBackgroundColor="@color/selector_chip_filter" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipBus"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bus"
+                android:textColor="@android:color/white"
+                app:chipBackgroundColor="@color/selector_chip_filter" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipInCorso"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="In Corso"
+                android:textColor="@android:color/white"
+                app:chipBackgroundColor="@color/selector_chip_filter" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipProgrammati"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Programmati"
+                android:textColor="@android:color/white"
+                app:chipBackgroundColor="@color/selector_chip_filter" />
+
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
@@ -56,7 +137,7 @@
         app:layout_constraintBottom_toTopOf="@+id/customBottomBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headerLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/filterScroll" />
 
     <LinearLayout
         android:id="@+id/loadingLayout"
@@ -86,6 +167,7 @@
             android:textSize="16sp"
             android:fontFamily="@font/archivo_medium"/>
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/customBottomBar"
         android:layout_width="match_parent"

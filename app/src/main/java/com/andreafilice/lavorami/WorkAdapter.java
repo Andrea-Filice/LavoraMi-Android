@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
     private List<EventDescriptor> eventList;
 
     public WorkAdapter(List<EventDescriptor> eventList){
-        this.eventList = eventList;
+        this.eventList = (eventList!=null) ? eventList : new ArrayList<>();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -201,4 +202,10 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
 
         }
     }
+    public void setFilteredList(List<EventDescriptor> filteredList) {
+        // Protezione: se il filtro non trova nulla, passiamo una lista vuota, non null
+        this.eventList = (filteredList != null) ? filteredList : new ArrayList<>();
+        notifyDataSetChanged();
+    }
+
 }
