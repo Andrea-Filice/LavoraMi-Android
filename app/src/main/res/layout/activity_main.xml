@@ -34,8 +34,8 @@
 
         <ImageButton
             android:id="@+id/buttonRefresh"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="30dp"
+            android:layout_height="27dp"
             android:layout_marginEnd="16dp"
             android:background="@android:color/transparent"
             android:scaleType="fitCenter"
@@ -58,6 +58,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/headerLayout" />
 
+    <LinearLayout
+        android:id="@+id/loadingLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/headerLayout"
+        app:layout_constraintBottom_toTopOf="@+id/customBottomBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:indeterminate="true"
+            android:indeterminateTint="#FD272D"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Caricamento in corso..."
+            android:textColor="@color/text_primary"
+            android:textSize="16sp"
+            android:fontFamily="@font/archivo_medium"/>
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/customBottomBar"
         android:layout_width="match_parent"
@@ -89,7 +117,7 @@
             android:padding="12dp"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/ic_lines"
-            app:tint="#8E8E93" />
+            app:tint="?attr/colorControlNormal" />
 
         <ImageButton
             android:id="@+id/settingsButton"
@@ -100,7 +128,7 @@
             android:padding="12dp"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/ic_setting"
-            app:tint="#8E8E93" />
+            app:tint="?attr/colorControlNormal" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

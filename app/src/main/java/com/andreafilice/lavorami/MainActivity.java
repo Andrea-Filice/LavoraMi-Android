@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
@@ -25,13 +26,20 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     private ArrayList<EventDescriptor> events = new ArrayList<EventDescriptor>();
+    private LinearLayout loadingLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         //*RIEMPIMENTO STRUTTURA DATI CONTENENTE DATI EVENTI
         downloadJSONData();
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
+        //*INITIALIZE THE LOADING LAYOUT
+        loadingLayout = findViewById(R.id.loadingLayout);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -49,8 +57,12 @@ public class MainActivity extends AppCompatActivity {
             changeActivity(SettingsActivity.class);
         });
 
+        //*REFRESH BUTTON
+        ImageButton btnRefresh = (ImageButton) findViewById(R.id.buttonRefresh);
 
-
+        btnRefresh.setOnClickListener(v -> {
+            downloadJSONData();
+        });
     }
 
     public void changeActivity(Class<?> destinationLayout){
@@ -63,6 +75,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void downloadJSONData(){
+        //? ACTIVATE THE LOADING LAYOUT
+        if(loadingLayout != null){
+            loadingLayout.setVisibility(View.VISIBLE);
+            findViewById(R.id.recyclerView).setVisibility(View.GONE);
+        }
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://cdn-playepik.netlify.app/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -73,11 +91,13 @@ public class MainActivity extends AppCompatActivity {
         apiworks.getLavori().enqueue(new Callback<ArrayList<EventDescriptor>>() {
             @Override
             public void onResponse(Call<ArrayList<EventDescriptor>> call, Response<ArrayList<EventDescriptor>> response) {
-                if(response.isSuccessful()&&response.body()!=null){
+                //? DISABLE THE LOADING LAYOUT
+                if(loadingLayout != null){
+                    loadingLayout.setVisibility(View.GONE);
+                    findViewById(R.id.recyclerView).setVisibility(View.VISIBLE);
+                }
+                if(response.isSuccessful() && response.body()!=null){
                     events = response.body();
-
-                    //TODO RecyclerView
-
                     RecyclerView recyclerView = findViewById(R.id.recyclerView);
                     recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
                     WorkAdapter adapter = new WorkAdapter(events);
@@ -88,6 +108,10 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ArrayList<EventDescriptor>> call, Throwable t) {
+                //? ON FAILURE, ACTIVATE THE "ERROR" LAYOUT
+                if(loadingLayout != null){
+                    loadingLayout.setVisibility(View.GONE);
+                }
                 Log.e("ERROR","Errore nel download: "+t.getMessage());
             }
         });
