@@ -12,12 +12,12 @@
         android:id="@+id/icon"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="52dp"
+        android:contentDescription="App Icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher"
-        android:contentDescription="App Icon" />
+        app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
         android:id="@+id/appName"
@@ -31,6 +31,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/icon"
         app:layout_constraintTop_toTopOf="@+id/icon"
         app:layout_constraintVertical_chainStyle="packed" />
@@ -39,11 +40,12 @@
         android:id="@+id/textView4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/archivo_medium"
         android:text="@string/app_version"
         android:textColor="#808080"
         app:layout_constraintEnd_toEndOf="@+id/appName"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/appName"
         app:layout_constraintTop_toBottomOf="@+id/appName" />
 
@@ -203,11 +205,13 @@
         android:id="@+id/backBtn"
         android:layout_width="58dp"
         android:layout_height="43dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="64dp"
+        android:background="@color/background_app"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/back_arrow"
-        app:tint="?attr/colorControlNormal"
-        android:background="@color/background_app"/>
+        app:tint="?attr/colorControlNormal" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -42,5 +42,6 @@ public class LinesActivity extends AppCompatActivity {
         //*CHANGE LAYOUT
         Intent layoutChange = new Intent(LinesActivity.this, destinationLayout); //*CREATE THE INTENT WITH THE DESTINATION
         startActivity(layoutChange); //*CHANGE LAYOUT
+        overridePendingTransition(1, 0);
     }
 }

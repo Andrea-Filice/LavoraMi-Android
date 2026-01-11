@@ -55,6 +55,7 @@ public class SourcesDevelopment extends AppCompatActivity {
             public void onClick(View v){
                 Intent changeActivity = new Intent(SourcesDevelopment.this, SettingsActivity.class);
                 startActivity(changeActivity);
+                overridePendingTransition(1, 0);
             }
         });
     }

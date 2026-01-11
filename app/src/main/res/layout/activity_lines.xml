@@ -12,60 +12,45 @@
         android:id="@+id/customBottomBar"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:orientation="horizontal"
         android:background="@color/background_app"
+        android:orientation="horizontal"
         android:weightSum="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:fontFamily="@font/archivo_medium"
-            android:text="@string/lavoriInCorso"
-            android:textColor="@color/text_primary"
-            android:textSize="36sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.7" />
 
         <ImageButton
             android:id="@+id/homeButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:scaleType="fitCenter"
+            android:background="@android:color/transparent"
             android:padding="12dp"
-            app:tint="?attr/colorControlNormal"
-            android:background="@color/background_app"
-            app:srcCompat="@drawable/ic_home" />
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_home"
+            app:tint="?attr/colorControlNormal" />
 
         <ImageButton
             android:id="@+id/linesButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/background_app"
+            android:background="@android:color/transparent"
             android:padding="12dp"
             android:scaleType="fitCenter"
-            app:tint="#FD272D"
-            app:srcCompat="@drawable/ic_lines" />
+            app:srcCompat="@drawable/ic_lines"
+            app:tint="#FD272D" />
 
         <ImageButton
             android:id="@+id/settingsButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:scaleType="fitCenter"
+            android:background="@android:color/transparent"
             android:padding="12dp"
-            app:tint="?attr/colorControlNormal"
-            android:background="@color/background_app"
-            app:srcCompat="@drawable/ic_setting" />
-
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_setting"
+            app:tint="?attr/colorControlNormal" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         //*CHANGE LAYOUT
         Intent layoutChange = new Intent(MainActivity.this, destinationLayout); //*CREATE THE INTENT WITH THE DESTINATION
         startActivity(layoutChange); //*CHANGE LAYOUT
+        overridePendingTransition(1, 0);
     }
 
     public void downloadJSONData(){

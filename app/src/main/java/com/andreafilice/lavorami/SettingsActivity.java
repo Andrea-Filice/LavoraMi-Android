@@ -52,5 +52,6 @@ public class SettingsActivity extends AppCompatActivity {
         //*CHANGE LAYOUT
         Intent layoutChange = new Intent(SettingsActivity.this, destinationLayout); //*CREATE THE INTENT WITH THE DESTINATION
         startActivity(layoutChange); //*CHANGE LAYOUT
+        overridePendingTransition(1, 0);
     }
 }

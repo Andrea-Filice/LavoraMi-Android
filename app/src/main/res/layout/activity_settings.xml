@@ -12,176 +12,157 @@
         android:id="@+id/textView2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginHorizontal="16dp"
         android:fontFamily="@font/archivo_medium"
         android:text="@string/settings"
         android:textColor="@color/text_primary"
         android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.079"
-        app:layout_constraintWidth_percent="0.7" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/generalSettings"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginHorizontal="16dp"
         android:fontFamily="@font/archivo_medium"
         android:text="@string/general"
         android:textColor="@color/text_primary"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.409"
-        app:layout_constraintWidth_percent="0.7" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/generalSettings"
+        app:srcCompat="@drawable/ic_bell"
+        app:tint="#E41414" />
+
+    <Switch
+        android:id="@+id/notificationsSwitch"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Notifiche"
+        android:textSize="16sp"
+        android:textColor="@color/text_primary"
+        android:fontFamily="@font/archivo_medium"
+        android:trackTint="#E41414"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/infoSettings"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginHorizontal="16dp"
         android:fontFamily="@font/archivo_medium"
         android:text="Informazioni"
         android:textColor="@color/text_primary"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.639"
-        app:layout_constraintWidth_percent="0.7" />
+        app:layout_constraintTop_toBottomOf="@+id/notificationsSwitch" />
 
     <TextView
         android:id="@+id/infoSettings2"
-        android:layout_width="167dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/archivo_medium"
         android:text="Versione:"
         android:textColor="@color/text_primary"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.697"
-        app:layout_constraintWidth_percent="0.7" />
+        app:layout_constraintTop_toBottomOf="@+id/infoSettings" />
 
     <TextView
         android:id="@+id/versionNumber"
-        android:layout_width="59dp"
-        android:layout_height="22dp"
-        android:layout_marginStart="344dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/archivo_medium"
         android:text="@string/app_version"
-        tools:text="1.0.0"
-        android:textAlignment="textEnd"
         android:textColor="@color/text_primary"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.699"
-        app:layout_constraintWidth_percent="0.7" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/infoSettings2"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="1.0.0" />
+
+    <Button
+        android:id="@+id/fonts"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="#E61414"
+        android:fontFamily="@font/archivo_medium"
+        android:paddingVertical="12dp"
+        android:text="Fonti &amp; Sviluppo"
+        android:textColor="#FFFF"
+        android:textColorLink="#CE1E1E"
+        app:layout_constraintBottom_toTopOf="@+id/customBottomBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:id="@+id/customBottomBar"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:orientation="horizontal"
         android:background="@color/background_app"
+        android:orientation="horizontal"
         android:weightSum="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:fontFamily="@font/archivo_medium"
-            android:text="@string/lavoriInCorso"
-            android:textColor="@color/text_primary"
-            android:textSize="36sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.7" />
 
         <ImageButton
             android:id="@+id/homeButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:scaleType="fitCenter"
+            android:background="@android:color/transparent"
             android:padding="12dp"
-            app:tint="?attr/colorControlNormal"
-            android:background="@color/background_app"
-            app:srcCompat="@drawable/ic_home" />
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_home"
+            app:tint="?attr/colorControlNormal" />
 
         <ImageButton
             android:id="@+id/linesButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/background_app"
+            android:background="@android:color/transparent"
             android:padding="12dp"
             android:scaleType="fitCenter"
-            app:tint="?attr/colorControlNormal"
-            app:srcCompat="@drawable/ic_lines" />
+            app:srcCompat="@drawable/ic_lines"
+            app:tint="?attr/colorControlNormal" />
 
         <ImageButton
             android:id="@+id/settingsButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:scaleType="fitCenter"
+            android:background="@android:color/transparent"
             android:padding="12dp"
-            app:tint="#FD272D"
-            android:background="@color/background_app"
-            app:srcCompat="@drawable/ic_setting" />
-
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_setting"
+            app:tint="#FD272D" />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/fonts"
-        android:layout_width="407dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="66dp"
-        android:backgroundTint="#E61414"
-        android:fontFamily="@font/archivo_medium"
-        android:text="Fonti &amp; Sviluppo"
-        android:textColor="#FFFF"
-        android:textColorLink="#CE1E1E"
-        app:layout_constraintBottom_toTopOf="@+id/customBottomBar"
-        app:layout_constraintTop_toBottomOf="@+id/infoSettings"
-        app:layout_constraintVertical_bias="0.047"
-        tools:layout_editor_absoluteX="4dp" />
-
-    <Switch
-        android:id="@+id/notificationsSwitch"
-        android:layout_width="345dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="56dp"
-        android:text="Notifiche"
-        android:trackTint="#E41414"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/generalSettings" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="39dp"
-        android:layout_height="34dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="9dp"
-        android:scaleType="fitCenter"
-        android:tint="#E41414"
-        app:layout_constraintEnd_toStartOf="@+id/notificationsSwitch"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/generalSettings"
-        app:srcCompat="@drawable/ic_bell" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
