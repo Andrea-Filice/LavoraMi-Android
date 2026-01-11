@@ -189,6 +189,20 @@
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
 
+    <TextView
+        android:id="@+id/emptyView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nessuna corrispondenza trovata."
+        android:textSize="18sp"
+        android:textColor="@color/text_primary"
+        android:fontFamily="@font/archivo_medium"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@+id/recyclerView"
+        app:layout_constraintBottom_toBottomOf="@+id/recyclerView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"

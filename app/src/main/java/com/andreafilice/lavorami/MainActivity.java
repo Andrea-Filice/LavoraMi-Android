@@ -1,6 +1,7 @@
 package com.andreafilice.lavorami;
 
 import android.content.Intent;
+import android.media.metrics.Event;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -9,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -111,13 +113,16 @@ public class MainActivity extends AppCompatActivity {
         if (filterGroup != null) {
             filterGroup.setOnCheckedChangeListener((group, checkedId) -> {
                 if (checkedId == View.NO_ID) {
-                    filtra("");
+                    filterGroup.check(R.id.chipAll);
                 } else {
-                    editSearch.setText("");
-
+                    if (checkedId != R.id.chipAll) {
+                        editSearch.setText("");
+                    }
                     Chip selectedChip = findViewById(checkedId);
-                    String categoria = selectedChip.getText().toString().toLowerCase();
-                    applicaFiltroCategoria(categoria);
+                    if (selectedChip != null) {
+                        String categoria = selectedChip.getText().toString().toLowerCase().trim();
+                        applicaFiltroCategoria(categoria);
+                    }
                 }
             });
         }
@@ -175,31 +180,52 @@ public class MainActivity extends AppCompatActivity {
                 if(loadingLayout != null){
                     loadingLayout.setVisibility(View.GONE);
                 }
-                Log.e("ERROR","Errore nel download: "+t.getMessage());
+                Log.e("ERROR","Errore nel download: " + t.getMessage());
             }
         });
-
     }
+
+    private void checkForEmptyList(List<EventDescriptor> list){
+        TextView noWorkFounds = findViewById(R.id.emptyView);
+        RecyclerView view = findViewById(R.id.recyclerView);
+
+        noWorkFounds.setVisibility((list.isEmpty()) ? View.VISIBLE : View.GONE);
+        view.setVisibility((list.isEmpty()) ? View.GONE : View.VISIBLE);
+    }
+
     private void filtra(String testo) {
-        if (events == null || events.isEmpty()) {
+        if (adapter == null || events == null || events.isEmpty()) {
+            return;
+        }
+        if (testo == null || testo.trim().isEmpty()) {
+            adapter.setFilteredList(events);
+            checkForEmptyList(events);
             return;
         }
 
         List<EventDescriptor> listaFiltrata = new ArrayList<>();
+        String testoLower = testo.toLowerCase().trim();
 
         for (EventDescriptor item : events) {
-            String titolo = (item.getTitle() != null) ? item.getTitle().toLowerCase() : "";
-            String tratte = (item.getRoads() != null) ? item.getRoads().toLowerCase() : "";
+            boolean found = false;
 
-            if (titolo.contains(testo.toLowerCase()) || tratte.contains(testo.toLowerCase())) {
+            if (!found && item.getLines() != null) {
+                for (String line : item.getLines()) {
+                    if (line != null && line.toLowerCase().contains(testoLower)) {
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            if (found) {
                 listaFiltrata.add(item);
             }
         }
 
-        if (adapter != null) {
-            adapter.setFilteredList(listaFiltrata);
-        }
+        adapter.setFilteredList(listaFiltrata);
+        checkForEmptyList(listaFiltrata);
     }
+
     private void applicaFiltroCategoria(String categoria) {
         if(adapter== null){
             return;
@@ -234,13 +260,14 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case "in corso":
-                    long inizio = getDateMillis(item.getStartDate());
-                    long fine = getDateMillis(item.getEndDate());
-                    if (oggi >= inizio && oggi <= fine) filtrata.add(item);
+                    long start = getDateMillis(item.getStartDate());
+                    long end = getDateMillis(item.getEndDate());
+                    if (start > 0 && end > 0 && oggi >= start && oggi <= end)  filtrata.add(item);
                     break;
 
                 case "programmati":
-                    if (oggi < getDateMillis(item.getStartDate())) filtrata.add(item);
+                    long startP = getDateMillis(item.getStartDate());
+                    if (startP > 0 && oggi < startP)  filtrata.add(item);
                     break;
 
                 case "di atm":
@@ -266,11 +293,12 @@ public class MainActivity extends AppCompatActivity {
         }
         if (adapter != null) {
             adapter.setFilteredList(filtrata);
+            checkForEmptyList(filtrata);
         }
     }
 
     private boolean isTram(EventDescriptor item) {
-        return (item.typeOfTransport.contains("tram") && !item.typeOfTransport.equalsIgnoreCase("\"tram.fill.tunnel\""));
+        return (item.typeOfTransport.contains("tram") && !item.typeOfTransport.equalsIgnoreCase("tram.fill.tunnel"));
     }
 
     private boolean isTreno(EventDescriptor item) {
@@ -294,11 +322,18 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
     public long getDateMillis(String dateString) {
+        if (dateString == null) return 0;
+        String serverFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'";
+
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy", Locale.ITALIAN);
+            SimpleDateFormat sdf = new SimpleDateFormat(serverFormat, Locale.getDefault());
+            sdf.setTimeZone(java.util.TimeZone.getTimeZone("UTC"));
+
             Date date = sdf.parse(dateString);
             return (date != null) ? date.getTime() : 0;
+
         } catch (Exception e) {
+            Log.e("DATA_ERROR", "Impossibile leggere: " + dateString + " | Errore: " + e.getMessage());
             return 0;
         }
     }
