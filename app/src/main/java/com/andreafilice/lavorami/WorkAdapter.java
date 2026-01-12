@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
@@ -18,9 +19,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
 
@@ -34,6 +39,7 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
         ImageView cardImage;
         TextView titleText, trattaText, startDateText, endDateText,companyText, descriptionText;
         ChipGroup chipGroupLinee;
+        ProgressBar progressBar;
         public ViewHolder(View itemView){
             super(itemView);
             cardImage = itemView.findViewById(R.id.iconEvent);
@@ -44,6 +50,7 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
             companyText = itemView.findViewById(R.id.txtOperator);
             descriptionText = itemView.findViewById(R.id.txtDescription);
             chipGroupLinee = itemView.findViewById(R.id.chipGroupLinee);
+            progressBar = itemView.findViewById(R.id.progressBarDate);
         }
     }
 
@@ -72,6 +79,12 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
         holder.endDateText.setText("Al: " + finalEndDate);
         holder.companyText.setText(item.getCompany());
         holder.descriptionText.setText(item.getDetails());
+
+        int progressPercentage = calcolaPercentuale(item.getStartDate(), item.getEndDate());
+        holder.progressBar.setProgress(progressPercentage);
+        if(progressPercentage == 100){
+            holder.progressBar.setProgressTintList(ColorStateList.valueOf(Color.parseColor("#16660e")));
+        }
 
         holder.chipGroupLinee.removeAllViews();
         List<String> lineeRaw = Arrays.asList(item.getLines());
@@ -107,6 +120,36 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
     @Override
     public int getItemCount(){
         return eventList.size();
+    }
+
+    private int calcolaPercentuale(String startDateStr, String endDateStr) {
+        long start = getDateMillis(startDateStr);
+        long end = getDateMillis(endDateStr);
+        long now = System.currentTimeMillis();
+
+        long totalDuration = end - start;
+        if (totalDuration <= 0) return 100;
+
+        long elapsed = now - start;
+        double fraction = (double) elapsed / totalDuration;
+        double clamped = Math.max(0.0, Math.min(fraction, 1.0));
+        return (int) (clamped * 100);
+    }
+
+    private long getDateMillis(String dateString) {
+        if (dateString == null) return 0;
+        String serverFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'";
+
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat(serverFormat, Locale.getDefault());
+            sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+            Date date = sdf.parse(dateString);
+            return (date != null) ? date.getTime() : 0;
+
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
     private int getColorForLinea(String nomeLinea){
@@ -180,8 +223,6 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
                 else{
                     return Color.GRAY;
                 }
-
-
         }
     }
 
