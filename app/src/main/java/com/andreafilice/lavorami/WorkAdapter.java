@@ -107,8 +107,11 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
 
 
                 int coloreLinea = getColorForLinea(nomePulito);
+                int coloreTesto = (coloreLinea == R.color.OTHER) ? R.color.Black : R.color.White;
+                int coloreTestoEffettivo = ContextCompat.getColor(holder.itemView.getContext(), coloreTesto);
                 int coloreEffettivo = ContextCompat.getColor(holder.itemView.getContext(), coloreLinea);
                 chip.setChipBackgroundColor(ColorStateList.valueOf(coloreEffettivo));
+                chip.setTextColor(coloreTestoEffettivo);
 
                 chip.setCloseIconVisible(false);
                 chip.setClickable(false);
@@ -185,6 +188,10 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
                 return R.color.S19;
             case "S31":
                 return R.color.S31;
+            case "MXP":
+                return R.color.MXP;
+            case "AV":
+                return R.color.AV;
 
             //TILO Lines
             case "S10":
@@ -208,23 +215,16 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
             case "M5":
                 return R.color.M5;
 
-            case "MXP":
-                return R.color.MXP;
-
-            //Bus Lines and other lines
+            //Bus Lines and others
             default:
-                if(nomeLinea.contains("z")){
+                if(nomeLinea.contains("z"))
                     return R.color.BUS;
-                }
-                else if(nomeLinea.contains("Filobus")){
+                else if(nomeLinea.contains("Filobus"))
                     return R.color.FILOBUS;
-                }
-                else if(nomeLinea.contains("R")){
+                else if(nomeLinea.contains("R"))
                     return R.color.REGIONAL;
-                }
-                else{
+                else
                     return R.color.OTHER;
-                }
         }
     }
 

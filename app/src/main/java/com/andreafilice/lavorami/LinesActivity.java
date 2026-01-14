@@ -31,13 +31,13 @@ public class LinesActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         // AGGIUNGI LE METRO
         aggiungiLinea(containerMetro, "M1", R.color.M1, "Metro M1");
         aggiungiLinea(containerMetro, "M2", R.color.M2, "Metro M2");
         aggiungiLinea(containerMetro, "M3", R.color.M3, "Metro M3");
         aggiungiLinea(containerMetro, "M4", R.color.M4, "Metro M4");
         aggiungiLinea(containerMetro, "M5", R.color.M5, "Metro M5");
-
 
         // AGGIUNGI LE SUBURBANE
         aggiungiLinea(containerSub, "S1", R.color.S1, "Suburbano S1");
@@ -54,6 +54,7 @@ public class LinesActivity extends AppCompatActivity {
         aggiungiLinea(containerSub, "S13", R.color.S13, "Suburbano S13");
         aggiungiLinea(containerSub, "S19", R.color.S19, "Suburbano S19");
         aggiungiLinea(containerSub, "S31", R.color.S31, "Suburbano S31");
+
         //*NAVBAR
         ImageButton btnHome = (ImageButton) findViewById(R.id.homeButton);
         btnHome.setOnClickListener(v -> {
@@ -77,10 +78,8 @@ public class LinesActivity extends AppCompatActivity {
     }
 
     private void aggiungiLinea(LinearLayout container, String label, int colorHex, String description) {
-        // 1. "Gonfia" il layout della riga
         View row = getLayoutInflater().inflate(R.layout.item_linea_list, container, false);
 
-        // 2. Trova i componenti
         TextView badge = row.findViewById(R.id.lineBadge);
         TextView name = row.findViewById(R.id.lineName);
         if (badge != null && name != null) {
@@ -96,8 +95,6 @@ public class LinesActivity extends AppCompatActivity {
             }
             container.addView(row);
 
-
-            // 5. Gestisci il click
             row.setOnClickListener(v -> {
                 Intent intent = new Intent(this, LinesActivity.class);
                 intent.putExtra("NOME_LINEA", label);

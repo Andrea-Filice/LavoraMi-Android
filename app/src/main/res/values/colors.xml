@@ -32,8 +32,8 @@
     <color name="BUS">#1c1cff</color>
     <color name="FILOBUS">#65b32e</color>
     <color name="REGIONAL">#0000cc</color>
-    <color name="OTHER">#FEFEFE</color>
-
-
-
+    <color name="AV">#fc3a3a</color>
+    <color name="OTHER">#b8b8b8</color>
+    <color name="Black">#000000</color>
+    <color name="White">#FFF</color>
 </resources>
