@@ -181,11 +181,13 @@ public class MainActivity extends AppCompatActivity {
                     events = response.body();
                     eventsDisplay.clear();
                     eventsDisplay = response.body();
+                    EventData.listaEventiCompleta = events;
                     RecyclerView recyclerView = findViewById(R.id.recyclerView);
                     recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
                     adapter = new WorkAdapter(eventsDisplay);
                     adapter.setFilteredList(eventsDisplay);
                     recyclerView.setAdapter(adapter);
+
                     Log.d("SUCCESS","Oggetti caricati:" +events.size());
                 }
             }
