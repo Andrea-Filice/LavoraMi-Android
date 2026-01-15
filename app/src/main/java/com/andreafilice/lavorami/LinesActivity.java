@@ -96,7 +96,7 @@ public class LinesActivity extends AppCompatActivity {
 
 
             row.setOnClickListener(v -> {
-                Intent intent = new Intent(this, LinesDetailActvity.class);
+                Intent intent = new Intent(this, LinesDetailActivity.class);
                 intent.putExtra("NOME_LINEA", label);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);

@@ -36,7 +36,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 
-public class LinesDetailActvity extends AppCompatActivity implements OnMapReadyCallback {
+public class LinesDetailActivity extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     private String nomeLinea;
 

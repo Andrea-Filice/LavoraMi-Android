@@ -24,7 +24,7 @@
             android:name=".LinesActivity"
             android:exported="false" />
         <activity
-            android:name=".LinesDetailActvity"
+            android:name=".LinesDetailActivity"
             android:parentActivityName=".LinesActivity"
             android:exported="false"
             />
