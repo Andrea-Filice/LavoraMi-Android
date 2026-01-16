@@ -143,7 +143,7 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
 
     private long getDateMillis(String dateString) {
         if (dateString == null) return 0;
-        String serverFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'";
+        String serverFormat = "yyyy-MM-dd'T'HH:mm:ss'+01:00'";
 
         try {
             SimpleDateFormat sdf = new SimpleDateFormat(serverFormat, Locale.getDefault());
