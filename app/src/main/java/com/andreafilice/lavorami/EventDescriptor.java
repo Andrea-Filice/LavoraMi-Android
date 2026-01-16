@@ -13,8 +13,9 @@ public class EventDescriptor {
     protected String endDate;
     protected String details;
     protected String company;
+    protected boolean eventTerminated;
 
-    public EventDescriptor(String title, String titleIcon, String typeOfTransport, String roads, String[] lines, String startDate, String endDate, String details, String company) {
+    public EventDescriptor(String title, String titleIcon, String typeOfTransport, String roads, String[] lines, String startDate, String endDate, String details, String company, WorkAdapter adapter) {
         this.title = title;
         this.titleIcon = titleIcon;
         this.typeOfTransport = typeOfTransport;
@@ -24,6 +25,7 @@ public class EventDescriptor {
         this.endDate = endDate;
         this.details = details;
         this.company = company;
+        this.eventTerminated = (calcolaPercentuale(startDate, endDate) == 100) ? true : false;
     }
 
     public int getCardImageID() {
@@ -67,38 +69,32 @@ public class EventDescriptor {
     public String getTitle() {
         return title;
     }
-
     public String getTitleIcon() {
         return titleIcon;
     }
-
     public String getTypeOfTransport() {
         return typeOfTransport;
     }
-
     public String getRoads() {
         return roads;
     }
-
     public String[] getLines() {
         return lines;
     }
-
     public String getStartDate() {
         return startDate;
     }
-
     public String getEndDate() {
         return endDate;
     }
-
     public String getDetails() {
         return details;
     }
-
     public String getCompany() {
         return company;
     }
+    public boolean isEventTerminated() {return eventTerminated;}
+    public void setEventTerminated(boolean eventTerminated) {this.eventTerminated = eventTerminated;}
 
     public static String formattaData(String initialDate) {
         try {
@@ -113,6 +109,36 @@ public class EventDescriptor {
         } catch (Exception e) {
             e.printStackTrace();
             return initialDate;
+        }
+    }
+
+    public int calcolaPercentuale(String startDateStr, String endDateStr) {
+        long start = getDateMillis(startDateStr);
+        long end = getDateMillis(endDateStr);
+        long now = System.currentTimeMillis();
+
+        long totalDuration = end - start;
+        if (totalDuration <= 0) return 100;
+
+        long elapsed = now - start;
+        double fraction = (double) elapsed / totalDuration;
+        double clamped = Math.max(0.0, Math.min(fraction, 1.0));
+        return (int) (clamped * 100);
+    }
+
+    public long getDateMillis(String dateString) {
+        if (dateString == null) return 0;
+        String serverFormat = "yyyy-MM-dd'T'HH:mm:ss'+01:00'";
+
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat(serverFormat, Locale.getDefault());
+            sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+            Date date = sdf.parse(dateString);
+            return (date != null) ? date.getTime() : 0;
+
+        } catch (Exception e) {
+            return 0;
         }
     }
 }

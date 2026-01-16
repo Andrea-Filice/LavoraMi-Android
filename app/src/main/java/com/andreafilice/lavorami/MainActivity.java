@@ -3,7 +3,6 @@ package com.andreafilice.lavorami;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.media.metrics.Event;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -31,7 +30,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import kotlin.ParameterName;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -189,15 +187,15 @@ public class MainActivity extends AppCompatActivity {
                     recyclerView.setAdapter(adapter);
 
                     Log.d("SUCCESS","Oggetti caricati:" +events.size());
+                    applicaFiltroCategoria("tutti");
                 }
             }
 
             @Override
             public void onFailure(Call<ArrayList<EventDescriptor>> call, Throwable t) {
                 //? ON FAILURE, ACTIVATE THE "ERROR" LAYOUT
-                if(loadingLayout != null){
+                if(loadingLayout != null)
                     loadingLayout.setVisibility(View.GONE);
-                }
                 Log.e("ERROR","Errore nel download: " + t.getMessage());
             }
         });
@@ -245,12 +243,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void applicaFiltroCategoria(String categoria) {
-        if(adapter== null){
+        if(adapter== null)
             return;
-        }
-        if (events == null || events.isEmpty()) {
+        if (events == null || events.isEmpty())
             return;
-        }
 
         List<EventDescriptor> filtrata = new ArrayList<>();
         long oggi = System.currentTimeMillis();
@@ -258,7 +254,12 @@ public class MainActivity extends AppCompatActivity {
         for (EventDescriptor item : events) {
             switch (categoria) {
                 case "tutti":
-                    filtrata.add(item);
+                    long now = System.currentTimeMillis();
+                    long terminated = getDateMillis(item.getEndDate());
+
+                    if (terminated > now) {
+                        filtrata.add(item);
+                    }
                     break;
 
                 case "bus":
@@ -313,6 +314,20 @@ public class MainActivity extends AppCompatActivity {
             adapter.setFilteredList(filtrata);
             checkForEmptyList(filtrata);
         }
+    }
+
+    private int calcolaPercentuale(EventDescriptor item) {
+        long start = getDateMillis(item.startDate);
+        long end = getDateMillis(item.endDate);
+        long now = System.currentTimeMillis();
+
+        long totalDuration = end - start;
+        if (totalDuration <= 0) return 100;
+
+        long elapsed = now - start;
+        double fraction = (double) elapsed / totalDuration;
+        double clamped = Math.max(0.0, Math.min(fraction, 1.0));
+        return (int) (clamped * 100);
     }
 
     private boolean isTram(EventDescriptor item) {
