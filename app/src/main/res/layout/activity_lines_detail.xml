@@ -31,7 +31,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView"
                 app:srcCompat="@drawable/outline_arrow_back_ios_new_24"
-                android:tint="@color/text_primary"/>
+                app:tint="@color/text_primary" />
 
             <TextView
                 android:id="@+id/detBadge"
@@ -40,7 +40,7 @@
                 android:background="@drawable/bg_badge_line"
                 android:gravity="center"
                 android:text=""
-                android:textColor="@color/text_primary"
+                android:textColor="#FFFFFF"
                 android:textSize="32sp"
                 android:textStyle="bold" />
 
@@ -62,7 +62,7 @@
             android:text="Direzioni:"
             android:textColor="@color/text_primary"
             android:textSize="12sp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="29dp"
             android:textStyle="bold" />
 
         <TextView
@@ -79,7 +79,7 @@
             android:text="Tempo di attesa::"
             android:textColor="@color/text_primary"
             android:textSize="12sp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="29dp"
             android:textStyle="bold" />
 
         <TextView
@@ -96,7 +96,7 @@
             android:text="Stato linea"
             android:textColor="@color/text_primary"
             android:textSize="12sp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="29dp"
             android:textStyle="bold" />
 
         <TextView

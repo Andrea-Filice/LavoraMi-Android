@@ -62,6 +62,14 @@ public class LinesDetailActivity extends AppCompatActivity implements OnMapReady
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setTitle("Dettaglio " + nomeLinea);
         }
+        // Imposta lo spessore del bordo (es. 1dp o 2dp)
+        chipMappa.setChipStrokeWidth(3f);
+        // Imposta il colore del bordo (Grigio)
+        chipMappa.setChipStrokeColor(ColorStateList.valueOf(Color.parseColor("#CCCCCC")));
+        // Imposta lo spessore del bordo (es. 1dp o 2dp)
+        chipLavori.setChipStrokeWidth(3f);
+        // Imposta il colore del bordo (Grigio)
+        chipLavori.setChipStrokeColor(ColorStateList.valueOf(Color.parseColor("#CCCCCC")));
         chipMappa.setOnClickListener(v -> {
             cardMappa.setVisibility(View.VISIBLE);
             containerLavori.setVisibility(View.GONE);
@@ -98,19 +106,9 @@ public class LinesDetailActivity extends AppCompatActivity implements OnMapReady
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        int nightModeFlags = getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK;
-
-        if (nightModeFlags == android.content.res.Configuration.UI_MODE_NIGHT_YES) {
-            try {
-                boolean success = mMap.setMapStyle(
-                        MapStyleOptions.loadRawResourceStyle(this, R.raw.map_style));
-
-                if (!success) {
-                    Log.e("MAP_STYLE", "Lo stile della mappa non è stato caricato.");
-                }
-            } catch (Resources.NotFoundException e) {
-                Log.e("MAP_STYLE", "File map_style.json non trovato.", e);
-            }
+        mMap.getUiSettings().setMapToolbarEnabled(false);
+        if (isDarkMode()) {
+            mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.map_style));
         }
         LatLng milano = new LatLng(45.4642, 9.1900);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(milano, 11f));
