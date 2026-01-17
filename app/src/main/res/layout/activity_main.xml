@@ -246,6 +246,57 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/errorNetwork"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/headerLayout"
+        app:layout_constraintBottom_toTopOf="@+id/customBottomBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="88dp"
+            android:layout_height="59dp"
+            app:srcCompat="@drawable/ic_wifi_slash"
+            app:tint="@color/text_primary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Impossibile caricare i dati dal server."
+            android:textColor="@color/text_primary"
+            android:textSize="20sp"
+            android:fontFamily="@font/archivo_medium"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:text="Controlla la tua connessione e riprova."
+            android:textColor="@color/text_primary"
+            android:textSize="16sp"
+            android:fontFamily="@font/archivo_medium"/>
+
+        <Button
+            android:id="@+id/btnRefreshOnError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/redMetro"
+            android:layout_marginTop="10dp"
+            android:text="Riprova"
+            app:icon="@drawable/ic_refresh"
+            app:iconPadding="10dp"
+            app:iconGravity="textStart"
+            app:iconTint="@color/White"
+            android:textColor="@color/White"/>
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/customBottomBar"
         android:layout_width="match_parent"
         android:layout_height="65dp"

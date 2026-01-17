@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<EventDescriptor> events = new ArrayList<EventDescriptor>();
     private ArrayList<EventDescriptor> eventsDisplay = new ArrayList<EventDescriptor>();
     private LinearLayout loadingLayout;
+    private LinearLayout errorLayout;
     private WorkAdapter adapter;
     List<EventDescriptor> listaCompleta = new ArrayList<>(events);
 
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         //*INITIALIZE THE LOADING LAYOUT
         loadingLayout = findViewById(R.id.loadingLayout);
+        errorLayout = findViewById(R.id.errorNetwork);
 
         if(loadingLayout != null){
             loadingLayout.setVisibility(View.VISIBLE);
@@ -79,11 +82,12 @@ public class MainActivity extends AppCompatActivity {
 
         //*REFRESH BUTTON
         ImageButton btnRefresh = (ImageButton) findViewById(R.id.buttonRefresh);
-        btnRefresh.setOnClickListener(v -> {
-            downloadJSONData();
-        });
+        Button btnRefreshOnError = (Button) findViewById(R.id.btnRefreshOnError);
 
-        //* CHIP GROUP (FILTRI)
+        btnRefresh.setOnClickListener(v -> {downloadJSONData();});
+        btnRefreshOnError.setOnClickListener(v -> {downloadJSONData();});
+
+        //* CHIP GROUP (FILTERS)
         ChipGroup filterGroup = findViewById(R.id.filterChipGroup);
 
         if(filterGroup != null){
@@ -92,13 +96,8 @@ public class MainActivity extends AppCompatActivity {
                 View child = filterGroup.getChildAt(i);
                 if (child instanceof Chip) {
                     Chip chip = (Chip) child;
-
-                    // Imposta lo spessore del bordo (es. 1dp o 2dp)
                     chip.setChipStrokeWidth(3f);
-
-                    // Imposta il colore del bordo (Grigio)
                     chip.setChipStrokeColor(ColorStateList.valueOf(Color.parseColor("#CCCCCC")));
-
                 }
             }
         }
@@ -126,12 +125,11 @@ public class MainActivity extends AppCompatActivity {
         //* LISTENER PER I FILTRI (CHIP)
         if (filterGroup != null) {
             filterGroup.setOnCheckedChangeListener((group, checkedId) -> {
-                if (checkedId == View.NO_ID) {
+                if (checkedId == View.NO_ID)
                     filterGroup.check(R.id.chipAll);
-                } else {
-                    if (checkedId != R.id.chipAll) {
+                else {
+                    if (checkedId != R.id.chipAll)
                         editSearch.setText("");
-                    }
                     Chip selectedChip = findViewById(checkedId);
                     if (selectedChip != null) {
                         String categoria = selectedChip.getText().toString().toLowerCase().trim();
@@ -156,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
         //? ACTIVATE THE LOADING LAYOUT
         if(loadingLayout != null){
             loadingLayout.setVisibility(View.VISIBLE);
+            errorLayout.setVisibility(View.GONE);
             findViewById(R.id.recyclerView).setVisibility(View.GONE);
         }
 
@@ -172,6 +171,7 @@ public class MainActivity extends AppCompatActivity {
                 //? DISABLE THE LOADING LAYOUT
                 if(loadingLayout != null){
                     loadingLayout.setVisibility(View.GONE);
+                    errorLayout.setVisibility(View.GONE);
                     findViewById(R.id.recyclerView).setVisibility(View.VISIBLE);
                 }
                 if(response.isSuccessful() && response.body()!=null){
@@ -193,9 +193,11 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ArrayList<EventDescriptor>> call, Throwable t) {
-                //? ON FAILURE, ACTIVATE THE "ERROR" LAYOUT
-                if(loadingLayout != null)
+                //* ON FAILURE, ACTIVATE THE "ERROR" LAYOUT
+                if(loadingLayout != null){
                     loadingLayout.setVisibility(View.GONE);
+                    errorLayout.setVisibility(View.VISIBLE);
+                }
                 Log.e("ERROR","Errore nel download: " + t.getMessage());
             }
         });
@@ -210,9 +212,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void filtra(String testo) {
-        if (adapter == null || events == null || events.isEmpty()) {
+        if (adapter == null || events == null || events.isEmpty())
             return;
-        }
         if (testo == null || testo.trim().isEmpty()) {
             adapter.setFilteredList(events);
             checkForEmptyList(events);
