@@ -33,7 +33,6 @@ public class SourcesDevelopment extends AppCompatActivity {
         btnReportBug.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String recipient = "help.playepik@gmail.com";
                 String subject = "Segnalazione Bug LavoraMI";
 
                 Intent intent = new Intent(Intent.ACTION_SENDTO);

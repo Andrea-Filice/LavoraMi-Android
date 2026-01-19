@@ -322,10 +322,8 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         }
-        if (adapter != null) {
-            adapter.setFilteredList(filtrata);
-            checkForEmptyList(filtrata);
-        }
+        adapter.setFilteredList(filtrata);
+        checkForEmptyList(filtrata);
     }
 
     private int calcolaPercentuale(EventDescriptor item) {
