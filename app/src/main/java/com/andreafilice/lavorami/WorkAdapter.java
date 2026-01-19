@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.shape.ShapeAppearanceModel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -93,7 +94,12 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
                 Chip chip = new Chip(holder.itemView.getContext());
                 chip.setText(nomePulito);
 
-                chip.setChipCornerRadius(10f);
+                ShapeAppearanceModel cornerRadius = chip.getShapeAppearanceModel()
+                    .toBuilder()
+                    .setAllCornerSizes(10f)
+                    .build();
+
+                chip.setShapeAppearanceModel(cornerRadius);
                 chip.setEnsureMinTouchTargetSize(false);
                 chip.setChipMinHeight(0f);
 

@@ -116,7 +116,9 @@ public class LinesDetailActivity extends AppCompatActivity implements OnMapReady
         detBadge.setText(nomeLinea);
         int colorResId = StationDB.getLineColor(nomeLinea);
         int coloreEffettivo = ContextCompat.getColor(this, colorResId);
-        detBadge.getBackground().setColorFilter(coloreEffettivo, PorterDuff.Mode.SRC_IN);
+
+        detBadge.getBackground().setTint(coloreEffettivo);
+        detBadge.getBackground().setTintMode(PorterDuff.Mode.SRC_IN);
     }
 
     @Override

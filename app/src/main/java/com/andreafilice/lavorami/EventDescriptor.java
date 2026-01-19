@@ -15,7 +15,7 @@ public class EventDescriptor {
     protected String company;
     protected boolean eventTerminated;
 
-    public EventDescriptor(String title, String titleIcon, String typeOfTransport, String roads, String[] lines, String startDate, String endDate, String details, String company, WorkAdapter adapter) {
+    public EventDescriptor(String title, String titleIcon, String typeOfTransport, String roads, String[] lines, String startDate, String endDate, String details, String company) {
         this.title = title;
         this.titleIcon = titleIcon;
         this.typeOfTransport = typeOfTransport;
