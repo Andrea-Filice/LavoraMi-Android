@@ -42,7 +42,7 @@ public class SourcesDevelopment extends AppCompatActivity {
                 intent.putExtra(Intent.EXTRA_SUBJECT, subject);
 
                 try {
-                    startActivity(intent);
+                    startActivity(Intent.createChooser(intent, "Invia segnalazione bug"));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
