@@ -31,6 +31,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import okhttp3.CertificatePinner;
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -157,9 +159,19 @@ public class MainActivity extends AppCompatActivity {
             findViewById(R.id.recyclerView).setVisibility(View.GONE);
         }
 
+        //*URL VERIFY SHA-256 CHECKSUM
+        CertificatePinner certificatePinner = new CertificatePinner.Builder()
+                .add("cdn-playepik.netlify.app", "sha256/DFv0rPImhleLzIvctvEusBa5wnzQ/+aSqyW18y26L+s=")
+                .build();
+
+        OkHttpClient httpClient = new OkHttpClient.Builder()
+                .certificatePinner(certificatePinner)
+                .build();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://cdn-playepik.netlify.app/")
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClient)
                 .build();
 
         APIWorks apiworks = retrofit.create(APIWorks.class);
