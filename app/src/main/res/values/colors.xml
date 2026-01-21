@@ -39,4 +39,5 @@
     <color name="RE80">#068dfd</color>
     <color name="Black">#000000</color>
     <color name="White">#FFF</color>
+    <color name="disclosureBg">#5c5f63</color>
 </resources>
