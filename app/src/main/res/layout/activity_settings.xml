@@ -215,17 +215,6 @@
                             android:src="@drawable/ic_train"
                             app:tint="#E41414" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginStart="12dp"
-                            android:layout_toEndOf="@id/iconMain"
-                            android:fontFamily="@font/archivo_medium"
-                            android:text="Linee Trenord"
-                            android:textColor="#FFFFFF"
-                            android:textSize="17sp" />
-
                         <ImageView
                             android:id="@+id/disclosureArrowAtm"
                             android:layout_width="20dp"
@@ -235,6 +224,19 @@
                             android:rotation="270"
                             android:src="@drawable/ic_dropdown"
                             app:tint="@color/White" />
+
+                        <TextView
+                            android:id="@+id/textView5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_toEndOf="@+id/iconMainAtm"
+                            android:fontFamily="@font/archivo_medium"
+                            android:text="Linee Trenord"
+                            android:textColor="#FFFFFF"
+                            android:textSize="17sp" />
                     </RelativeLayout>
 
                     <LinearLayout
