@@ -212,7 +212,7 @@
                             android:layout_width="28dp"
                             android:layout_height="28dp"
                             android:layout_centerVertical="true"
-                            android:src="@drawable/ic_train"
+                            android:src="@drawable/ic_tram"
                             app:tint="#E41414" />
 
                         <ImageView
@@ -234,7 +234,7 @@
                             android:layout_marginBottom="16dp"
                             android:layout_toEndOf="@+id/iconMainAtm"
                             android:fontFamily="@font/archivo_medium"
-                            android:text="Linee Trenord"
+                            android:text="Linee ATM"
                             android:textColor="#FFFFFF"
                             android:textSize="17sp" />
                     </RelativeLayout>
@@ -286,7 +286,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_marginStart="40dp"
-                                android:text="Linee R"
+                                android:text="Linee Tram"
                                 android:textColor="@color/background_app"
                                 android:textSize="15sp" />
 
@@ -309,7 +309,147 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_marginStart="40dp"
-                                android:text="Linee RE"
+                                android:text="Linee Bus"
+                                android:textColor="@color/background_app"
+                                android:textSize="15sp" />
+
+                            <ImageView
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/ic_star_empty"
+                                app:tint="#FF9F0A" />
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
+                app:cardBackgroundColor="@color/cardview_dark_background"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/disclosureHeaderAtm"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:paddingHorizontal="16dp">
+
+                        <ImageView
+                            android:id="@+id/iconMainAtm"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_tram"
+                            app:tint="#E41414" />
+
+                        <ImageView
+                            android:id="@+id/disclosureArrowAtm"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:rotation="270"
+                            android:src="@drawable/ic_dropdown"
+                            app:tint="@color/White" />
+
+                        <TextView
+                            android:id="@+id/textView5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_toEndOf="@+id/iconMainAtm"
+                            android:fontFamily="@font/archivo_medium"
+                            android:text="Linee ATM"
+                            android:textColor="#FFFFFF"
+                            android:textSize="17sp" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/disclosureContentAtm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible"
+                        android:paddingBottom="8dp">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginStart="56dp"
+                            android:background="#38383A" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:paddingHorizontal="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="40dp"
+                                android:text="Linee Metropolitane"
+                                android:textColor="@color/background_app"
+                                android:textSize="15sp" />
+
+                            <ImageView
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/ic_star_empty"
+                                app:tint="#FF9F0A" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:paddingHorizontal="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="40dp"
+                                android:text="Linee Tram"
+                                android:textColor="@color/background_app"
+                                android:textSize="15sp" />
+
+                            <ImageView
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/ic_star_empty"
+                                app:tint="#FF9F0A" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:paddingHorizontal="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="40dp"
+                                android:text="Linee Bus"
                                 android:textColor="@color/background_app"
                                 android:textSize="15sp" />
 
