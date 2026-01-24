@@ -24,7 +24,7 @@
 
     <ScrollView
         android:id="@+id/scrollView"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:fillViewport="true"
@@ -118,16 +118,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="48dp"
                             android:paddingHorizontal="16dp">
-
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_marginStart="40dp"
                                 android:text="Linee S"
-                                android:textColor="@color/background_app"
+                                android:textColor="#FFFFFF"
                                 android:textSize="15sp" />
-
                             <ImageView
                                 android:layout_width="18dp"
                                 android:layout_height="18dp"
@@ -136,194 +134,7 @@
                                 android:src="@drawable/ic_star_empty"
                                 app:tint="#FF9F0A" />
                         </RelativeLayout>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="48dp"
-                            android:paddingHorizontal="16dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginStart="40dp"
-                                android:text="Linee R"
-                                android:textColor="@color/background_app"
-                                android:textSize="15sp" />
-
-                            <ImageView
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerVertical="true"
-                                android:src="@drawable/ic_star_empty"
-                                app:tint="#FF9F0A" />
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="48dp"
-                            android:paddingHorizontal="16dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginStart="40dp"
-                                android:text="Linee RE"
-                                android:textColor="@color/background_app"
-                                android:textSize="15sp" />
-
-                            <ImageView
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerVertical="true"
-                                android:src="@drawable/ic_star_empty"
-                                app:tint="#FF9F0A" />
-                        </RelativeLayout>
-
                     </LinearLayout>
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="12dp"
-                app:cardBackgroundColor="@color/cardview_dark_background"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="0dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:id="@+id/disclosureHeaderAtm"
-                        android:layout_width="match_parent"
-                        android:layout_height="56dp"
-                        android:paddingHorizontal="16dp">
-
-                        <ImageView
-                            android:id="@+id/iconMainAtm"
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"
-                            android:layout_centerVertical="true"
-                            android:src="@drawable/ic_tram"
-                            app:tint="#E41414" />
-
-                        <ImageView
-                            android:id="@+id/disclosureArrowAtm"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            android:rotation="270"
-                            android:src="@drawable/ic_dropdown"
-                            app:tint="@color/White" />
-
-                        <TextView
-                            android:id="@+id/textView5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_marginStart="12dp"
-                            android:layout_marginBottom="16dp"
-                            android:layout_toEndOf="@+id/iconMainAtm"
-                            android:fontFamily="@font/archivo_medium"
-                            android:text="Linee ATM"
-                            android:textColor="#FFFFFF"
-                            android:textSize="17sp" />
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:id="@+id/disclosureContentAtm"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:visibility="visible"
-                        android:paddingBottom="8dp">
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.5dp"
-                            android:layout_marginStart="56dp"
-                            android:background="#38383A" />
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="48dp"
-                            android:paddingHorizontal="16dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginStart="40dp"
-                                android:text="Linee Metropolitane"
-                                android:textColor="@color/background_app"
-                                android:textSize="15sp" />
-
-                            <ImageView
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerVertical="true"
-                                android:src="@drawable/ic_star_empty"
-                                app:tint="#FF9F0A" />
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="48dp"
-                            android:paddingHorizontal="16dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginStart="40dp"
-                                android:text="Linee Tram"
-                                android:textColor="@color/background_app"
-                                android:textSize="15sp" />
-
-                            <ImageView
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerVertical="true"
-                                android:src="@drawable/ic_star_empty"
-                                app:tint="#FF9F0A" />
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="48dp"
-                            android:paddingHorizontal="16dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginStart="40dp"
-                                android:text="Linee Bus"
-                                android:textColor="@color/background_app"
-                                android:textSize="15sp" />
-
-                            <ImageView
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerVertical="true"
-                                android:src="@drawable/ic_star_empty"
-                                app:tint="#FF9F0A" />
-                        </RelativeLayout>
-
-                    </LinearLayout>
-
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -355,6 +166,17 @@
                             android:src="@drawable/ic_tram"
                             app:tint="#E41414" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="12dp"
+                            android:layout_toEndOf="@+id/iconMainAtm"
+                            android:fontFamily="@font/archivo_medium"
+                            android:text="Linee ATM"
+                            android:textColor="#FFFFFF"
+                            android:textSize="17sp" />
+
                         <ImageView
                             android:id="@+id/disclosureArrowAtm"
                             android:layout_width="20dp"
@@ -364,19 +186,6 @@
                             android:rotation="270"
                             android:src="@drawable/ic_dropdown"
                             app:tint="@color/White" />
-
-                        <TextView
-                            android:id="@+id/textView5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_marginStart="12dp"
-                            android:layout_marginBottom="16dp"
-                            android:layout_toEndOf="@+id/iconMainAtm"
-                            android:fontFamily="@font/archivo_medium"
-                            android:text="Linee ATM"
-                            android:textColor="#FFFFFF"
-                            android:textSize="17sp" />
                     </RelativeLayout>
 
                     <LinearLayout
@@ -387,83 +196,369 @@
                         android:visibility="visible"
                         android:paddingBottom="8dp">
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.5dp"
-                            android:layout_marginStart="56dp"
-                            android:background="#38383A" />
+                        <View android:layout_width="match_parent" android:layout_height="0.5dp" android:layout_marginStart="56dp" android:background="#38383A" />
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="48dp"
-                            android:paddingHorizontal="16dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginStart="40dp"
-                                android:text="Linee Metropolitane"
-                                android:textColor="@color/background_app"
-                                android:textSize="15sp" />
-
-                            <ImageView
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerVertical="true"
-                                android:src="@drawable/ic_star_empty"
-                                app:tint="#FF9F0A" />
+                        <RelativeLayout android:layout_width="match_parent" android:layout_height="48dp" android:paddingHorizontal="16dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="40dp" android:text="Linee Metropolitane" android:textColor="#FFFFFF" android:textSize="15sp" />
+                            <ImageView android:layout_width="18dp" android:layout_height="18dp" android:layout_alignParentEnd="true" android:layout_centerVertical="true" android:src="@drawable/ic_star_empty" app:tint="#FF9F0A" />
                         </RelativeLayout>
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="48dp"
-                            android:paddingHorizontal="16dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginStart="40dp"
-                                android:text="Linee Tram"
-                                android:textColor="@color/background_app"
-                                android:textSize="15sp" />
-
-                            <ImageView
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerVertical="true"
-                                android:src="@drawable/ic_star_empty"
-                                app:tint="#FF9F0A" />
+                        <RelativeLayout android:layout_width="match_parent" android:layout_height="48dp" android:paddingHorizontal="16dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="40dp" android:text="Linee Tram" android:textColor="#FFFFFF" android:textSize="15sp" />
+                            <ImageView android:layout_width="18dp" android:layout_height="18dp" android:layout_alignParentEnd="true" android:layout_centerVertical="true" android:src="@drawable/ic_star_empty" app:tint="#FF9F0A" />
                         </RelativeLayout>
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="48dp"
-                            android:paddingHorizontal="16dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginStart="40dp"
-                                android:text="Linee Bus"
-                                android:textColor="@color/background_app"
-                                android:textSize="15sp" />
-
-                            <ImageView
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerVertical="true"
-                                android:src="@drawable/ic_star_empty"
-                                app:tint="#FF9F0A" />
+                        <RelativeLayout android:layout_width="match_parent" android:layout_height="48dp" android:paddingHorizontal="16dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="40dp" android:text="Linee Bus" android:textColor="#FFFFFF" android:textSize="15sp" />
+                            <ImageView android:layout_width="18dp" android:layout_height="18dp" android:layout_alignParentEnd="true" android:layout_centerVertical="true" android:src="@drawable/ic_star_empty" app:tint="#FF9F0A" />
                         </RelativeLayout>
-
                     </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
+                app:cardBackgroundColor="@color/cardview_dark_background"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp">
+
+                <RelativeLayout
+                    android:id="@+id/disclosureHeaderMovibus"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:paddingHorizontal="16dp">
+
+                    <ImageView
+                        android:id="@+id/iconMainMovibus"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_bus"
+                        app:tint="#E41414" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="12dp"
+                        android:layout_toEndOf="@+id/iconMainMovibus"
+                        android:fontFamily="@font/archivo_medium"
+                        android:text="Linee Movibus"
+                        android:textColor="#FFFFFF"
+                        android:textSize="17sp" />
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_star_empty"
+                        app:tint="#FF9F0A" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
+                app:cardBackgroundColor="@color/cardview_dark_background"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp">
+
+                <RelativeLayout
+                    android:id="@+id/disclosureHeaderStav"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:paddingHorizontal="16dp">
+
+                    <ImageView
+                        android:id="@+id/iconMainStav"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_bus"
+                        app:tint="#E41414" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="12dp"
+                        android:layout_toEndOf="@+id/iconMainStav"
+                        android:fontFamily="@font/archivo_medium"
+                        android:text="Linee STAV"
+                        android:textColor="#FFFFFF"
+                        android:textSize="17sp" />
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_star_empty"
+                        app:tint="#FF9F0A" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
+                app:cardBackgroundColor="@color/cardview_dark_background"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp">
+
+                <RelativeLayout
+                    android:id="@+id/disclosureHeaderAutoguidovie"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:paddingHorizontal="16dp">
+
+                    <ImageView
+                        android:id="@+id/iconMainAutoguidovie"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_bus"
+                        app:tint="#E41414" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="12dp"
+                        android:layout_toEndOf="@+id/iconMainAutoguidovie"
+                        android:fontFamily="@font/archivo_medium"
+                        android:text="Linee Autoguidovie"
+                        android:textColor="#FFFFFF"
+                        android:textSize="17sp" />
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_star_empty"
+                        app:tint="#FF9F0A" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/generalSettings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/archivo_medium"
+                android:text="Generali"
+                android:textColor="#8E8E93"
+                android:textSize="18sp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                app:cardBackgroundColor="@color/cardview_dark_background"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/btnNotifiche"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:paddingHorizontal="12dp">
+
+                        <ImageView
+                            android:id="@+id/iconNotif"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_bell"
+                            app:tint="@color/redMetro"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="12dp"
+                            android:layout_toEndOf="@id/iconNotif"
+                            android:text="Notifiche"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:rotation="180"
+                            android:src="@drawable/ic_dropdown"
+                            app:tint="@color/White" />
+                    </RelativeLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="0.5dp" android:layout_marginStart="52dp" android:background="#38383A" />
+
+                    <RelativeLayout
+                        android:id="@+id/btnFiltro"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:paddingHorizontal="12dp">
+
+                        <ImageView
+                            android:id="@+id/iconFiltro"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_filters"
+                            app:tint="@color/redMetro"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="12dp"
+                            android:layout_toEndOf="@id/iconFiltro"
+                            android:text="Filtro Predefinito"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="8dp"
+                            android:layout_toStartOf="@id/arrowFiltro"
+                            android:text="Tutti"
+                            android:textColor="#8E8E93"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:id="@+id/arrowFiltro"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:rotation="180"
+                            android:src="@drawable/ic_dropdown"
+                            app:tint="@color/White" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/infoSettings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/archivo_medium"
+                android:text="Informazioni"
+                android:textColor="#8E8E93"
+                android:textSize="18sp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                app:cardBackgroundColor="@color/cardview_dark_background"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/btnFonts"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:paddingHorizontal="12dp">
+
+                        <ImageView
+                            android:id="@+id/iconFonts"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_sources"
+                            app:tint="@color/redMetro"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="12dp"
+                            android:layout_toEndOf="@id/iconFonts"
+                            android:text="Fonti &amp; Sviluppo"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:rotation="180"
+                            android:src="@drawable/ic_dropdown"
+                            app:tint="@color/White" />
+                    </RelativeLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="0.5dp" android:layout_marginStart="52dp" android:background="#38383A" />
+
+                    <RelativeLayout
+                        android:id="@+id/btnVersion"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:paddingHorizontal="12dp">
+
+                        <ImageView
+                            android:id="@+id/i"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_filters"
+                            app:tint="@color/redMetro"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="12dp"
+                            android:layout_toEndOf="@id/iconFiltro"
+                            android:text="Filtro Predefinito"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:id="@+id/arrowFiltro"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:rotation="180"
+                            android:src="@drawable/ic_dropdown"
+                            app:tint="@color/White" />
+                    </RelativeLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -472,6 +567,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
                 android:backgroundTint="#E61414"
                 android:fontFamily="@font/archivo_medium"
