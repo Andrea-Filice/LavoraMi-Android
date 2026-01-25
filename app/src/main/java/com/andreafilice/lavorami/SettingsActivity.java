@@ -45,6 +45,11 @@ public class SettingsActivity extends AppCompatActivity {
         sourcesBtn.setOnClickListener(v -> {
             changeActivity(SourcesDevelopment.class);
         });
+
+        RelativeLayout notificationsBtn = findViewById(R.id.btnNotifiche);
+        notificationsBtn.setOnClickListener(v -> {
+            changeActivity(NotificationSettings.class);
+        });
     }
 
     public void changeActivity(Class<?> destinationLayout){
