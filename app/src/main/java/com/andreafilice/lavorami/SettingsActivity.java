@@ -50,6 +50,11 @@ public class SettingsActivity extends AppCompatActivity {
         notificationsBtn.setOnClickListener(v -> {
             changeActivity(NotificationSettings.class);
         });
+
+        RelativeLayout filtersButton = findViewById(R.id.btnFiltro);
+        filtersButton.setOnClickListener(v -> {
+            changeActivity(FilterSelection.class);
+        });
     }
 
     public void changeActivity(Class<?> destinationLayout){
