@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("DATA", defaultCategory);
 
         //*RIEMPIMENTO STRUTTURA DATI CONTENENTE DATI EVENTI
-        downloadJSONData();
+        downloadJSONData(defaultCategory);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
@@ -92,8 +92,8 @@ public class MainActivity extends AppCompatActivity {
         ImageButton btnRefresh = (ImageButton) findViewById(R.id.buttonRefresh);
         Button btnRefreshOnError = (Button) findViewById(R.id.btnRefreshOnError);
 
-        btnRefresh.setOnClickListener(v -> {downloadJSONData();});
-        btnRefreshOnError.setOnClickListener(v -> {downloadJSONData();});
+        btnRefresh.setOnClickListener(v -> {downloadJSONData(getCategory());});
+        btnRefreshOnError.setOnClickListener(v -> {downloadJSONData(getCategory());});
 
         //* CHIP GROUP (FILTERS)
         ChipGroup filterGroup = findViewById(R.id.filterChipGroup);
@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
             }
             for (int i = 0; i < filterGroup.getChildCount(); i++) {
                 View child = filterGroup.getChildAt(i);
-                if (child instanceof Chip) {
+                if (child instanceof Chip) { 
                     Chip chip = (Chip) child;
                     chip.setChipStrokeWidth(3f);
                     chip.setChipStrokeColor(ColorStateList.valueOf(Color.parseColor("#CCCCCC")));
@@ -195,7 +195,24 @@ public class MainActivity extends AppCompatActivity {
         overridePendingTransition(1, 0);
     }
 
-    public void downloadJSONData(){
+    public String getCategory() {
+        ChipGroup filterGroup = findViewById(R.id.filterChipGroup);
+        if (filterGroup == null) return "tutti";
+
+        int checkedId = filterGroup.getCheckedChipId();
+        if (checkedId == View.NO_ID || checkedId == R.id.chipAll) {
+            return "tutti";
+        }
+
+        Chip selectedChip = findViewById(checkedId);
+        if (selectedChip != null) {
+            return selectedChip.getText().toString().toLowerCase().trim();
+        }
+
+        return "tutti";
+    }
+
+    public void downloadJSONData(String categoryToFilter){
         //? ACTIVATE THE LOADING LAYOUT
         if(loadingLayout != null){
             loadingLayout.setVisibility(View.VISIBLE);
@@ -242,7 +259,7 @@ public class MainActivity extends AppCompatActivity {
                     recyclerView.setAdapter(adapter);
 
                     Log.d("SUCCESS","Oggetti caricati:" +events.size());
-                    applicaFiltroCategoria("tutti");
+                    applicaFiltroCategoria(categoryToFilter);
                 }
             }
 
@@ -289,9 +306,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             }
-            if (found) {
+            if (found)
                 listaFiltrata.add(item);
-            }
         }
 
         adapter.setFilteredList(listaFiltrata);
@@ -306,6 +322,9 @@ public class MainActivity extends AppCompatActivity {
 
         List<EventDescriptor> filtrata = new ArrayList<>();
         long oggi = System.currentTimeMillis();
+
+        /// NOTE: toLowerCase() for better switch-casing
+        categoria = categoria.toLowerCase();
 
         for (EventDescriptor item : events) {
             switch (categoria) {
