@@ -249,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
                     errorLayout.setVisibility(View.GONE);
                     findViewById(R.id.recyclerView).setVisibility(View.VISIBLE);
                 }
-                if(response.isSuccessful() && response.body()!=null){
+                if(response.isSuccessful() && response.body() != null){
                     events.clear();
                     events = response.body();
                     eventsDisplay.clear();

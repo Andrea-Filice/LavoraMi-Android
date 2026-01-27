@@ -20,6 +20,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
+import androidx.core.widget.ImageViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -361,6 +362,9 @@ public class LinesDetailActivity extends AppCompatActivity implements OnMapReady
 
                 TextView txtInizio = card.findViewById(R.id.txtStartDate);
                 TextView txtFine = card.findViewById(R.id.txtEndDate);
+
+                int color = ContextCompat.getColor(this, R.color.text_primary);
+                ImageViewCompat.setImageTintList(card.findViewById(R.id.iconEvent), ColorStateList.valueOf(color));
 
                 if (txtInizio != null) 
                     txtInizio.setText(EventDescriptor.formattaData(evento.getStartDate()));
