@@ -119,7 +119,7 @@
                                 android:src="@drawable/ic_slines"
                                 app:tint="@color/text_primary" />
                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="40dp" android:text="Linee S" android:textColor="@color/text_primary" android:textSize="15sp" />
-                            <ImageView android:layout_width="18dp" android:layout_height="18dp" android:layout_alignParentEnd="true" android:layout_centerVertical="true" android:src="@drawable/ic_star_empty" app:tint="#FF9F0A" />
+                            <ImageView android:focusable="true" android:id="@+id/sLinesFavorites" android:clickable="true" android:layout_width="18dp" android:layout_height="18dp" android:layout_alignParentEnd="true" android:layout_centerVertical="true" android:src="@drawable/ic_star_empty" app:tint="#FF9F0A" />
                         </RelativeLayout>
 
                         <RelativeLayout android:layout_width="match_parent" android:layout_height="48dp" android:paddingHorizontal="16dp">
@@ -131,7 +131,7 @@
                                 android:src="@drawable/ic_rlines"
                                 app:tint="@color/text_primary" />
                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="40dp" android:text="Linee R" android:textColor="@color/text_primary" android:textSize="15sp" />
-                            <ImageView android:layout_width="18dp" android:layout_height="18dp" android:layout_alignParentEnd="true" android:layout_centerVertical="true" android:src="@drawable/ic_star_empty" app:tint="#FF9F0A" />
+                            <ImageView android:focusable="true" android:id="@+id/rLinesFavorites" android:clickable="true" android:layout_width="18dp" android:layout_height="18dp" android:layout_alignParentEnd="true" android:layout_centerVertical="true" android:src="@drawable/ic_star_empty" app:tint="#FF9F0A" />
                         </RelativeLayout>
 
                         <RelativeLayout android:layout_width="match_parent" android:layout_height="48dp" android:paddingHorizontal="16dp">
@@ -143,7 +143,7 @@
                                 android:src="@drawable/icon_relines"
                                 app:tint="@color/text_primary" />
                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="40dp" android:text="Linee RE" android:textColor="@color/text_primary" android:textSize="15sp" />
-                            <ImageView android:layout_width="18dp" android:layout_height="18dp" android:layout_alignParentEnd="true" android:layout_centerVertical="true" android:src="@drawable/ic_star_empty" app:tint="#FF9F0A" />
+                            <ImageView android:focusable="true" android:id="@+id/reLinesFavorites" android:clickable="true" android:layout_width="18dp" android:layout_height="18dp" android:layout_alignParentEnd="true" android:layout_centerVertical="true" android:src="@drawable/ic_star_empty" app:tint="#FF9F0A" />
                         </RelativeLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -218,7 +218,7 @@
                                 android:src="@drawable/ic_metro"
                                 app:tint="@color/text_primary" />
                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="40dp" android:text="Linee Metropolitane" android:textColor="@color/text_primary" android:textSize="15sp" />
-                            <ImageView android:layout_width="18dp" android:layout_height="18dp" android:layout_alignParentEnd="true" android:layout_centerVertical="true" android:src="@drawable/ic_star_empty" app:tint="#FF9F0A" />
+                            <ImageView android:focusable="true" android:id="@+id/metroLinesFavorites" android:clickable="true" android:layout_width="18dp" android:layout_height="18dp" android:layout_alignParentEnd="true" android:layout_centerVertical="true" android:src="@drawable/ic_star_empty" app:tint="#FF9F0A" />
                         </RelativeLayout>
 
                         <RelativeLayout android:layout_width="match_parent" android:layout_height="48dp" android:paddingHorizontal="16dp">
@@ -230,7 +230,7 @@
                                 android:src="@drawable/ic_tram"
                                 app:tint="@color/text_primary" />
                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="40dp" android:text="Linee Tram" android:textColor="@color/text_primary" android:textSize="15sp" />
-                            <ImageView android:layout_width="18dp" android:layout_height="18dp" android:layout_alignParentEnd="true" android:layout_centerVertical="true" android:src="@drawable/ic_star_empty" app:tint="#FF9F0A" />
+                            <ImageView android:focusable="true" android:id="@+id/tramLinesFavorites" android:clickable="true" android:layout_width="18dp" android:layout_height="18dp" android:layout_alignParentEnd="true" android:layout_centerVertical="true" android:src="@drawable/ic_star_empty" app:tint="#FF9F0A" />
                         </RelativeLayout>
 
                         <RelativeLayout android:layout_width="match_parent" android:layout_height="48dp" android:paddingHorizontal="16dp">
@@ -242,7 +242,7 @@
                                 android:src="@drawable/ic_bus"
                                 app:tint="@color/text_primary" />
                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="40dp" android:text="Linee Bus" android:textColor="@color/text_primary" android:textSize="15sp" />
-                            <ImageView android:layout_width="18dp" android:layout_height="18dp" android:layout_alignParentEnd="true" android:layout_centerVertical="true" android:src="@drawable/ic_star_empty" app:tint="#FF9F0A" />
+                            <ImageView android:focusable="true" android:id="@+id/busLinesFavorites" android:clickable="true" android:layout_width="18dp" android:layout_height="18dp" android:layout_alignParentEnd="true" android:layout_centerVertical="true" android:src="@drawable/ic_star_empty" app:tint="#FF9F0A" />
                         </RelativeLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -283,6 +283,9 @@
                         android:textSize="17sp" />
 
                     <ImageView
+                        android:id="@+id/movibusLinesFavorites"
+                        android:clickable="true"
+                        android:focusable="true"
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:layout_alignParentEnd="true"
@@ -327,10 +330,13 @@
                         android:textSize="17sp" />
 
                     <ImageView
+                        android:id="@+id/stavLinesFavorites"
+                        android:clickable="true"
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
+                        android:focusable="true"
                         android:src="@drawable/ic_star_empty"
                         app:tint="#FF9F0A" />
                 </RelativeLayout>
@@ -371,6 +377,9 @@
                         android:textSize="17sp" />
 
                     <ImageView
+                        android:id="@+id/autoguidovieLinesFavorites"
+                        android:clickable="true"
+                        android:focusable="true"
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:layout_alignParentEnd="true"

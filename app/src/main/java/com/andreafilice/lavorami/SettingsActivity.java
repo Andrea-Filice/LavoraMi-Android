@@ -11,6 +11,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
@@ -19,7 +21,13 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.gson.internal.GsonBuildConfig;
 
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Set;
+
 public class SettingsActivity extends AppCompatActivity {
+
+    private Set<String> favorites; //*FAVORITES LINES
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +91,33 @@ public class SettingsActivity extends AppCompatActivity {
         String selectedFilter = DataManager.getStringData(this, "DEFAULT_FILTER", "Tutti");
         TextView filterSelectedText = findViewById(R.id.filterText);
         filterSelectedText.setText(selectedFilter);
+
+        //*SET FAVORITES
+        ImageView[] starIcons = {
+            findViewById(R.id.sLinesFavorites), //? "Linee S"
+            findViewById(R.id.rLinesFavorites), //? "Linee R"
+            findViewById(R.id.reLinesFavorites), //? "Linee RE"
+            findViewById(R.id.metroLinesFavorites), //? "Linee Metropolitane"
+            findViewById(R.id.tramLinesFavorites), //? "Linee Tram"
+            findViewById(R.id.busLinesFavorites), //? "Linee Bus"
+            findViewById(R.id.movibusLinesFavorites), //? "Linee Movibus"
+            findViewById(R.id.stavLinesFavorites), //? "Linee STAV"
+            findViewById(R.id.autoguidovieLinesFavorites) //? "Linee Autoguidovie"
+        };
+
+        String[] lineCodes = {
+            "S",
+            "R",
+            "RE",
+            "Metro",
+            "Tram",
+            "Bus",
+            "z6",
+            "z5",
+            "Autoguidovie"
+        };
+
+        setStarIcons(starIcons, lineCodes);
     }
 
     public void changeActivity(Class<?> destinationLayout){
@@ -93,5 +128,17 @@ public class SettingsActivity extends AppCompatActivity {
         Intent layoutChange = new Intent(SettingsActivity.this, destinationLayout); //*CREATE THE INTENT WITH THE DESTINATION
         startActivity(layoutChange); //*CHANGE LAYOUT
         overridePendingTransition(1, 0);
+    }
+
+    public void setStarIcons(ImageView[] icons, String[] lineCodes){
+        for(ImageView icon : icons){
+            icon.setOnClickListener(v -> {
+                Integer currentTag = (Integer) icon.getTag();
+                int currentRes = (currentTag != null) ? currentTag : R.drawable.ic_star_empty;
+                int newRes = (currentRes == R.drawable.ic_star_empty) ? R.drawable.ic_star_fill : R.drawable.ic_star_empty;
+                icon.setImageResource(newRes);
+                icon.setTag(newRes);
+            });
+        }
     }
 }

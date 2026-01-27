@@ -3,6 +3,8 @@ package com.andreafilice.lavorami;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.Set;
+
 public class DataManager{
     static SharedPreferences sharedPref;
 
@@ -12,6 +14,10 @@ public class DataManager{
 
     public static void saveStringData(String key, String value){
         sharedPref.edit().putString(key, value).apply();
+    }
+
+    public static void saveArrayStringsData(String key, Set<String> values){
+        sharedPref.edit().putStringSet(key, values).apply();
     }
 
     public static void saveIntData(String key, int value){
