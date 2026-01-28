@@ -2,6 +2,7 @@ package com.andreafilice.lavorami;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -22,12 +23,13 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.gson.internal.GsonBuildConfig;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private Set<String> favorites; //*FAVORITES LINES
+    private Set<String> favorites = new HashSet<>(); //*FAVORITES LINES
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,7 +119,11 @@ public class SettingsActivity extends AppCompatActivity {
             "Autoguidovie"
         };
 
+        DataManager.refreshDatas(this);
+        favorites = DataManager.getStringArray(this, "FAVORITES_LINES", new HashSet<>());
+
         setStarIcons(starIcons, lineCodes);
+        loadFavorites(starIcons, lineCodes);
     }
 
     public void changeActivity(Class<?> destinationLayout){
@@ -131,14 +137,30 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public void setStarIcons(ImageView[] icons, String[] lineCodes){
-        for(ImageView icon : icons){
-            icon.setOnClickListener(v -> {
-                Integer currentTag = (Integer) icon.getTag();
+        for (int i = 0; i < icons.length; i++) {
+            int finalI = i;
+            icons[i].setOnClickListener(v -> {
+                Integer currentTag = (Integer) icons[finalI].getTag();
                 int currentRes = (currentTag != null) ? currentTag : R.drawable.ic_star_empty;
                 int newRes = (currentRes == R.drawable.ic_star_empty) ? R.drawable.ic_star_fill : R.drawable.ic_star_empty;
-                icon.setImageResource(newRes);
-                icon.setTag(newRes);
+                icons[finalI].setImageResource(newRes);
+                icons[finalI].setTag(newRes);
+                favorites.add(lineCodes[finalI]);
+                Log.d("FAVORITES", favorites.toString());
+                DataManager.saveArrayStringsData("FAVORITES_LINES", favorites);
             });
+        }
+    }
+
+    public void loadFavorites(ImageView[] starIcons, String[] lineCodes) {
+        for (int i = 0; i < lineCodes.length; i++) {
+            if (favorites.contains(lineCodes[i])) {
+                starIcons[i].setImageResource(R.drawable.ic_star_fill);
+                starIcons[i].setTag(R.drawable.ic_star_fill);
+            } else {
+                starIcons[i].setImageResource(R.drawable.ic_star_empty);
+                starIcons[i].setTag(R.drawable.ic_star_empty);
+            }
         }
     }
 }

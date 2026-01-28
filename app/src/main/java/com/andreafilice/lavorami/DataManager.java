@@ -33,6 +33,11 @@ public class DataManager{
         return sharedPref.getString(key, defaulValue);
     }
 
+    public static Set<String> getStringArray(Context context, String key, Set<String> defaultValue){
+        refreshDatas(context);
+        return sharedPref.getStringSet(key, defaultValue);
+    }
+
     public static int getIntData(Context context, String key, int defaultValue){
         refreshDatas(context);
         return sharedPref.getInt(key, defaultValue);
