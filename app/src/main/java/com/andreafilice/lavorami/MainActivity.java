@@ -314,7 +314,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void applicaFiltroCategoria(String categoria) {
-        if ((events == null || events.isEmpty()) && adapter == null)
+        if(adapter == null)
+            return;
+
+        if (events == null || events.isEmpty())
             return;
 
         List<EventDescriptor> filtrata = new ArrayList<>();
