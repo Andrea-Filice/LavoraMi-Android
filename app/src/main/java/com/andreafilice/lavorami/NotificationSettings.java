@@ -1,12 +1,17 @@
 package com.andreafilice.lavorami;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.DatePicker;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +19,8 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.util.Calendar;
 
 public class NotificationSettings extends AppCompatActivity {
 
@@ -90,6 +97,49 @@ public class NotificationSettings extends AppCompatActivity {
         switchStartWorks.setOnClickListener(v -> {saveDatas(switchNotificationsGeneral, switchStartWorks, switchEndWorks, switchStrikeNotifications);});
         switchEndWorks.setOnClickListener(v -> {saveDatas(switchNotificationsGeneral, switchStartWorks, switchEndWorks, switchStrikeNotifications);});
         switchStrikeNotifications.setOnClickListener(v -> {saveDatas(switchNotificationsGeneral, switchStartWorks, switchEndWorks, switchStrikeNotifications);});
+
+        //*TIME PICKER
+        /// In this section of the code, we let the user decide at what time
+        /// Of the day the app has to send the notifications.
+        /// The first section set-up the UI at the beginning of the XML File,
+        /// The second section set-up the OnClick listener for the RelativeLayout.
+
+        RelativeLayout btnHourNotifications = findViewById(R.id.btnTimePicker);
+        TextView textHoursNotifications = findViewById(R.id.timeBadge);
+
+        //*SET-UP THE UI
+        /// Here we set-up the current configuration loaded from sharedPrefs
+
+        int hoursSaved = DataManager.getIntData(this, DataKeys.KEY_HOURS_NOTIFICATIONS, 10);
+        int minutesSaved = DataManager.getIntData(this, DataKeys.KEY_MINUTES_NOTIFICATIONS, 00);
+
+        String formattedTextUI = ((hoursSaved < 10) ? ("0" + hoursSaved) : String.valueOf(hoursSaved))
+                + ":" + ((minutesSaved < 10) ? ("0" + minutesSaved) : String.valueOf(minutesSaved));
+        textHoursNotifications.setText(formattedTextUI);
+
+        btnHourNotifications.setOnClickListener(v -> {
+            /// Here we set-up the configuration selected by the user when clicking the Relative Layout.
+            /// Create a TimePickerDialog and after save the new Configuration.
+
+            Calendar calendar = Calendar.getInstance();
+            int hours = hoursSaved;
+            int minutes = minutesSaved;
+
+            TimePickerDialog timePickerDialog = new TimePickerDialog(NotificationSettings.this,
+                (view, hourOfDay, selectedMinute) -> {
+                    String formattedText = ((hourOfDay < 10) ? ("0" + hourOfDay) : String.valueOf(hourOfDay))
+                            + ":" + ((selectedMinute < 10) ? ("0" + selectedMinute) : String.valueOf(selectedMinute));
+                    textHoursNotifications.setText(formattedText);
+
+                    DataManager.saveIntData(this, DataKeys.KEY_HOURS_NOTIFICATIONS, hourOfDay);
+                    DataManager.saveIntData(this, DataKeys.KEY_MINUTES_NOTIFICATIONS, selectedMinute);
+                },
+                hours,
+                minutes,
+                true
+            );
+            timePickerDialog.show();
+        });
     }
 
     public void changeActivity(Class<?> destinationLayout){

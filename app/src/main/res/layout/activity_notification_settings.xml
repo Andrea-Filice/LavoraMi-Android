@@ -325,7 +325,7 @@
                         android:layout_centerVertical="true"
                         android:paddingHorizontal="10dp"
                         android:paddingVertical="6dp"
-                        android:text="10:00 AM"
+                        android:text="10:00"
                         android:textColor="@color/text_primary"
                         android:textSize="15sp"
                         android:fontFamily="@font/archivo_medium"/>
