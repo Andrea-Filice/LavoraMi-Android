@@ -1,4 +1,4 @@
-name: "CodeQL Deep Security Analysis"
+name: "CodeQL Security Analysis"
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   analyze:
-    name: Deep CodeQL Analysis
+    name: CodeQL Analysis
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -31,12 +31,13 @@ jobs:
           distribution: 'temurin'
           cache: 'gradle'
 
-      - name: Initialize CodeQL (Deep Mode)
+      - name: Initialize CodeQL
         uses: github/codeql-action/init@v4
         with:
           languages: ${{ matrix.language }}
           queries: +security-and-quality
           config-file: ./.github/codeql/codeql-config.yml
+          tools: latest
 
       - name: Build Android App
         run: |

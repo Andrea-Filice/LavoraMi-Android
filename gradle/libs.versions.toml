@@ -14,7 +14,7 @@ playServicesMaps = "20.0.0"
 recyclerview = "1.4.0"
 cardview = "1.0.0"
 retrofit = "3.0.0"
-browser = "1.8.0"
+browser = "1.9.0"
 
 [libraries]
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
