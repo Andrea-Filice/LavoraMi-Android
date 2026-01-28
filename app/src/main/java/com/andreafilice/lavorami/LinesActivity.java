@@ -168,6 +168,11 @@ public class LinesActivity extends AppCompatActivity {
         });
 
         //*WEBSITE LINKS
+        /// In this section of the code, we set the default action (OnClick) of the ImageView
+        /// From the infoButtons, and create an array with the URLs in it.
+        /// In the first section we initialize the arrays, in the second one we
+        /// Create a For-Loop for set automatically the action of the button.
+
         ImageView[] infoButtons = {
             findViewById(R.id.infoIconMetro),
             findViewById(R.id.infoIconSuburbane),
