@@ -46,6 +46,7 @@ import java.util.Locale;
 public class LinesDetailActivity extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     private String nomeLinea;
+    private String tipoDiLinea;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +58,22 @@ public class LinesDetailActivity extends AppCompatActivity implements OnMapReady
         CardView cardMappa = findViewById(R.id.mapCard);
         LinearLayout containerLavori = findViewById(R.id.containerLavori);
         chipMappa.setChecked(true);
+
+        /// Take the EXTRA Arguments from the Intent.
         nomeLinea = getIntent().getStringExtra("NOME_LINEA");
+        tipoDiLinea = getIntent().getStringExtra("TIPO_DI_LINEA");
+
+        /// Check if the line is a TRAM, else do not display the Map View.
         if (nomeLinea == null) nomeLinea = "M1";
+        if (tipoDiLinea.contains("Tram")){
+            chipMappa.setVisibility(View.GONE);
+            cardMappa.setVisibility(View.GONE);
+            findViewById(R.id.lavoriSezioneWrapper).setVisibility(View.VISIBLE);
+            containerLavori.setVisibility(View.VISIBLE);
+            caricaEventiFiltrati();
+            chipMappa.setChecked(false);
+            chipLavori.setChecked(true);
+        }
 
         aggiornaUI();
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -70,16 +85,21 @@ public class LinesDetailActivity extends AppCompatActivity implements OnMapReady
             getSupportActionBar().setTitle("Dettaglio " + nomeLinea);
         }
 
-
         chipMappa.setChipStrokeWidth(3f);
         chipMappa.setChipStrokeColor(ColorStateList.valueOf(Color.parseColor("#CCCCCC")));
         chipLavori.setChipStrokeWidth(3f);
         chipLavori.setChipStrokeColor(ColorStateList.valueOf(Color.parseColor("#CCCCCC")));
+
         chipMappa.setOnClickListener(v -> {
             cardMappa.setVisibility(View.VISIBLE);
             containerLavori.setVisibility(View.GONE);
             findViewById(R.id.lavoriSezioneWrapper).setVisibility(View.GONE);
             findViewById(R.id.emptyView).setVisibility(View.GONE);
+
+            if(!chipLavori.isChecked() && !chipMappa.isChecked()){
+                chipMappa.setChecked(true);
+                chipLavori.setChecked(false);
+            }
         });
 
         chipLavori.setOnClickListener(v -> {
@@ -87,12 +107,20 @@ public class LinesDetailActivity extends AppCompatActivity implements OnMapReady
             findViewById(R.id.lavoriSezioneWrapper).setVisibility(View.VISIBLE);
             containerLavori.setVisibility(View.VISIBLE);
             caricaEventiFiltrati();
+
+            if(!chipLavori.isChecked() && !chipMappa.isChecked()){
+                chipMappa.setChecked(true);
+                chipLavori.setChecked(false);
+                cardMappa.setVisibility(View.VISIBLE);
+                containerLavori.setVisibility(View.GONE);
+                findViewById(R.id.lavoriSezioneWrapper).setVisibility(View.GONE);
+                findViewById(R.id.emptyView).setVisibility(View.GONE);
+            }
         });
 
         ImageButton btnBack = findViewById(R.id.buttonBack);
         btnBack.setOnClickListener(v -> finish());
         aggiornaInfoSuperiori();
-
     }
 
     @Override

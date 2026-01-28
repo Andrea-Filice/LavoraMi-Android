@@ -230,13 +230,14 @@ public class LinesActivity extends AppCompatActivity {
             row.setOnClickListener(v -> {
                 Intent intent = new Intent(this, LinesDetailActivity.class);
                 intent.putExtra("NOME_LINEA", label);
+                intent.putExtra("TIPO_DI_LINEA", description);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             });
             container.addView(row);
-
         }
     }
+
     private boolean filtraContainer(LinearLayout container, String query) {
         boolean trovatoAtLeastOne = false;
         for (int i = 0; i < container.getChildCount(); i++) {
