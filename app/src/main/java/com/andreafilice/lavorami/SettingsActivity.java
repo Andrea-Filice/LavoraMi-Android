@@ -89,8 +89,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         //*LOADING DATAS
         /// In this section of the code, we will loading the datas from the DataManager file.
-        DataManager.refreshDatas(this);
-        String selectedFilter = DataManager.getStringData(this, "DEFAULT_FILTER", "Tutti");
+        String selectedFilter = DataManager.getStringData(this, DataKeys.KEY_DEFAULT_FILTER, "Tutti");
         TextView filterSelectedText = findViewById(R.id.filterText);
         filterSelectedText.setText(selectedFilter);
 
@@ -119,8 +118,7 @@ public class SettingsActivity extends AppCompatActivity {
             "Autoguidovie"
         };
 
-        DataManager.refreshDatas(this);
-        favorites = DataManager.getStringArray(this, "FAVORITES_LINES", new HashSet<>());
+        favorites = DataManager.getStringArray(this, DataKeys.KEY_FAVORITE_LINES, new HashSet<>());
 
         setStarIcons(starIcons, lineCodes);
         loadFavorites(starIcons, lineCodes);
@@ -147,7 +145,7 @@ public class SettingsActivity extends AppCompatActivity {
                 icons[finalI].setTag(newRes);
                 favorites.add(lineCodes[finalI]);
                 Log.d("FAVORITES", favorites.toString());
-                DataManager.saveArrayStringsData("FAVORITES_LINES", favorites);
+                DataManager.saveArrayStringsData(this, DataKeys.KEY_FAVORITE_LINES, favorites);
             });
         }
     }

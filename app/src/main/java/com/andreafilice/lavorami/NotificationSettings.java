@@ -41,11 +41,10 @@ public class NotificationSettings extends AppCompatActivity {
         //*LOAD FROM LOCAL SAVES
         /// Load the boolean datas from the DataManager for every toggle.
 
-        DataManager.refreshDatas(this);
-        boolean notificationsEnabled = DataManager.getBoolData(this, "NOTIFICATIONS_SWITCH", true);
-        boolean notificationsStartWorks = DataManager.getBoolData(this, "NOTIFICATIONS_STARTWORKS", true);
-        boolean notificationsEndWorks = DataManager.getBoolData(this, "NOTIFICATIONS_ENDWORKS", true);
-        boolean notificationsStrikes = DataManager.getBoolData(this, "NOTIFICATIONS_STRIKES", true);
+        boolean notificationsEnabled = DataManager.getBoolData(this, DataKeys.KEY_NOTIFICATION_SWITCH, true);
+        boolean notificationsStartWorks = DataManager.getBoolData(this, DataKeys.KEY_NOTIFICATION_STARTWORKS, true);
+        boolean notificationsEndWorks = DataManager.getBoolData(this, DataKeys.KEY_NOTIFICATION_ENDWORKS, true);
+        boolean notificationsStrikes = DataManager.getBoolData(this, DataKeys.KEY_NOTIFICATION_STRIKES, true);
 
         /// NOTE: Cast the type from the boolean to the Switch Value.
         switchNotificationsGeneral.setChecked(notificationsEnabled);
@@ -57,9 +56,12 @@ public class NotificationSettings extends AppCompatActivity {
         /// Switch is disabled.
 
         boolean checked = switchNotificationsGeneral.isChecked();
-        switchStartWorks.setChecked(checked);
-        switchEndWorks.setChecked(checked);
-        switchStrikeNotifications.setChecked(checked);
+        if(!checked){
+            switchStartWorks.setChecked(checked);
+            switchEndWorks.setChecked(checked);
+            switchStrikeNotifications.setChecked(checked);
+        }
+
         switchStartWorks.setClickable(checked);
         switchEndWorks.setClickable(checked);
         switchStrikeNotifications.setClickable(checked);
@@ -102,10 +104,11 @@ public class NotificationSettings extends AppCompatActivity {
 
     public void saveDatas(Switch switchNotificationsGeneral, Switch switchStartWorks, Switch switchEndWorks, Switch switchStrikeNotifications){
         /// In this Method, we will save the current configuration of the switches from the Settings
+        /// @PARAMETER All of the current parameters are the Switch Objects from the XML file.
 
-        DataManager.saveBoolData("NOTIFICATIONS_SWITCH", switchNotificationsGeneral.isChecked());
-        DataManager.saveBoolData("NOTIFICATIONS_STARTWORKS", switchStartWorks.isChecked());
-        DataManager.saveBoolData("NOTIFICATIONS_ENDWORKS", switchEndWorks.isChecked());
-        DataManager.saveBoolData("NOTIFICATIONS_STRIKES", switchStrikeNotifications.isChecked());
+        DataManager.saveBoolData(this, DataKeys.KEY_NOTIFICATION_SWITCH, switchNotificationsGeneral.isChecked());
+        DataManager.saveBoolData(this, DataKeys.KEY_NOTIFICATION_STARTWORKS, switchStartWorks.isChecked());
+        DataManager.saveBoolData(this, DataKeys.KEY_NOTIFICATION_ENDWORKS, switchEndWorks.isChecked());
+        DataManager.saveBoolData(this, DataKeys.KEY_NOTIFICATION_STRIKES, switchStrikeNotifications.isChecked());
     }
 }

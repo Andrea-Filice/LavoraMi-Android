@@ -648,7 +648,7 @@ public class StationDB {
 
     public static int getLineColor(String nomeLinea) {
         switch (nomeLinea) {
-            //Suburban Lines
+            //S LINES
             case "S1":
                 return R.color.S1;
             case "S2":
@@ -680,7 +680,7 @@ public class StationDB {
             case "AV":
                 return R.color.AV;
 
-            //TILO Lines
+            //TILO LINES
             case "S10":
                 return R.color.S10;
             case "S30":
@@ -690,7 +690,7 @@ public class StationDB {
             case "S50":
                 return R.color.S50;
 
-            //Metro Lines
+            //METRO LINES
             case "M1":
                 return R.color.M1;
             case "M2":
@@ -702,7 +702,7 @@ public class StationDB {
             case "M5":
                 return R.color.M5;
 
-            //Bus Lines and others
+            //OTHERS
             default:
                 if (nomeLinea.contains("z") || nomeLinea.contains("k"))
                     return R.color.BUS;

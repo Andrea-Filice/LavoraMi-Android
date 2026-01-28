@@ -8,43 +8,45 @@ import java.util.Set;
 public class DataManager{
     static SharedPreferences sharedPref;
 
-    public static void refreshDatas(Context context){
-        sharedPref = context.getSharedPreferences("LavoraMiPreferences", Context.MODE_PRIVATE);
-    }
+    public static void refreshDatas(Context context){sharedPref = context.getSharedPreferences("LavoraMiPreferences", Context.MODE_PRIVATE);}
 
-    public static void saveStringData(String key, String value){
-        sharedPref.edit().putString(key, value).apply();
-    }
-
-    public static void saveArrayStringsData(String key, Set<String> values){
-        sharedPref.edit().putStringSet(key, values).apply();
-    }
-
-    public static void saveIntData(String key, int value){
-        sharedPref.edit().putInt(key, value).apply();
-    }
-
-    public static void saveBoolData(String key, boolean value){
-        sharedPref.edit().putBoolean(key, value).apply();
-    }
-
-    public static String getStringData(Context context, String key, String defaulValue){
+    public static void saveStringData(Context context, DataKeys key, String value){
         refreshDatas(context);
-        return sharedPref.getString(key, defaulValue);
+        sharedPref.edit().putString(key.toString(), value).apply();
     }
 
-    public static Set<String> getStringArray(Context context, String key, Set<String> defaultValue){
+    public static void saveArrayStringsData(Context context, DataKeys key, Set<String> values){
         refreshDatas(context);
-        return sharedPref.getStringSet(key, defaultValue);
+        sharedPref.edit().putStringSet(key.toString(), values).apply();
     }
 
-    public static int getIntData(Context context, String key, int defaultValue){
+    public static void saveIntData(Context context, DataKeys key, int value){
         refreshDatas(context);
-        return sharedPref.getInt(key, defaultValue);
+        sharedPref.edit().putInt(key.toString(), value).apply();
     }
 
-    public static boolean getBoolData(Context context, String key, boolean defaultValue){
+    public static void saveBoolData(Context context, DataKeys key, boolean value){
         refreshDatas(context);
-        return sharedPref.getBoolean(key, defaultValue);
+        sharedPref.edit().putBoolean(key.toString(), value).apply();
+    }
+
+    public static String getStringData(Context context, DataKeys key, String defaulValue){
+        refreshDatas(context);
+        return sharedPref.getString(key.toString(), defaulValue);
+    }
+
+    public static Set<String> getStringArray(Context context, DataKeys key, Set<String> defaultValue){
+        refreshDatas(context);
+        return sharedPref.getStringSet(key.toString(), defaultValue);
+    }
+
+    public static int getIntData(Context context, DataKeys key, int defaultValue){
+        refreshDatas(context);
+        return sharedPref.getInt(key.toString(), defaultValue);
+    }
+
+    public static boolean getBoolData(Context context, DataKeys key, boolean defaultValue){
+        refreshDatas(context);
+        return sharedPref.getBoolean(key.toString(), defaultValue);
     }
 }

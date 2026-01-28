@@ -104,6 +104,7 @@ public class LinesDetailActivity extends AppCompatActivity implements OnMapReady
     private void aggiornaUI() {
         TextView detBadge = findViewById(R.id.detBadge);
         TextView detTitolo = findViewById(R.id.detTitolo);
+
         if(nomeLinea.startsWith("M"))
             detTitolo.setText("Metro " + nomeLinea);
         if(nomeLinea.startsWith("S"))
@@ -114,6 +115,7 @@ public class LinesDetailActivity extends AppCompatActivity implements OnMapReady
             detTitolo.setText("Transfrontaliere: "+ nomeLinea);
         if(nomeLinea.startsWith("MXP"))
             detTitolo.setText(nomeLinea);
+
         detBadge.setText(nomeLinea);
         int colorResId = StationDB.getLineColor(nomeLinea);
         int coloreEffettivo = ContextCompat.getColor(this, colorResId);
@@ -127,9 +129,8 @@ public class LinesDetailActivity extends AppCompatActivity implements OnMapReady
         mMap = googleMap;
         mMap.getUiSettings().setMapToolbarEnabled(false);
 
-        if (isDarkMode()) {
+        if (isDarkMode())
             mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.map_style));
-        }
 
         for (MetroStation stazione : StationDB.getAllStations()) {
             if (stazione.getLine().trim().equalsIgnoreCase(nomeLinea.trim())) {
@@ -147,9 +148,8 @@ public class LinesDetailActivity extends AppCompatActivity implements OnMapReady
         List<MetroStation> tutteLeStazioni = new ArrayList<>();
 
         for (MetroStation s : StationDB.getAllStations()) {
-            if (s.getLine().trim().equalsIgnoreCase(nomeLinea.trim())) {
+            if (s.getLine().trim().equalsIgnoreCase(nomeLinea.trim()))
                 tutteLeStazioni.add(s);
-            }
         }
 
         if (!tutteLeStazioni.isEmpty()) {
@@ -161,10 +161,12 @@ public class LinesDetailActivity extends AppCompatActivity implements OnMapReady
 
             int padding = 150;
             mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding));
-        } else {
+        }
+        else {
             LatLng milano = new LatLng(45.4642, 9.1900);
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(milano, 11f));
         }
+
         if (nomeLinea.equalsIgnoreCase("M1"))
             disegnaM1(tutteLeStazioni, coloreLinea);
         else if (nomeLinea.equalsIgnoreCase("M2"))
@@ -185,6 +187,7 @@ public class LinesDetailActivity extends AppCompatActivity implements OnMapReady
         for (MetroStation s : stazioni) {
             polylineOptions.add(new LatLng(s.getLatitude(), s.getLongitude()));
         }
+
         mMap.addPolyline(polylineOptions);
     }
 
@@ -201,9 +204,8 @@ public class LinesDetailActivity extends AppCompatActivity implements OnMapReady
 
         for (MetroStation s : stazioni) {
             String nome = s.getName();
-            if (nome.contains("Pagano")) {
+            if (nome.contains("Pagano"))
                 snodoPagano = s;
-            }
 
             boolean isRamo = false;
             for (String nomeRamo : nomiRamoBisceglie) {
@@ -293,6 +295,7 @@ public class LinesDetailActivity extends AppCompatActivity implements OnMapReady
             ramoCologno.add(0, snodoGobba);
             ramoGessate.add(0, snodoGobba);
         }
+
         disegnaPolilinea(ramoCologno, colore);
         disegnaPolilinea(ramoGessate, colore);
 
@@ -397,7 +400,6 @@ public class LinesDetailActivity extends AppCompatActivity implements OnMapReady
 
             Date date = sdf.parse(dateString);
             return (date != null) ? date.getTime() : 0;
-
         } catch (Exception e) {
             Log.e("DATA_ERROR", "Impossibile leggere: " + dateString + " | Errore: " + e.getMessage());
             return 0;

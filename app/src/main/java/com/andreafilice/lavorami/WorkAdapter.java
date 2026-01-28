@@ -32,15 +32,14 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
 
     private List<EventDescriptor> eventList;
 
-    public WorkAdapter(List<EventDescriptor> eventList){
-        this.eventList = (eventList!=null) ? eventList : new ArrayList<>();
-    }
+    public WorkAdapter(List<EventDescriptor> eventList){this.eventList = (eventList!=null) ? eventList : new ArrayList<>();}
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView cardImage;
         TextView titleText, trattaText, startDateText, endDateText,companyText, descriptionText;
         ChipGroup chipGroupLinee;
         ProgressBar progressBar;
+
         public ViewHolder(View itemView){
             super(itemView);
             cardImage = itemView.findViewById(R.id.iconEvent);
@@ -83,10 +82,8 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
 
         int progressPercentage = calcolaPercentuale(item.getStartDate(), item.getEndDate());
         holder.progressBar.setProgress(progressPercentage);
-        if(progressPercentage == 100)
-            holder.progressBar.setProgressTintList(ColorStateList.valueOf(Color.parseColor("#16660e")));
-        else
-            holder.progressBar.setProgressTintList(ColorStateList.valueOf(Color.parseColor("#FD272D")));
+
+        holder.progressBar.setProgressTintList(ColorStateList.valueOf(Color.parseColor((progressPercentage == 100) ? "#16660e" : "#FD272D")));
 
         holder.chipGroupLinee.removeAllViews();
         List<String> lineeRaw = Arrays.asList(item.getLines());
@@ -159,14 +156,15 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
             Date date = sdf.parse(dateString);
             return (date != null) ? date.getTime() : 0;
 
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             return 0;
         }
     }
 
     private int getColorForLinea(String nomeLinea){
         switch(nomeLinea){
-            //Suburban Lines
+            //S LINES
             case "S1":
                 return R.color.S1;
             case "S2":
@@ -200,7 +198,7 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
             case "AV":
                 return R.color.AV;
 
-            //TILO Lines
+            //TILO LINES
             case "S10":
                 return R.color.S10;
             case "S30":
@@ -210,7 +208,7 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
             case "S50":
                 return R.color.S50;
 
-            //Metro Lines
+            //METRO LINES
             case "M1":
                 return R.color.M1;
             case "M2":
@@ -222,7 +220,7 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
             case "M5":
                 return R.color.M5;
 
-            //Bus Lines and others
+            //OTHERS
             default:
                 if(nomeLinea.contains("z")||nomeLinea.contains("k"))
                     return R.color.BUS;

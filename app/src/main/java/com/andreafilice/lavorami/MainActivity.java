@@ -51,13 +51,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //*INITIALIZE THE DATAMANAGER SCRIPT
-        DataManager.refreshDatas(this);
-
-        defaultCategory = DataManager.getStringData(this, "DEFAULT_FILTER", "Tutti");
+        defaultCategory = DataManager.getStringData(this, DataKeys.KEY_DEFAULT_FILTER, "Tutti");
         Log.d("DATA", defaultCategory);
 
-        //*RIEMPIMENTO STRUTTURA DATI CONTENENTE DATI EVENTI
+        //*DOWNLOADING EVENTS
         downloadJSONData(defaultCategory);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
@@ -200,14 +197,12 @@ public class MainActivity extends AppCompatActivity {
         if (filterGroup == null) return "tutti";
 
         int checkedId = filterGroup.getCheckedChipId();
-        if (checkedId == View.NO_ID || checkedId == R.id.chipAll) {
+        if (checkedId == View.NO_ID || checkedId == R.id.chipAll)
             return "tutti";
-        }
 
         Chip selectedChip = findViewById(checkedId);
-        if (selectedChip != null) {
+        if (selectedChip != null)
             return selectedChip.getText().toString().toLowerCase().trim();
-        }
 
         return "tutti";
     }
@@ -249,6 +244,7 @@ public class MainActivity extends AppCompatActivity {
                     errorLayout.setVisibility(View.GONE);
                     findViewById(R.id.recyclerView).setVisibility(View.VISIBLE);
                 }
+
                 if(response.isSuccessful() && response.body() != null){
                     events.clear();
                     events = response.body();
@@ -318,9 +314,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void applicaFiltroCategoria(String categoria) {
-        if(adapter== null)
-            return;
-        if (events == null || events.isEmpty())
+        if ((events == null || events.isEmpty()) && adapter == null)
             return;
 
         List<EventDescriptor> filtrata = new ArrayList<>();
@@ -335,9 +329,8 @@ public class MainActivity extends AppCompatActivity {
                     long now = System.currentTimeMillis();
                     long terminated = getDateMillis(item.getEndDate());
 
-                    if (terminated > now) {
+                    if (terminated > now)
                         filtrata.add(item);
-                    }
                     break;
 
                 case "bus":
@@ -406,9 +399,7 @@ public class MainActivity extends AppCompatActivity {
         return (int) (clamped * 100);
     }
 
-    private boolean isTram(EventDescriptor item) {
-        return (item.typeOfTransport.contains("tram") && !item.typeOfTransport.equalsIgnoreCase("tram.fill.tunnel"));
-    }
+    private boolean isTram(EventDescriptor item) {return (item.typeOfTransport.contains("tram") && !item.typeOfTransport.equalsIgnoreCase("tram.fill.tunnel"));}
 
     private boolean isTreno(EventDescriptor item) {
         for (String l : item.getLines()) {
@@ -441,7 +432,8 @@ public class MainActivity extends AppCompatActivity {
             Date date = sdf.parse(dateString);
             return (date != null) ? date.getTime() : 0;
 
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             Log.e("DATA_ERROR", "Impossibile leggere: " + dateString + " | Errore: " + e.getMessage());
             return 0;
         }

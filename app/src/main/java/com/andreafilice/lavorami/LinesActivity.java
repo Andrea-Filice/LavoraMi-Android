@@ -42,14 +42,17 @@ public class LinesActivity extends AppCompatActivity {
             return insets;
         });
 
-        // AGGIUNGI LE METRO
+        /// In this section of the code, we generate the Lines from the StationsDB file.
+        /// Every type of line is sorted in order of importance.
+
+        //METRO
         aggiungiLinea(containerMetro, "M1", R.color.M1, "Metro M1");
         aggiungiLinea(containerMetro, "M2", R.color.M2, "Metro M2");
         aggiungiLinea(containerMetro, "M3", R.color.M3, "Metro M3");
         aggiungiLinea(containerMetro, "M4", R.color.M4, "Metro M4");
         aggiungiLinea(containerMetro, "M5", R.color.M5, "Metro M5");
 
-        // AGGIUNGI LE SUBURBANE
+        // SUBURBANI
         aggiungiLinea(containerSub, "S1", R.color.S1, "Suburbano S1");
         aggiungiLinea(containerSub, "S2", R.color.S2, "Suburbano S2");
         aggiungiLinea(containerSub, "S3", R.color.S3, "Suburbano S3");
@@ -64,16 +67,19 @@ public class LinesActivity extends AppCompatActivity {
         aggiungiLinea(containerSub, "S13", R.color.S13, "Suburbano S13");
         aggiungiLinea(containerSub, "S19", R.color.S19, "Suburbano S19");
         aggiungiLinea(containerSub, "S31", R.color.S31, "Suburbano S31");
-        //AGGIUGNI TILO
-        aggiungiLinea(containerTILO,"S10",R.color.S10,"Trasnfrontaliere S10");
-        aggiungiLinea(containerTILO,"S30",R.color.S30,"Trasnfrontaliere S30");
-        aggiungiLinea(containerTILO,"S40",R.color.S40,"Trasnfrontaliere S40");
-        aggiungiLinea(containerTILO,"S50",R.color.S50,"Trasnfrontaliere S50");
-        aggiungiLinea(containerTILO,"RE80",R.color.RE80,"Trasnfrontaliere RE80");
-        //AGGIUNGI MXP
+
+        //TILO
+        aggiungiLinea(containerTILO,"S10",R.color.S10,"Transfrontaliera S10");
+        aggiungiLinea(containerTILO,"S30",R.color.S30,"Transfrontaliera S30");
+        aggiungiLinea(containerTILO,"S40",R.color.S40,"Transfrontaliera S40");
+        aggiungiLinea(containerTILO,"S50",R.color.S50,"Transfrontaliera S50");
+        aggiungiLinea(containerTILO,"RE80",R.color.RE80,"Transfrontaliera RE80");
+
+        //MXP
         aggiungiLinea(containerMXP,"MXP1",R.color.MXP,"Malpensa Express 1");
         aggiungiLinea(containerMXP,"MXP2",R.color.MXP,"Malpensa Express 2");
-        //AGGIUNGI TRAM
+
+        //TRAM
         aggiungiLinea(containerTram,"1",R.color.TRAM,"Tram 1");
         aggiungiLinea(containerTram,"2",R.color.TRAM,"Tram 2");
         aggiungiLinea(containerTram,"3",R.color.TRAM,"Tram 3");
@@ -91,6 +97,7 @@ public class LinesActivity extends AppCompatActivity {
         aggiungiLinea(containerTram,"27",R.color.TRAM,"Tram 27");
         aggiungiLinea(containerTram,"31",R.color.TRAM,"Tram 31");
         aggiungiLinea(containerTram,"33",R.color.TRAM,"Tram 33");
+
         //* SEARCH BAR
         searchLines.setBackgroundResource(R.drawable.bg_edittext_search);
         searchLines.addTextChangedListener(new TextWatcher() {
@@ -101,7 +108,6 @@ public class LinesActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String query = s.toString().toLowerCase().trim();
 
-                // Riferimenti ai titoli e al messaggio "vuoto"
                 TextView titleMetro = findViewById(R.id.subTitleMetro);
                 TextView titleSub = findViewById(R.id.subTitleSuburban);
                 TextView titleMXP = findViewById(R.id.subTitleMXP);
@@ -109,44 +115,44 @@ public class LinesActivity extends AppCompatActivity {
                 TextView titleTram = findViewById(R.id.subTitleTram);
                 TextView tvNoResults = findViewById(R.id.emptyView);
 
-                // Filtriamo i due container
                 boolean hasMetro = filtraContainer(containerMetro, query);
                 boolean hasSub = filtraContainer(containerSub, query);
                 boolean hasMXP = filtraContainer(containerMXP, query);
                 boolean hasTrans = filtraContainer(containerTrans, query);
                 boolean hasTram = filtraContainer(containerTram, query);
 
-                // 1. Gestione Titoli
-                // Gestione visibilità Titoli e Container
+                //*METRO LINES
                 titleMetro.setVisibility(hasMetro ? View.VISIBLE : View.GONE);
                 containerMetro.setVisibility(hasMetro ? View.VISIBLE : View.GONE);
 
+                //*SUBURBAN LINES
                 titleSub.setVisibility(hasSub ? View.VISIBLE : View.GONE);
                 containerSub.setVisibility(hasSub ? View.VISIBLE : View.GONE);
 
+                //*MXP LINES
                 titleMXP.setVisibility(hasMXP ? View.VISIBLE : View.GONE);
                 containerMXP.setVisibility(hasMXP ? View.VISIBLE : View.GONE);
 
+                //*TRANSFRONTALIERE LINES
                 titleTrans.setVisibility(hasTrans ? View.VISIBLE : View.GONE);
                 containerTrans.setVisibility(hasTrans ? View.VISIBLE : View.GONE);
 
+                //*TRAM LINES
                 titleTram.setVisibility(hasTram ? View.VISIBLE : View.GONE);
                 containerTram.setVisibility(hasTram ? View.VISIBLE : View.GONE);
 
-                // 2. Gestione Messaggio "Nessun Risultato"
-                // Se entrambi sono false, mostriamo il messaggio
                 if (tvNoResults != null) {
-                    if (!hasMetro && !hasSub && !hasMXP && !hasTrans && !hasTram) {
+                    if (!hasMetro && !hasSub && !hasMXP && !hasTrans && !hasTram)
                         tvNoResults.setVisibility(View.VISIBLE);
-                    } else {
+                    else
                         tvNoResults.setVisibility(View.GONE);
-                    }
                 }
             }
 
             @Override
             public void afterTextChanged(Editable s) {}
         });
+
         //*NAVBAR
         ImageButton btnHome = (ImageButton) findViewById(R.id.homeButton);
         btnHome.setOnClickListener(v -> {
@@ -181,11 +187,10 @@ public class LinesActivity extends AppCompatActivity {
 
             int colore = ContextCompat.getColor(this, colorHex);
 
-            if (badge.getBackground() != null) {
+            if (badge.getBackground() != null)
                 badge.getBackground().mutate().setTint(colore);
-            } else {
+            else
                 badge.setBackgroundColor(colore);
-            }
 
 
             row.setOnClickListener(v -> {
@@ -212,9 +217,8 @@ public class LinesActivity extends AppCompatActivity {
                 if (bText.contains(query) || nText.contains(query)) {
                     row.setVisibility(View.VISIBLE);
                     trovatoAtLeastOne = true;
-                } else {
+                } else
                     row.setVisibility(View.GONE);
-                }
             }
         }
         return trovatoAtLeastOne;

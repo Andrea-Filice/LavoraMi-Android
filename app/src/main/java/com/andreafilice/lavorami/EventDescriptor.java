@@ -3,6 +3,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
+
 public class EventDescriptor {
     protected String title;
     protected String titleIcon;
@@ -63,7 +64,6 @@ public class EventDescriptor {
             default:
                 return R.drawable.empty_image;
         }
-
     }
 
     public String getTitle() {
@@ -102,7 +102,6 @@ public class EventDescriptor {
             inputFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 
             Date finalDate = inputFormat.parse(initialDate);
-
             SimpleDateFormat outputFormat = new SimpleDateFormat("dd MMM yyyy", Locale.ITALY);
 
             return outputFormat.format(finalDate);
