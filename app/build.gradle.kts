@@ -63,4 +63,5 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.play.services.maps)
     implementation(libs.dotenv.java)
+    implementation(libs.androidx.browser)
 }

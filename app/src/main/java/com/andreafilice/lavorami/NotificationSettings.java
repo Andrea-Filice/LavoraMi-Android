@@ -121,7 +121,6 @@ public class NotificationSettings extends AppCompatActivity {
             /// Here we set-up the configuration selected by the user when clicking the Relative Layout.
             /// Create a TimePickerDialog and after save the new Configuration.
 
-            Calendar calendar = Calendar.getInstance();
             int hours = hoursSaved;
             int minutes = minutesSaved;
 

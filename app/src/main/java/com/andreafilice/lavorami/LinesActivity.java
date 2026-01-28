@@ -3,17 +3,20 @@ package com.andreafilice.lavorami;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.graphics.drawable.DrawableCompat;
@@ -109,9 +112,9 @@ public class LinesActivity extends AppCompatActivity {
                 String query = s.toString().toLowerCase().trim();
 
                 TextView titleMetro = findViewById(R.id.subTitleMetro);
-                TextView titleSub = findViewById(R.id.subTitleSuburban);
+                TextView titleSub = findViewById(R.id.subTitleSuburbane);
                 TextView titleMXP = findViewById(R.id.subTitleMXP);
-                TextView titleTrans = findViewById(R.id.subTitleTrans);
+                TextView titleTrans = findViewById(R.id.subTitleTransfrontaliere);
                 TextView titleTram = findViewById(R.id.subTitleTram);
                 TextView tvNoResults = findViewById(R.id.emptyView);
 
@@ -164,6 +167,32 @@ public class LinesActivity extends AppCompatActivity {
             changeActivity(SettingsActivity.class);
         });
 
+        //*WEBSITE LINKS
+        ImageView[] infoButtons = {
+            findViewById(R.id.infoIconMetro),
+            findViewById(R.id.infoIconSuburbane),
+            findViewById(R.id.infoIconTransfrontaliere),
+            findViewById(R.id.infoIconMXP),
+            findViewById(R.id.infoIconTram)
+        };
+
+        String[] infoUrls = {
+            "https://giromilano.atm.it/assets/images/schema_rete_metro.jpg",
+            "https://www.trenord.it/linee-e-orari/circolazione/le-nostre-linee/",
+            "https://www.tilo.ch",
+            "https://www.malpensaexpress.it",
+            "https://www.atm.it/it/AltriServizi/Trasporto/Documents/Carta%20ATM_WEB_2025.11.pdf"
+        };
+
+        for (int i = 0; i < infoButtons.length; i++) {
+            int finalI = i;
+            infoButtons[i].setOnClickListener(v -> {
+                CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+
+                CustomTabsIntent customTabsIntent = builder.build();
+                customTabsIntent.launchUrl(this, Uri.parse(infoUrls[finalI]));
+            });
+        }
     }
 
     public void changeActivity(Class<?> destinationLayout) {

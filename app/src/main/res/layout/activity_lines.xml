@@ -40,7 +40,7 @@
             android:drawableStart="@android:drawable/ic_menu_search"
             android:drawableTint="@color/text_primary"
             android:drawablePadding="10dp"
-            android:hint="Cerca linea (es. S5, RE8)..."
+            android:hint="Cerca per tipo o numero..."
             android:paddingStart="15dp"
             android:textColor="@android:color/white"
             android:textColorHint="#666666"
@@ -75,17 +75,37 @@
                 android:fontFamily="@font/archivo_medium"
                 android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/subTitleMetro"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Metropolitana"
-                android:textColor="@color/desc"
-                android:textSize="13sp"
-                android:textAllCaps="true"
-                android:fontFamily="@font/archivo_medium"
-                android:layout_marginBottom="8dp"
-                android:layout_marginStart="4dp"/>
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="15dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp">
+
+                <TextView
+                    android:id="@+id/subTitleMetro"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Metropolitana"
+                    android:textColor="@color/desc"
+                    android:textSize="13sp"
+                    android:textAllCaps="true"
+                    android:fontFamily="@font/archivo_medium" />
+
+                <ImageView
+                    android:id="@+id/infoIconMetro"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_info"
+                    app:tint="@color/desc"
+                    android:contentDescription="Info"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/groupMetro"
@@ -97,18 +117,38 @@
                 android:showDividers="middle">
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/subTitleSuburban"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Linee Suburbane"
-                android:textColor="@color/desc"
-                android:textSize="13sp"
-                android:textAllCaps="true"
-                android:fontFamily="@font/archivo_medium"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginStart="4dp"/>
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="15dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/subTitleSuburbane"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Linee Suburbane"
+                    android:textColor="@color/desc"
+                    android:textSize="13sp"
+                    android:textAllCaps="true"
+                    android:fontFamily="@font/archivo_medium" />
+
+                <ImageView
+                    android:id="@+id/infoIconSuburbane"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_info"
+                    app:tint="@color/desc"
+                    android:contentDescription="Info"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/groupSub"
@@ -119,75 +159,139 @@
                 android:divider="@drawable/line_divider"
                 android:showDividers="middle">
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="15dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginTop="20dp">
+
                 <TextView
                     android:id="@+id/subTitleMXP"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Linee Malpensa Express"
                     android:textColor="@color/desc"
                     android:textSize="13sp"
                     android:textAllCaps="true"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="@font/archivo_medium"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginStart="8dp"/>
+                    android:fontFamily="@font/archivo_medium" />
 
-                <LinearLayout
-                    android:id="@+id/groupMXP"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_line_group"
-                    android:orientation="vertical"
-                    android:divider="@drawable/line_divider"
-                    android:showDividers="middle">
-                </LinearLayout>
+                <ImageView
+                    android:id="@+id/infoIconMXP"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_info"
+                    app:tint="@color/desc"
+                    android:contentDescription="Info"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/groupMXP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_line_group"
+                android:orientation="vertical"
+                android:divider="@drawable/line_divider"
+                android:showDividers="middle">
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="15dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginTop="20dp">
+
                 <TextView
-                    android:id="@+id/subTitleTrans"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/subTitleTransfrontaliere"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Linee Transfrontaliere"
                     android:textColor="@color/desc"
                     android:textSize="13sp"
                     android:textAllCaps="true"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="@font/archivo_medium"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginStart="8dp"/>
+                    android:fontFamily="@font/archivo_medium" />
 
-                <LinearLayout
-                    android:id="@+id/groupTrans"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_line_group"
-                    android:orientation="vertical"
-                    android:divider="@drawable/line_divider"
-                    android:showDividers="middle">
-                </LinearLayout>
+                <ImageView
+                    android:id="@+id/infoIconTransfrontaliere"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_info"
+                    app:tint="@color/desc"
+                    android:contentDescription="Info"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/groupTrans"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_line_group"
+                android:orientation="vertical"
+                android:divider="@drawable/line_divider"
+                android:showDividers="middle">
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="15dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginTop="20dp">
+
                 <TextView
                     android:id="@+id/subTitleTram"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Linee Tramviarie"
                     android:textColor="@color/desc"
                     android:textSize="13sp"
                     android:textAllCaps="true"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="@font/archivo_medium"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginStart="4dp"/>
+                    android:fontFamily="@font/archivo_medium" />
 
-                <LinearLayout
-                    android:id="@+id/groupTram"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_line_group"
-                    android:orientation="vertical"
-                    android:divider="@drawable/line_divider"
-                    android:showDividers="middle">
-                </LinearLayout>
+                <ImageView
+                    android:id="@+id/infoIconTram"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_info"
+                    app:tint="@color/desc"
+                    android:contentDescription="Info"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/groupTram"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_line_group"
+                android:orientation="vertical"
+                android:divider="@drawable/line_divider"
+                android:showDividers="middle">
+            </LinearLayout>
+        </LinearLayout>
+
     </androidx.core.widget.NestedScrollView>
+
     <LinearLayout
         android:id="@+id/customBottomBar"
         android:layout_width="match_parent"
@@ -208,8 +312,7 @@
             android:padding="12dp"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/ic_home"
-            app:tint="?attr/colorControlNormal"
-             />
+            app:tint="?attr/colorControlNormal" />
 
         <ImageButton
             android:id="@+id/linesButton"
