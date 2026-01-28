@@ -121,7 +121,18 @@ public class SettingsActivity extends AppCompatActivity {
         favorites = DataManager.getStringArray(this, DataKeys.KEY_FAVORITE_LINES, new HashSet<>());
 
         setStarIcons(starIcons, lineCodes);
-        loadFavorites(starIcons, lineCodes);
+
+        //*SET THE VERSION TEXT
+        TextView appVersionText = findViewById(R.id.appVersionFull);
+        RelativeLayout versionButton = findViewById(R.id.btnVersion);
+
+        versionButton.setOnClickListener(v -> {
+            String currentText = appVersionText.getText().toString();
+            String fullVersionText = getString(R.string.appVersionFull);
+            boolean isFullVersion = currentText.equals(fullVersionText);
+
+            appVersionText.setText((isFullVersion) ? R.string.app_version : R.string.appVersionFull);
+        });
     }
 
     public void changeActivity(Class<?> destinationLayout){
