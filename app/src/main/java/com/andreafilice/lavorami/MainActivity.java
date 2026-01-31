@@ -251,6 +251,7 @@ public class MainActivity extends AppCompatActivity {
                     eventsDisplay.clear();
                     eventsDisplay = response.body();
                     EventData.listaEventiCompleta = events;
+                    NotificationScheduler.scheduleWorkNotifications(MainActivity.this, EventData.listaEventiCompleta);
                     RecyclerView recyclerView = findViewById(R.id.recyclerView);
                     recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
                     adapter = new WorkAdapter(eventsDisplay);

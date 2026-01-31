@@ -119,6 +119,7 @@ public class SettingsActivity extends AppCompatActivity {
         };
 
         favorites = DataManager.getStringArray(this, DataKeys.KEY_FAVORITE_LINES, new HashSet<>());
+        Log.d("DATA", favorites.toString());
 
         setStarIcons(starIcons, lineCodes);
         loadFavorites(starIcons, lineCodes);
