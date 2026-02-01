@@ -643,6 +643,7 @@
                             android:textColor="@color/text_primary"
                             android:textSize="16sp"
                             android:clickable="true"
+                            android:longClickable="true"
                             android:focusable="true"/>
 
                     </RelativeLayout>

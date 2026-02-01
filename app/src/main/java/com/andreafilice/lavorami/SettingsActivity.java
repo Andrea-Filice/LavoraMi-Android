@@ -2,6 +2,8 @@ package com.andreafilice.lavorami;
 
 import static com.andreafilice.lavorami.ActivityManager.changeActivity;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -144,6 +147,19 @@ public class SettingsActivity extends AppCompatActivity {
             boolean isFullVersion = currentText.equals(fullVersionText);
 
             appVersionText.setText((isFullVersion) ? R.string.app_version : R.string.appVersionFull);
+        });
+
+        /// In this section of the code, we handle the LongClick of the versionButton and copy the
+        /// Current version of the application.
+        versionButton.setOnLongClickListener(v -> {
+            String textToCopy = appVersionText.getText().toString();
+
+            ClipboardManager clipboard = (ClipboardManager) getSystemService(this.CLIPBOARD_SERVICE);
+            ClipData clipData = ClipData.newPlainText("Versione App", textToCopy);
+            clipboard.setPrimaryClip(clipData);
+            Toast.makeText(this, "Versione app copiata!", Toast.LENGTH_LONG).show();
+
+            return true;
         });
     }
 
