@@ -499,6 +499,45 @@
                             android:src="@drawable/ic_dropdown"
                             app:tint="@color/text_primary" />
                     </RelativeLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="0.5dp" android:layout_marginStart="52dp" android:background="#38383A" />
+
+                    <RelativeLayout
+                        android:id="@+id/btnAdvanced"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:paddingHorizontal="12dp">
+
+                        <ImageView
+                            android:id="@+id/iconAdvanced"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_advanced_options"
+                            app:tint="@color/redMetro"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="12dp"
+                            android:layout_toEndOf="@id/iconAdvanced"
+                            android:text="Opzioni Avanzate"
+                            android:textColor="@color/text_primary"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:rotation="180"
+                            android:src="@drawable/ic_dropdown"
+                            app:tint="@color/text_primary" />
+                    </RelativeLayout>
+
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

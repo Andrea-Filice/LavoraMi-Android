@@ -267,6 +267,12 @@ public class MainActivity extends AppCompatActivity {
             public void onFailure(Call<ArrayList<EventDescriptor>> call, Throwable t) {
                 //* ON FAILURE, ACTIVATE THE "ERROR" LAYOUT
                 if(loadingLayout != null){
+                    boolean showErrorMessage = DataManager.getBoolData(MainActivity.this, DataKeys.KEY_SHOW_ERROR_MESSAGES, false);
+                    TextView errorDeps = findViewById(R.id.errorDeps);
+
+                    errorDeps.setText(t.getMessage());
+                    errorDeps.setVisibility((showErrorMessage) ? View.VISIBLE : View.GONE);
+
                     loadingLayout.setVisibility(View.GONE);
                     errorLayout.setVisibility(View.VISIBLE);
                 }

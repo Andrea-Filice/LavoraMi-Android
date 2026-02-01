@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
     <application
@@ -15,6 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LavoraMi">
+        <activity
+            android:name=".AdvancedOptions"
+            android:exported="false" />
         <activity
             android:name=".FilterSelection"
             android:exported="false" />
@@ -51,7 +54,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="${API_KEY}" />
 
-        <receiver android:name=".NotificationReceiver" android:enabled="true" android:exported="false" />
+        <receiver
+            android:name=".NotificationReceiver"
+            android:enabled="true"
+            android:exported="false" />
     </application>
 
 </manifest>

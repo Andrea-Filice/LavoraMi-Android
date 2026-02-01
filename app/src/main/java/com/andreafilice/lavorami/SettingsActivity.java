@@ -69,6 +69,11 @@ public class SettingsActivity extends AppCompatActivity {
             changeActivity(FilterSelection.class);
         });
 
+        RelativeLayout advancedOptionsButton = findViewById(R.id.btnAdvanced);
+        advancedOptionsButton.setOnClickListener(v -> {
+            changeActivity(AdvancedOptions.class);
+        });
+
         RelativeLayout groupTrenord = findViewById(R.id.groupTrenord);
         groupTrenord.setOnClickListener(v -> {
             LinearLayout trenordLayout = findViewById(R.id.disclosureContentTrenord);

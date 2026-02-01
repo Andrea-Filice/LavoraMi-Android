@@ -319,7 +319,7 @@
 
         <Button
             android:id="@+id/btnRefreshOnError"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/redMetro"
             android:layout_marginTop="10dp"
@@ -329,6 +329,18 @@
             app:iconGravity="textStart"
             app:iconTint="@color/White"
             android:textColor="@color/White"/>
+
+        <TextView
+            android:id="@+id/errorDeps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text="_message"
+            android:textColor="@color/text_primary"
+            android:textSize="12sp"
+            android:fontFamily="@font/archivo_medium"/>
     </LinearLayout>
 
     <LinearLayout
