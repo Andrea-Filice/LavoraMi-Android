@@ -15,6 +15,6 @@ public class ActivityManager {
 
         /// In this section, we check if the context is an Activity and then we apply the animation.
         if (context instanceof Activity)
-            ((Activity) context).overridePendingTransition(1, 0);
+            ((Activity) context).overridePendingTransition(0, 0);
     }
 }

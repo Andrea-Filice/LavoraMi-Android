@@ -288,6 +288,49 @@
                 android:divider="@drawable/line_divider"
                 android:showDividers="middle">
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="15dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/subTitleMovibus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Linee Movibus"
+                    android:textColor="@color/desc"
+                    android:textSize="13sp"
+                    android:textAllCaps="true"
+                    android:fontFamily="@font/archivo_medium" />
+
+                <ImageView
+                    android:id="@+id/infoIconMovibus"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_info"
+                    app:tint="@color/desc"
+                    android:contentDescription="Info"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/groupMovibus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_line_group"
+                android:orientation="vertical"
+                android:divider="@drawable/line_divider"
+                android:showDividers="middle">
+            </LinearLayout>
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

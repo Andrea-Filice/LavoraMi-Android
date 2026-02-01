@@ -479,33 +479,33 @@ public class LinesDetailActivity extends AppCompatActivity implements OnMapReady
         if (linea == null) return "Direzioni non disponibili";
 
         switch (linea.toUpperCase().trim()) {
-            case "M1": return "Sesto 1° Maggio FS ↔ Rho Fiera / Bisceglie";
-            case "M2": return "Assago Forum / Abbiategrasso ↔ Gessate / Cologno Nord";
-            case "M3": return "San Donato ↔ Comasina";
-            case "M4": return "San Cristoforo ↔ Linate Aeroporto";
-            case "M5": return "San Siro Stadio ↔ Bignami";
-            case "S1": return "Saronno ↔ Lodi";
-            case "S2": return "Mariano Comense ↔ Milano Rogoredo";
-            case "S3": return "Saronno ↔ Milano Cadorna";
-            case "S4": return "Camnago-Lentate ↔ Milano Cadorna";
-            case "S5": return "Varese ↔ Treviglio";
-            case "S6": return "Novara ↔ Pioltello-Limito / Treviglio";
-            case "S7": return "Lecco ↔ Milano Porta Garibaldi (via Molteno)";
-            case "S8": return "Lecco ↔ Milano Porta Garibaldi (via Carnate)";
-            case "S9": return "Saronno ↔ Albairate-Vermezzo";
-            case "S11": return "Chiasso ↔ Milano Porta Garibaldi / Rho";
-            case "S12": return "Cormano-Cusano ↔ Melegnano";
-            case "S13": return "Milano Bovisa ↔ Pavia";
+            case "M1": return "Sesto 1° Maggio FS - Rho Fiera / Bisceglie";
+            case "M2": return "Assago Forum / Abbiategrasso - Gessate / Cologno Nord";
+            case "M3": return "San Donato - Comasina";
+            case "M4": return "San Cristoforo - Linate Aeroporto";
+            case "M5": return "San Siro Stadio - Bignami";
+            case "S1": return "Saronno - Lodi";
+            case "S2": return "Mariano Comense - Milano Rogoredo";
+            case "S3": return "Saronno - Milano Cadorna";
+            case "S4": return "Camnago-Lentate - Milano Cadorna";
+            case "S5": return "Varese - Treviglio";
+            case "S6": return "Novara - Pioltello-Limito / Treviglio";
+            case "S7": return "Lecco - Milano Porta Garibaldi (via Molteno)";
+            case "S8": return "Lecco - Milano Porta Garibaldi (via Carnate)";
+            case "S9": return "Saronno - Albairate-Vermezzo";
+            case "S11": return "Chiasso - Milano Porta Garibaldi / Rho";
+            case "S12": return "Cormano-Cusano - Melegnano";
+            case "S13": return "Milano Bovisa - Pavia";
             case "S19": return "Stazione 19 (Verifica tratta specifica)";
-            case "S31": return "Brescia ↔ Iseo";
-            case "MXP1": return "Milano Cadorna ↔ Malpensa Aeroporto T1-T2";
-            case "MXP2": return "Milano Centrale ↔ Malpensa Aeroporto T1-T2";
-            case "S10": return "Biasca ↔ Como";
-            case "S20": return "Castione ↔ Locarno";
-            case "S30": return "Cadenazzo ↔ Gallarate";
-            case "S40": return "Como ↔ Varese";
-            case "S50": return "Biasca ↔ Malpensa Aeroporto T1-T2";
-            case "RE80": return "Locarno ↔ Milano Centrale";
+            case "S31": return "Brescia - Iseo";
+            case "MXP1": return "Milano Cadorna - Malpensa Aeroporto T1-T2";
+            case "MXP2": return "Milano Centrale - Malpensa Aeroporto T1-T2";
+            case "S10": return "Biasca - Como";
+            case "S20": return "Castione - Locarno";
+            case "S30": return "Cadenazzo - Gallarate";
+            case "S40": return "Como - Varese";
+            case "S50": return "Biasca - Malpensa Aeroporto T1-T2";
+            case "RE80": return "Locarno - Milano Centrale";
             case "1": return "Greco (Via Martiri Oscuri) - Roserio";
             case "2": return "Piazza Bausan - Piazzale Negrelli";
             case "3": return "Duomo (Via Cantù) - Gratosoglio";
@@ -523,6 +523,7 @@ public class LinesDetailActivity extends AppCompatActivity implements OnMapReady
             case "27": return "Piazza Fontana - Viale Ungheria";
             case "31": return "Bicocca M5 - Cinisello (Via Monte Ortigara)";
             case "33": return "Piazzale Lagosta - Viale Rimembranze di Lambrate";
+            case "z620": return "Magenta Via Tobagi - Milano Molino Dorino MM";
             default: return "Direzioni non disponibili per " + linea;
         }
     }

@@ -36,6 +36,7 @@ public class LinesActivity extends AppCompatActivity {
         LinearLayout containerMXP = findViewById(R.id.groupMXP);
         LinearLayout containerTram = findViewById(R.id.groupTram);
         LinearLayout containerTrans = findViewById(R.id.groupTrans);
+        LinearLayout containerMovibus = findViewById(R.id.groupMovibus);
 
 
         EditText searchLines = findViewById(R.id.editSearch);
@@ -101,6 +102,9 @@ public class LinesActivity extends AppCompatActivity {
         aggiungiLinea(containerTram,"31",R.color.TRAM,"Tram 31");
         aggiungiLinea(containerTram,"33",R.color.TRAM,"Tram 33");
 
+        //MOVIBUS
+        aggiungiLinea(containerMovibus,"z620",R.color.BUS,"Movibus z620");
+
         //* SEARCH BAR
         searchLines.setBackgroundResource(R.drawable.bg_edittext_search);
         searchLines.addTextChangedListener(new TextWatcher() {
@@ -116,6 +120,7 @@ public class LinesActivity extends AppCompatActivity {
                 TextView titleMXP = findViewById(R.id.subTitleMXP);
                 TextView titleTrans = findViewById(R.id.subTitleTransfrontaliere);
                 TextView titleTram = findViewById(R.id.subTitleTram);
+                TextView titleMovibus = findViewById(R.id.subTitleMovibus);
                 TextView tvNoResults = findViewById(R.id.emptyView);
 
                 boolean hasMetro = filtraContainer(containerMetro, query);
@@ -123,6 +128,7 @@ public class LinesActivity extends AppCompatActivity {
                 boolean hasMXP = filtraContainer(containerMXP, query);
                 boolean hasTrans = filtraContainer(containerTrans, query);
                 boolean hasTram = filtraContainer(containerTram, query);
+                boolean hasMovibus = filtraContainer(containerMovibus, query);
 
                 //*METRO LINES
                 titleMetro.setVisibility(hasMetro ? View.VISIBLE : View.GONE);
@@ -143,6 +149,10 @@ public class LinesActivity extends AppCompatActivity {
                 //*TRAM LINES
                 titleTram.setVisibility(hasTram ? View.VISIBLE : View.GONE);
                 containerTram.setVisibility(hasTram ? View.VISIBLE : View.GONE);
+
+                //*MOVIBUS LINES
+                titleMovibus.setVisibility(hasTram ? View.VISIBLE : View.GONE);
+                containerMovibus.setVisibility(hasTram ? View.VISIBLE : View.GONE);
 
                 if (tvNoResults != null) {
                     if (!hasMetro && !hasSub && !hasMXP && !hasTrans && !hasTram)
@@ -230,6 +240,7 @@ public class LinesActivity extends AppCompatActivity {
 
     private boolean filtraContainer(LinearLayout container, String query) {
         boolean trovatoAtLeastOne = false;
+
         for (int i = 0; i < container.getChildCount(); i++) {
             View row = container.getChildAt(i);
             TextView badge = row.findViewById(R.id.lineBadge);
