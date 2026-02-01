@@ -36,4 +36,4 @@ androidx-browser = { group = "androidx.browser", name = "browser", version.ref =
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-ben-manes-versions = { id = "com.github.ben-manes.versions", version = "0.53.0" }
+ben-manes-versions = { id = "com.github.ben-manes.versions", version = "0.53.0"}

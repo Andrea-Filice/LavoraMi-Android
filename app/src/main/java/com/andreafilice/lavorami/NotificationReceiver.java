@@ -24,7 +24,7 @@ public class NotificationReceiver extends BroadcastReceiver {
         }
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelId)
-                .setSmallIcon(R.drawable.baseline_alt_route_24) // Usa una tua icona
+                .setSmallIcon(R.drawable.baseline_alt_route_24)
                 .setContentTitle(title)
                 .setContentText(message)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)

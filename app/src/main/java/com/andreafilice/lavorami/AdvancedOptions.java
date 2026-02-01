@@ -29,7 +29,7 @@ public class AdvancedOptions extends AppCompatActivity {
         //*BUTTONS
         ImageButton backButton = findViewById(R.id.backBtn);
         backButton.setOnClickListener(v -> {
-            changeActivity(this, SettingsActivity.class);
+            ActivityManager.changeActivity(this, SettingsActivity.class);
         });
 
         //*LOAD DATAS
@@ -45,15 +45,5 @@ public class AdvancedOptions extends AppCompatActivity {
             DataManager.saveBoolData(this, DataKeys.KEY_SHOW_ERROR_MESSAGES, errorMessagesSwitch.isChecked());
             errorMessagesSwitch.setTrackTintMode((errorMessagesSwitch.isChecked()) ? PorterDuff.Mode.ADD : PorterDuff.Mode.MULTIPLY);
         });
-    }
-
-    public void changeActivity(Context context, Class<?> destinationLayout){
-        ///@PARAMETER
-        /// Class<?> destinationLayout is a destination activity which this function change.
-
-        //*CHANGE LAYOUT
-        Intent layoutChange = new Intent(context, destinationLayout);
-        startActivity(layoutChange);
-        overridePendingTransition(1, 0);
     }
 }

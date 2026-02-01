@@ -37,7 +37,7 @@ public class NotificationSettings extends AppCompatActivity {
 
         ImageButton backButton = (ImageButton) findViewById(R.id.backBtn);
         backButton.setOnClickListener(v -> {
-            changeActivity(SettingsActivity.class);
+            ActivityManager.changeActivity(this, SettingsActivity.class);
         });
 
         @SuppressLint("UseSwitchCompatOrMaterialCode") Switch switchNotificationsGeneral = findViewById(R.id.switchMaster);
@@ -139,16 +139,6 @@ public class NotificationSettings extends AppCompatActivity {
             );
             timePickerDialog.show();
         });
-    }
-
-    public void changeActivity(Class<?> destinationLayout){
-        ///@PARAMETER
-        /// Class<?> destinationLayout is a destination activity which this function change.
-
-        //*CHANGE LAYOUT
-        Intent layoutChange = new Intent(NotificationSettings.this, destinationLayout); //*CREATE THE INTENT WITH THE DESTINATION
-        startActivity(layoutChange); //*CHANGE LAYOUT
-        overridePendingTransition(1, 0);
     }
 
     public void saveDatas(Switch switchNotificationsGeneral, Switch switchStartWorks, Switch switchEndWorks, Switch switchStrikeNotifications){

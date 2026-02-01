@@ -159,12 +159,12 @@ public class LinesActivity extends AppCompatActivity {
         //*NAVBAR
         ImageButton btnHome = (ImageButton) findViewById(R.id.homeButton);
         btnHome.setOnClickListener(v -> {
-            changeActivity(MainActivity.class);
+            ActivityManager.changeActivity(this, MainActivity.class);
         });
 
         ImageButton btnSettings = (ImageButton) findViewById(R.id.settingsButton);
         btnSettings.setOnClickListener(v -> {
-            changeActivity(SettingsActivity.class);
+            ActivityManager.changeActivity(this, SettingsActivity.class);
         });
 
         //*WEBSITE LINKS
@@ -198,16 +198,6 @@ public class LinesActivity extends AppCompatActivity {
                 customTabsIntent.launchUrl(this, Uri.parse(infoUrls[finalI]));
             });
         }
-    }
-
-    public void changeActivity(Class<?> destinationLayout) {
-        ///@PARAMETER
-        /// Class<?> destinationLayout is a destination activity which this function change.
-
-        //*CHANGE LAYOUT
-        Intent layoutChange = new Intent(LinesActivity.this, destinationLayout); //*CREATE THE INTENT WITH THE DESTINATION
-        startActivity(layoutChange); //*CHANGE LAYOUT
-        overridePendingTransition(1, 0);
     }
 
     private void aggiungiLinea(LinearLayout container, String label, int colorHex, String description) {

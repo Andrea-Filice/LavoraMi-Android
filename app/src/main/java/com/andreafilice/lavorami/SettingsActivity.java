@@ -1,5 +1,7 @@
 package com.andreafilice.lavorami;
 
+import static com.andreafilice.lavorami.ActivityManager.changeActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,33 +47,33 @@ public class SettingsActivity extends AppCompatActivity {
         //*NAVBAR
         ImageButton btnLines = (ImageButton) findViewById(R.id.linesButton);
         btnLines.setOnClickListener(v -> {
-            changeActivity(LinesActivity.class);
+            changeActivity(this, LinesActivity.class);
         });
 
         ImageButton btnSettings = (ImageButton) findViewById(R.id.homeButton);
         btnSettings.setOnClickListener(v -> {
-            changeActivity(MainActivity.class);
+            changeActivity(this, MainActivity.class);
         });
 
         //*SETTINGS BUTTONS
         RelativeLayout sourcesBtn = findViewById(R.id.btnFonts);
         sourcesBtn.setOnClickListener(v -> {
-            changeActivity(SourcesDevelopment.class);
+            changeActivity(this, SourcesDevelopment.class);
         });
 
         RelativeLayout notificationsBtn = findViewById(R.id.btnNotifiche);
         notificationsBtn.setOnClickListener(v -> {
-            changeActivity(NotificationSettings.class);
+            changeActivity(this, NotificationSettings.class);
         });
 
         RelativeLayout filtersButton = findViewById(R.id.btnFiltro);
         filtersButton.setOnClickListener(v -> {
-            changeActivity(FilterSelection.class);
+            changeActivity(this, FilterSelection.class);
         });
 
         RelativeLayout advancedOptionsButton = findViewById(R.id.btnAdvanced);
         advancedOptionsButton.setOnClickListener(v -> {
-            changeActivity(AdvancedOptions.class);
+            changeActivity(this, AdvancedOptions.class);
         });
 
         RelativeLayout groupTrenord = findViewById(R.id.groupTrenord);
@@ -143,16 +145,6 @@ public class SettingsActivity extends AppCompatActivity {
 
             appVersionText.setText((isFullVersion) ? R.string.app_version : R.string.appVersionFull);
         });
-    }
-
-    public void changeActivity(Class<?> destinationLayout){
-        ///@PARAMETER
-        /// Class<?> destinationLayout is a destination activity which this function change.
-
-        //*CHANGE LAYOUT
-        Intent layoutChange = new Intent(SettingsActivity.this, destinationLayout);
-        startActivity(layoutChange);
-        overridePendingTransition(1, 0);
     }
 
     public void setStarIcons(ImageView[] icons, String[] lineCodes){

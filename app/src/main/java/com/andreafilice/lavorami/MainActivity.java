@@ -77,12 +77,12 @@ public class MainActivity extends AppCompatActivity {
         //*NAVBAR
         ImageButton btnLines = (ImageButton) findViewById(R.id.linesButton);
         btnLines.setOnClickListener(v -> {
-            changeActivity(LinesActivity.class);
+            ActivityManager.changeActivity(this, LinesActivity.class);
         });
 
         ImageButton btnSettings = (ImageButton) findViewById(R.id.settingsButton);
         btnSettings.setOnClickListener(v -> {
-            changeActivity(SettingsActivity.class);
+            ActivityManager.changeActivity(this, SettingsActivity.class);
         });
 
         //*REFRESH BUTTON
@@ -181,17 +181,6 @@ public class MainActivity extends AppCompatActivity {
             });
         }
     }
-
-    public void changeActivity(Class<?> destinationLayout){
-        ///@PARAMETER
-        /// Class<?> destinationLayout is a destination activity which this function change.
-
-        //*CHANGE LAYOUT
-        Intent layoutChange = new Intent(MainActivity.this, destinationLayout); //*CREATE THE INTENT WITH THE DESTINATION
-        startActivity(layoutChange); //*CHANGE LAYOUT
-        overridePendingTransition(1, 0);
-    }
-
     public String getCategory() {
         ChipGroup filterGroup = findViewById(R.id.filterChipGroup);
         if (filterGroup == null) return "tutti";

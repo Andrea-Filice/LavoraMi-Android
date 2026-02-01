@@ -47,13 +47,8 @@ public class SourcesDevelopment extends AppCompatActivity {
             }
         });
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                Intent changeActivity = new Intent(SourcesDevelopment.this, SettingsActivity.class);
-                startActivity(changeActivity);
-                overridePendingTransition(1, 0);
-            }
+        btnBack.setOnClickListener(v -> {
+            ActivityManager.changeActivity(this, SettingsActivity.class);
         });
     }
 }
