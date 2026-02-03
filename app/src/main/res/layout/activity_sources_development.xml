@@ -160,6 +160,8 @@
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/archivo_medium"
                 android:text="Andrea Filice"
+                android:text="Tommaso Ruggeri"
+                android:text="Alessandro Rebuscini"
                 android:textAlignment="center"
                 android:textSize="22sp"
                 android:textStyle="bold" />
@@ -172,26 +174,6 @@
                 android:text="Con il contributo di:"
                 android:textAlignment="center"
                 android:textSize="18sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/archivo_medium"
-                android:text="Alessandro Rebuscini"
-                android:textAlignment="center"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/archivo_medium"
-                android:text="Tommaso Ruggeri"
-                android:textAlignment="center"
-                android:textSize="22sp"
-                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
