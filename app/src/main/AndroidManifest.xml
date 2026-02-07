@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LavoraMi">
         <activity
+            android:name=".AccountManagement"
+            android:exported="false" />
+        <activity
             android:name=".AdvancedOptions"
             android:exported="false" />
         <activity
@@ -50,9 +53,18 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="${API_KEY}" />
+
+        <meta-data
+            android:name="supabaseURL"
+            android:value="${API_SUPABASE_URL}" />
+
+        <meta-data
+            android:name="supabaseANON"
+            android:value="${API_SUPABASE_ANON}" />
 
         <receiver
             android:name=".NotificationReceiver"

@@ -11,6 +11,8 @@ val envFile = File(rootProject.projectDir, ".env")
 if (envFile.exists())
     envFile.inputStream().use { envProperties.load(it) }
 val apiKey = envProperties.getProperty("API_KEYS", "")
+val apiSupabaseURL = envProperties.getProperty("API_SUPABASE_URL", "")
+val apiSupabaseANON = envProperties.getProperty("API_SUPABASE_ANON", "")
 
 android {
     namespace = "com.andreafilice.lavorami"
@@ -24,11 +26,14 @@ android {
         targetSdk = 36
         versionCode = 1
         versionName = "1.0.0"
-        var buildNumber = "05022026"
+        var buildNumber = "07022026"
 
         resValue("string", "app_version", versionName ?: "1.0.0")
         resValue("string", "appVersionFull", ("$versionName ($buildNumber)"))
+
         manifestPlaceholders["API_KEY"] = apiKey
+        manifestPlaceholders["API_SUPABASE_URL"] = apiSupabaseURL
+        manifestPlaceholders["API_SUPABASE_ANON"] = apiSupabaseANON
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -61,6 +66,8 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+    implementation(libs.okhttp.core)
+    implementation(libs.okhttp.logging)
     implementation(libs.play.services.maps)
     implementation(libs.dotenv.java)
     implementation(libs.androidx.browser)

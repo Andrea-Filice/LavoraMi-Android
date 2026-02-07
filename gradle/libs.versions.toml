@@ -16,6 +16,8 @@ cardview = "1.0.0"
 retrofit = "3.0.0"
 browser = "1.9.0"
 shimmer = "0.5.0"
+okhttp = "4.12.0"
+benMaves = "0.53.0"
 
 [libraries]
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
@@ -35,7 +37,9 @@ cardview = { group = "androidx.cardview", name = "cardview", version.ref = "card
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 androidx-browser = { group = "androidx.browser", name = "browser", version.ref = "browser" }
 shimmer = { group = "com.facebook.shimmer", name = "shimmer", version.ref = "shimmer" }
+okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+okhttp-core = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-ben-manes-versions = { id = "com.github.ben-manes.versions", version = "0.53.0"}
+ben-manes-versions = { id = "com.github.ben-manes.versions", version.ref = "benMaves"}

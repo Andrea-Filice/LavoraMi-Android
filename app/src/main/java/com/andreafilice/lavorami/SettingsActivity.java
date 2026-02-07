@@ -59,6 +59,11 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         //*SETTINGS BUTTONS
+        RelativeLayout accountBtn = findViewById(R.id.btnAccount);
+        accountBtn.setOnClickListener(v -> {
+            changeActivity(this, AccountManagement.class);
+        });
+
         RelativeLayout sourcesBtn = findViewById(R.id.btnFonts);
         sourcesBtn.setOnClickListener(v -> {
             changeActivity(this, SourcesDevelopment.class);
