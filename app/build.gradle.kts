@@ -13,6 +13,7 @@ if (envFile.exists())
 val apiKey = envProperties.getProperty("API_KEYS", "")
 val apiSupabaseURL = envProperties.getProperty("API_SUPABASE_URL", "")
 val apiSupabaseANON = envProperties.getProperty("API_SUPABASE_ANON", "")
+val googleLoginAPI= envProperties.getProperty("API_GOOGLE_SIGNUP", "")
 
 android {
     namespace = "com.andreafilice.lavorami"
@@ -34,6 +35,7 @@ android {
         manifestPlaceholders["API_KEY"] = apiKey
         manifestPlaceholders["API_SUPABASE_URL"] = apiSupabaseURL
         manifestPlaceholders["API_SUPABASE_ANON"] = apiSupabaseANON
+        manifestPlaceholders["API_GOOGLE_SIGNUP"] = googleLoginAPI
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -72,4 +74,5 @@ dependencies {
     implementation(libs.dotenv.java)
     implementation(libs.androidx.browser)
     implementation(libs.shimmer)
+    implementation(libs.play.services.auth)
 }

@@ -54,4 +54,13 @@ public class SupabaseModels {
             this.password = password;
         }
     }
+
+    public static class GoogleLoginRequest {
+        public String provider = "google";
+        public String id_token;
+
+        public GoogleLoginRequest(String token){
+            this.id_token = token;
+        }
+    }
 }

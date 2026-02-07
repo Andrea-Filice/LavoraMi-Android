@@ -37,4 +37,10 @@ public interface SupabaseAPI {
         @Header("apikey") String apiKey,
         @Header("Authorization") String bearerToken
     );
+
+    @POST("auth/v1/token?grant_type=id_token")
+    Call<SupabaseModels.AuthResponse> loginWithGoogle(
+            @Header("apikey") String apiKey,
+            @Body SupabaseModels.GoogleLoginRequest request
+    );
 }

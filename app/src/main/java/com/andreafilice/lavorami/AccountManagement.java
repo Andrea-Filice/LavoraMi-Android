@@ -15,8 +15,11 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.app.AlertDialog;
+import android.content.Intent;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
@@ -24,6 +27,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.facebook.shimmer.BuildConfig;
+import com.google.android.gms.common.api.Result;
 import com.google.gson.internal.GsonBuildConfig;
 
 import android.widget.TextView;
@@ -31,6 +35,13 @@ import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -43,6 +54,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class AccountManagement extends AppCompatActivity {
     //*GLOBAL VARIABLES
     SessionManager sessionManager;
+    GoogleSignInClient googleClient;
     SupabaseAPI api;
     LinearLayout loginView;
     LinearLayout loggedInView;
@@ -50,6 +62,28 @@ public class AccountManagement extends AppCompatActivity {
     TextView fullNameTextLoginPage;
     TextView tvProfileName;
     TextView tvProfileEmail;
+
+    private final ActivityResultLauncher<Intent> googleLoginLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if(result.getResultCode() == RESULT_OK){
+                    Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(result.getData());
+
+                    try{
+                        GoogleSignInAccount account = task.getResult(ApiException.class);
+                        String idToken = account.getIdToken();
+
+                        performSupabaseGoogleLogin(idToken);
+                    }
+                    catch(ApiException e){
+                        Log.e("GOOGLE_SIGNIN_ERROR", "Login fallito. Status Code: " + e.getStatusCode());
+                        Toast.makeText(this, "Sign-in con Google fallito.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else
+                    Log.e("GOOGLE_SIGNIN_ERROR", "Finestra chiusa o annullata. Result Code: " + result.getResultCode());
+            }
+    );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +98,16 @@ public class AccountManagement extends AppCompatActivity {
 
         ///In this section of the code, we initialize the SessionManager for save the credentials of the Logged Account.
         sessionManager = new SessionManager(this);
+
+        /// In this section of the code, we initialize the GoogleSignInClient for SignIn with Google
+        String webClientID = getMetaData("googleAPI");
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(webClientID)
+                .requestEmail()
+                .build();
+
+        googleClient = GoogleSignIn.getClient(this, gso);
 
         /// In this section of the code, we initialize the Supabase Server from the keys of the .env file.
         String supabaseURL = getMetaData("supabaseURL");
@@ -87,6 +131,19 @@ public class AccountManagement extends AppCompatActivity {
         ImageView backBtn = findViewById(R.id.backBtn);
         backBtn.setOnClickListener(v -> {
             ActivityManager.changeActivity(this, SettingsActivity.class);
+        });
+
+        //*SIGN-IN WITH GOOGLE
+        CardView btnGoogleLogin = findViewById(R.id.btnGoogleLogin);
+        btnGoogleLogin.setOnClickListener(v -> {
+            if(googleClient != null){
+                Intent signInIntent = googleClient.getSignInIntent();
+
+                googleLoginLauncher.launch(signInIntent);
+            }
+            else{
+                Toast.makeText(this, "Errore durante il Login con Google.", Toast.LENGTH_SHORT).show();
+            }
         });
 
         //*VIEWS
@@ -189,6 +246,37 @@ public class AccountManagement extends AppCompatActivity {
             @Override
             public void onFailure(Call<SupabaseModels.AuthResponse> call, Throwable t) {
                 Toast.makeText(AccountManagement.this, "Errore Rete: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void performSupabaseGoogleLogin(String token){
+        SupabaseModels.GoogleLoginRequest req = new SupabaseModels.GoogleLoginRequest(token);
+
+        api.loginWithGoogle(getMetaData("supabaseANON"), req).enqueue(new Callback<SupabaseModels.AuthResponse>() {
+            @Override
+            public void onResponse(Call<SupabaseModels.AuthResponse> call, Response<SupabaseModels.AuthResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    String token = response.body().access_token;
+                    String email = response.body().user.email;
+
+                    String nameUser = "Utente Google";
+
+                    sessionManager.saveSession(token, email, nameUser);
+
+                    updateUI();
+                    Toast.makeText(AccountManagement.this, "Accesso con Google riuscito!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(AccountManagement.this, "Errore Login: " + response.code(), Toast.LENGTH_SHORT).show();
+                    try {
+                        Log.e("GOOGLE_LOGIN", response.errorBody().string());
+                    } catch (Exception e) {}
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SupabaseModels.AuthResponse> call, Throwable t) {
+                Toast.makeText(AccountManagement.this, "Errore di connessione", Toast.LENGTH_SHORT).show();
             }
         });
     }

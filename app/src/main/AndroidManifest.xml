@@ -66,6 +66,10 @@
             android:name="supabaseANON"
             android:value="${API_SUPABASE_ANON}" />
 
+        <meta-data
+            android:name="googleAPI"
+            android:value="${API_GOOGLE_SIGNUP}" />
+
         <receiver
             android:name=".NotificationReceiver"
             android:enabled="true"
