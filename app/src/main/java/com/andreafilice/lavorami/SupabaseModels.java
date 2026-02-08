@@ -55,6 +55,11 @@ public class SupabaseModels {
         }
     }
 
+
+    /// This class is a Callback class from the 'loginWithGoogle' method.
+    /// @ATTRIBUTES
+    /// @String provider is the LoginProvider to contact for SignIn with that Provider.
+    /// @String id_token is the Google Cloud Console Client API token, generated for our Application Client.
     public static class GoogleLoginRequest {
         public String provider = "google";
         public String id_token;

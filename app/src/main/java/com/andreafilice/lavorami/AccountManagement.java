@@ -76,12 +76,12 @@ public class AccountManagement extends AppCompatActivity {
                         performSupabaseGoogleLogin(idToken);
                     }
                     catch(ApiException e){
-                        Log.e("GOOGLE_SIGNIN_ERROR", "Login fallito. Status Code: " + e.getStatusCode());
+                        Log.e("GOOGLE", "Login fallito. Status Code: " + e.getStatusCode());
                         Toast.makeText(this, "Sign-in con Google fallito.", Toast.LENGTH_SHORT).show();
                     }
                 }
                 else
-                    Log.e("GOOGLE_SIGNIN_ERROR", "Finestra chiusa o annullata. Result Code: " + result.getResultCode());
+                    Log.e("GOOGLE", "Finestra chiusa o annullata. Result Code: " + result.getResultCode());
             }
     );
 
@@ -101,6 +101,7 @@ public class AccountManagement extends AppCompatActivity {
 
         /// In this section of the code, we initialize the GoogleSignInClient for SignIn with Google
         String webClientID = getMetaData("googleAPI");
+        Log.d("GOOGLE", webClientID);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(webClientID)
@@ -251,6 +252,15 @@ public class AccountManagement extends AppCompatActivity {
     }
 
     private void performSupabaseGoogleLogin(String token){
+        /// In this method, we call from our API the 'loginWithGoogle' function that requires some parameters.
+        /// @PARAMETERS
+        /// @Header apiKey is the ANON key of the Supabase DB from the .env file.
+        /// @Body supabaseModels.GoogleLoginRequest is the body request for catch errors and log effectualy in the Account from Google.
+        /// This method call the Google OAuth Client, created on our Google Cloud Console, and contact the Google Servers for retrieve UserDatas.
+        /// We take some datas from your account: email, profileImage and DisplayName.
+        /// @PARAMETER of the function:
+        /// String token is the token from our .env file that contains ClientsID for connecting to Google Cloud services.
+
         SupabaseModels.GoogleLoginRequest req = new SupabaseModels.GoogleLoginRequest(token);
 
         api.loginWithGoogle(getMetaData("supabaseANON"), req).enqueue(new Callback<SupabaseModels.AuthResponse>() {
