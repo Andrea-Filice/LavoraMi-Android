@@ -38,7 +38,7 @@ public class LinesActivity extends AppCompatActivity {
         LinearLayout containerTrans = findViewById(R.id.groupTrans);
         LinearLayout containerMovibus = findViewById(R.id.groupMovibus);
         LinearLayout containerStav = findViewById(R.id.groupStav);
-        LinearLayout containerAutoGuidoVie = findViewById(R.id.groupAutoGuidoVie);
+        LinearLayout containerAutoGuidovie = findViewById(R.id.groupAutoGuidoVie);
 
         EditText searchLines = findViewById(R.id.editSearch);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -142,7 +142,45 @@ public class LinesActivity extends AppCompatActivity {
         aggiungiLinea(containerStav,"z560",R.color.BUS,"STAV z560");
 
         //AUTOGUIDOVIE
-        aggiungiLinea(containerAutoGuidoVie,"test",R.color.AUTOGUIDOVIE,"ztest");
+        aggiungiLinea(containerAutoGuidovie,"test",R.color.AUTOGUIDOVIE,"ztest");
+
+        //*WEBSITE LINKS
+        /// In this section of the code, we set the default action (OnClick) of the ImageView
+        /// From the infoButtons, and create an array with the URLs in it.
+        /// In the first section we initialize the arrays, in the second one we
+        /// Create a For-Loop for set automatically the action of the button.
+
+        ImageView[] infoButtons = {
+                findViewById(R.id.infoIconMetro),
+                findViewById(R.id.infoIconSuburbane),
+                findViewById(R.id.infoIconTransfrontaliere),
+                findViewById(R.id.infoIconMXP),
+                findViewById(R.id.infoIconTram),
+                findViewById(R.id.infoIconMovibus),
+                findViewById(R.id.infoIconStav),
+                findViewById(R.id.infoIconAutoGuidoVie)
+        };
+
+        String[] infoUrls = {
+                "https://giromilano.atm.it/assets/images/schema_rete_metro.jpg",
+                "https://www.trenord.it/linee-e-orari/circolazione/le-nostre-linee/",
+                "https://www.tilo.ch",
+                "https://www.malpensaexpress.it",
+                "https://www.atm.it/it/AltriServizi/Trasporto/Documents/Carta%20ATM_WEB_2025.11.pdf",
+                "https://movibus.it/news/",
+                "https://stavautolinee.it/reti-servite/",
+                "https://autoguidovie.it/it/avvisi"
+        };
+
+        for (int i = 0; i < infoButtons.length; i++) {
+            int finalI = i;
+            infoButtons[i].setOnClickListener(v -> {
+                CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+
+                CustomTabsIntent customTabsIntent = builder.build();
+                customTabsIntent.launchUrl(this, Uri.parse(infoUrls[finalI]));
+            });
+        }
 
         //* SEARCH BAR
         searchLines.setBackgroundResource(R.drawable.bg_edittext_search);
@@ -161,7 +199,7 @@ public class LinesActivity extends AppCompatActivity {
                 TextView titleTram = findViewById(R.id.subTitleTram);
                 TextView titleMovibus = findViewById(R.id.subTitleMovibus);
                 TextView titleStav = findViewById(R.id.subTitleStav);
-                TextView titleAutoGuidoVie= findViewById(R.id.groupAutoGuidoVie);
+                TextView titleAutoGuidoVie= findViewById(R.id.subTitleAutoGuidoVie);
                 TextView tvNoResults = findViewById(R.id.emptyView);
 
                 boolean hasMetro = filtraContainer(containerMetro, query);
@@ -174,35 +212,43 @@ public class LinesActivity extends AppCompatActivity {
 
                 //*METRO LINES
                 titleMetro.setVisibility(hasMetro ? View.VISIBLE : View.GONE);
+                infoButtons[0].setVisibility(hasMetro ? View.VISIBLE : View.GONE);
                 containerMetro.setVisibility(hasMetro ? View.VISIBLE : View.GONE);
 
                 //*SUBURBAN LINES
                 titleSub.setVisibility(hasSub ? View.VISIBLE : View.GONE);
+                infoButtons[1].setVisibility(hasSub ? View.VISIBLE : View.GONE);
                 containerSub.setVisibility(hasSub ? View.VISIBLE : View.GONE);
 
                 //*MXP LINES
                 titleMXP.setVisibility(hasMXP ? View.VISIBLE : View.GONE);
+                infoButtons[3].setVisibility(hasMXP ? View.VISIBLE : View.GONE);
                 containerMXP.setVisibility(hasMXP ? View.VISIBLE : View.GONE);
 
                 //*TRANSFRONTALIERE LINES
                 titleTrans.setVisibility(hasTrans ? View.VISIBLE : View.GONE);
+                infoButtons[2].setVisibility(hasTrans ? View.VISIBLE : View.GONE);
                 containerTrans.setVisibility(hasTrans ? View.VISIBLE : View.GONE);
 
                 //*TRAM LINES
                 titleTram.setVisibility(hasTram ? View.VISIBLE : View.GONE);
+                infoButtons[4].setVisibility(hasTram ? View.VISIBLE : View.GONE);
                 containerTram.setVisibility(hasTram ? View.VISIBLE : View.GONE);
 
                 //*MOVIBUS LINES
                 titleMovibus.setVisibility(hasMovibus ? View.VISIBLE : View.GONE);
+                infoButtons[5].setVisibility(hasMovibus ? View.VISIBLE : View.GONE);
                 containerMovibus.setVisibility(hasMovibus ? View.VISIBLE : View.GONE);
 
                 //*STAV LINES
                 titleStav.setVisibility(hasStav ? View.VISIBLE : View.GONE);
+                infoButtons[6].setVisibility(hasStav ? View.VISIBLE : View.GONE);
                 containerStav.setVisibility(hasStav ? View.VISIBLE : View.GONE);
 
                 //*AUTOGUIDOVIE LINES
                 titleAutoGuidoVie.setVisibility(hasStav ? View.VISIBLE : View.GONE);
-                containerAutoGuidoVie.setVisibility(hasStav ? View.VISIBLE : View.GONE);
+                infoButtons[7].setVisibility(hasStav ? View.VISIBLE : View.GONE);
+                containerAutoGuidovie.setVisibility(hasStav ? View.VISIBLE : View.GONE);
 
                 if (tvNoResults != null) {
                     if (!hasMetro && !hasSub && !hasMXP && !hasTrans && !hasTram)
@@ -218,52 +264,10 @@ public class LinesActivity extends AppCompatActivity {
 
         //*NAVBAR
         ImageButton btnHome = (ImageButton) findViewById(R.id.homeButton);
-        btnHome.setOnClickListener(v -> {
-            ActivityManager.changeActivity(this, MainActivity.class);
-        });
+        btnHome.setOnClickListener(v -> {ActivityManager.changeActivity(this, MainActivity.class);});
 
         ImageButton btnSettings = (ImageButton) findViewById(R.id.settingsButton);
-        btnSettings.setOnClickListener(v -> {
-            ActivityManager.changeActivity(this, SettingsActivity.class);
-        });
-
-        //*WEBSITE LINKS
-        /// In this section of the code, we set the default action (OnClick) of the ImageView
-        /// From the infoButtons, and create an array with the URLs in it.
-        /// In the first section we initialize the arrays, in the second one we
-        /// Create a For-Loop for set automatically the action of the button.
-
-        ImageView[] infoButtons = {
-            findViewById(R.id.infoIconMetro),
-            findViewById(R.id.infoIconSuburbane),
-            findViewById(R.id.infoIconTransfrontaliere),
-            findViewById(R.id.infoIconMXP),
-            findViewById(R.id.infoIconTram),
-            findViewById(R.id.infoIconMovibus),
-            findViewById(R.id.infoIconStav),
-            findViewById(R.id.infoIconAutoGuidoVie)
-        };
-
-        String[] infoUrls = {
-            "https://giromilano.atm.it/assets/images/schema_rete_metro.jpg",
-            "https://www.trenord.it/linee-e-orari/circolazione/le-nostre-linee/",
-            "https://www.tilo.ch",
-            "https://www.malpensaexpress.it",
-            "https://www.atm.it/it/AltriServizi/Trasporto/Documents/Carta%20ATM_WEB_2025.11.pdf",
-            "https://movibus.it/news/",
-            "https://stavautolinee.it/reti-servite/",
-            "https://autoguidovie.it/it/avvisi"
-        };
-
-        for (int i = 0; i < infoButtons.length; i++) {
-            int finalI = i;
-            infoButtons[i].setOnClickListener(v -> {
-                CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-
-                CustomTabsIntent customTabsIntent = builder.build();
-                customTabsIntent.launchUrl(this, Uri.parse(infoUrls[finalI]));
-            });
-        }
+        btnSettings.setOnClickListener(v -> {ActivityManager.changeActivity(this, SettingsActivity.class);});
     }
 
     private void aggiungiLinea(LinearLayout container, String label, int colorHex, String description) {
