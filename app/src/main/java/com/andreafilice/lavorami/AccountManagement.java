@@ -192,7 +192,10 @@ public class AccountManagement extends AppCompatActivity {
         EditText nameSignUp = findViewById(R.id.etSignupName);
         CardView btnSignup = findViewById(R.id.btnSignup);
         btnSignup.setOnClickListener(v -> {
-            signUp(nameSignUp.getText().toString(), emailSignUp.getText().toString(), passwordSignUp.getText().toString());
+            if(emailSignUp.getText().toString().length() < 8)
+                Toast.makeText(this, "Errore: Password troppo corta (minimo 8 caratteri).", Toast.LENGTH_SHORT).show();
+            else
+                signUp(nameSignUp.getText().toString(), emailSignUp.getText().toString(), passwordSignUp.getText().toString());
         });
 
         //*SET THE BASE VIEW
@@ -476,12 +479,10 @@ public class AccountManagement extends AppCompatActivity {
                         api.updatePassword(getMetaData("supabaseANON"), "Bearer " + token, req).enqueue(new Callback<Void>() {
                             @Override
                             public void onResponse(Call<Void> call, Response<Void> response) {
-                                if(response.isSuccessful()){
+                                if(response.isSuccessful())
                                     Toast.makeText(AccountManagement.this, "Password cambiata con successo!", Toast.LENGTH_SHORT).show();
-                                }
-                                else{
+                                else
                                     Toast.makeText(AccountManagement.this, "Errore durante il cambio di Password. Riprova", Toast.LENGTH_SHORT).show();
-                                }
                             }
 
                             @Override
