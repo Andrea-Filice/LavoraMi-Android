@@ -47,19 +47,18 @@ public class NotificationSettings extends AppCompatActivity {
 
         //*LOAD FROM LOCAL SAVES
         /// Load the boolean datas from the DataManager for every toggle.
-
         boolean notificationsEnabled = DataManager.getBoolData(this, DataKeys.KEY_NOTIFICATION_SWITCH, true);
         boolean notificationsStartWorks = DataManager.getBoolData(this, DataKeys.KEY_NOTIFICATION_STARTWORKS, true);
         boolean notificationsEndWorks = DataManager.getBoolData(this, DataKeys.KEY_NOTIFICATION_ENDWORKS, true);
         boolean notificationsStrikes = DataManager.getBoolData(this, DataKeys.KEY_NOTIFICATION_STRIKES, true);
 
-        /// NOTE: Cast the type from the boolean to the Switch Value.
+        /// Cast the type from the boolean to the Switch Value.
         switchNotificationsGeneral.setChecked(notificationsEnabled);
         switchStartWorks.setChecked(notificationsStartWorks);
         switchEndWorks.setChecked(notificationsEndWorks);
         switchStrikeNotifications.setChecked(notificationsStrikes);
 
-        /// NOTE: In this section of the code, we will be setting up the UI if the notificationGeneral
+        /// In this section of the code, we will be setting up the UI if the notificationGeneral
         /// Switch is disabled.
 
         boolean checked = switchNotificationsGeneral.isChecked();
@@ -149,5 +148,9 @@ public class NotificationSettings extends AppCompatActivity {
         DataManager.saveBoolData(this, DataKeys.KEY_NOTIFICATION_STARTWORKS, switchStartWorks.isChecked());
         DataManager.saveBoolData(this, DataKeys.KEY_NOTIFICATION_ENDWORKS, switchEndWorks.isChecked());
         DataManager.saveBoolData(this, DataKeys.KEY_NOTIFICATION_STRIKES, switchStrikeNotifications.isChecked());
+
+        switchStartWorks.setTrackTintMode((switchStartWorks.isChecked()) ? PorterDuff.Mode.ADD : PorterDuff.Mode.MULTIPLY);
+        switchEndWorks.setTrackTintMode((switchEndWorks.isChecked()) ? PorterDuff.Mode.ADD : PorterDuff.Mode.MULTIPLY);
+        switchStrikeNotifications.setTrackTintMode((switchStrikeNotifications.isChecked()) ? PorterDuff.Mode.ADD : PorterDuff.Mode.MULTIPLY);
     }
 }

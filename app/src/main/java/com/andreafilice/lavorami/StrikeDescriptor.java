@@ -20,7 +20,7 @@ public class StrikeDescriptor {
     @SerializedName("guaranteed")
     private String strikeGuaranteed;
 
-    public StrikeDescriptor(String isStrikeEnabled, String strikeDate, String stikeDate, String strikeCompanies, String strikeGuaranteed) {
+    public StrikeDescriptor(String isStrikeEnabled, String strikeDate, String strikeCompanies, String strikeGuaranteed) {
         this.isStrikeEnabled = isStrikeEnabled;
         this.strikeDate = strikeDate;
         this.strikeCompanies = strikeCompanies;
