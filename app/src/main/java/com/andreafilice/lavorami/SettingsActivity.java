@@ -2,13 +2,12 @@ package com.andreafilice.lavorami;
 
 import static com.andreafilice.lavorami.ActivityManager.changeActivity;
 
+import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,19 +16,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.google.gson.internal.GsonBuildConfig;
-
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -52,41 +44,31 @@ public class SettingsActivity extends AppCompatActivity {
 
         //*NAVBAR
         ImageButton btnLines = (ImageButton) findViewById(R.id.linesButton);
-        btnLines.setOnClickListener(v -> {
-            changeActivity(this, LinesActivity.class);
-        });
+        btnLines.setOnClickListener(v -> {changeActivity(this, LinesActivity.class);});
 
         ImageButton btnSettings = (ImageButton) findViewById(R.id.homeButton);
-        btnSettings.setOnClickListener(v -> {
-            changeActivity(this, MainActivity.class);
-        });
+        btnSettings.setOnClickListener(v -> {changeActivity(this, MainActivity.class);});
 
         //*SETTINGS BUTTONS
         RelativeLayout accountBtn = findViewById(R.id.btnAccount);
-        accountBtn.setOnClickListener(v -> {
-            changeActivity(this, AccountManagement.class);
-        });
+        accountBtn.setOnClickListener(v -> {changeActivity(this, AccountManagement.class);});
 
         RelativeLayout sourcesBtn = findViewById(R.id.btnFonts);
-        sourcesBtn.setOnClickListener(v -> {
-            changeActivity(this, SourcesDevelopment.class);
-        });
+        sourcesBtn.setOnClickListener(v -> {changeActivity(this, SourcesDevelopment.class);});
 
         RelativeLayout notificationsBtn = findViewById(R.id.btnNotifiche);
-        notificationsBtn.setOnClickListener(v -> {
-            changeActivity(this, NotificationSettings.class);
-        });
+        notificationsBtn.setOnClickListener(v -> {changeActivity(this, NotificationSettings.class);});
 
         RelativeLayout filtersButton = findViewById(R.id.btnFiltro);
-        filtersButton.setOnClickListener(v -> {
-            changeActivity(this, FilterSelection.class);
-        });
+        filtersButton.setOnClickListener(v -> {changeActivity(this, FilterSelection.class);});
 
         RelativeLayout advancedOptionsButton = findViewById(R.id.btnAdvanced);
-        advancedOptionsButton.setOnClickListener(v -> {
-            changeActivity(this, AdvancedOptions.class);
-        });
+        advancedOptionsButton.setOnClickListener(v -> {changeActivity(this, AdvancedOptions.class);});
 
+        RelativeLayout btnRefresh = findViewById(R.id.btnRefresh);
+        btnRefresh.setOnClickListener(v -> {resetSettings();});
+
+        //*FAVORITES LINES
         RelativeLayout groupTrenord = findViewById(R.id.groupTrenord);
         groupTrenord.setOnClickListener(v -> {
             LinearLayout trenordLayout = findViewById(R.id.disclosureContentTrenord);
@@ -199,5 +181,26 @@ public class SettingsActivity extends AppCompatActivity {
                 starIcons[i].setTag(R.drawable.ic_star_empty);
             }
         }
+    }
+
+    public void resetSettings(){
+        new AlertDialog.Builder(this)
+                .setTitle("Sei sicuro?")
+                .setMessage("Sei sicuro di voler ripristinare le impostazioni?")
+                .setNegativeButton("Annulla", null)
+                .setPositiveButton("Conferma", (dialog, which) -> {
+                    DataManager.saveStringData(this, DataKeys.KEY_DEFAULT_FILTER, "Tutti");
+                    DataManager.saveBoolData(this, DataKeys.KEY_NOTIFICATION_SWITCH, true);
+                    DataManager.saveBoolData(this, DataKeys.KEY_NOTIFICATION_STARTWORKS, true);
+                    DataManager.saveBoolData(this, DataKeys.KEY_NOTIFICATION_ENDWORKS, true);
+                    DataManager.saveBoolData(this, DataKeys.KEY_NOTIFICATION_STRIKES, true);
+                    DataManager.saveIntData(this, DataKeys.KEY_HOURS_NOTIFICATIONS, 10);
+                    DataManager.saveIntData(this, DataKeys.KEY_MINUTES_NOTIFICATIONS, 00);
+                    DataManager.saveArrayStringsData(this, DataKeys.KEY_FAVORITE_LINES, new HashSet<>());
+                    DataManager.saveBoolData(this, DataKeys.KEY_SHOW_ERROR_MESSAGES, false);
+                    DataManager.saveBoolData(this, DataKeys.KEY_SHOW_BANNERS, true);
+                    DataManager.saveBoolData(this, DataKeys.KEY_REQUIRE_BIOMETRICS, true);
+                    Toast.makeText(this, "Impostazioni ripristinate correttamente!", Toast.LENGTH_SHORT).show();
+                }).show();
     }
 }

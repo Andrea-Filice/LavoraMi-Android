@@ -727,7 +727,7 @@
             </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@+id/resetSettings"
+                android:id="@+id/resetSettingsTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
@@ -753,7 +753,7 @@
                     android:orientation="vertical">
 
                     <RelativeLayout
-                        android:id="@+id/btnReferesh"
+                        android:id="@+id/btnRefresh"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:background="?attr/selectableItemBackground"
@@ -775,7 +775,7 @@
                             android:layout_marginStart="12dp"
                             android:layout_toEndOf="@id/iconRefresh"
                             android:text="Ripristina impostazioni"
-                            android:textColor="@color/text_primary"
+                            android:textColor="@color/redMetro"
                             android:textSize="16sp" />
 
                     </RelativeLayout>
