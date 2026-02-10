@@ -163,16 +163,6 @@
             android:orientation="vertical"
             android:visibility="gone">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="DETTAGLIO SEGNALAZIONI"
-                android:textColor="@color/text_primary"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"/>
-
             <LinearLayout
                 android:id="@+id/containerLavori"
                 android:layout_width="match_parent"
@@ -186,7 +176,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:gravity="center"
-            android:text="Nessun lavoro attuale o programmato su questa linea."
+            android:text="Non ci sono lavori su questa linea."
             android:textSize="16sp"
             android:textColor="@color/text_primary"
             android:alpha="0.7"

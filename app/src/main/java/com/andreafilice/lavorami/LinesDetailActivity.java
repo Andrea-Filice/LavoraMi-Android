@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -32,6 +33,8 @@ import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.shape.ShapeAppearanceModel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -417,6 +420,49 @@ public class LinesDetailActivity extends AppCompatActivity implements OnMapReady
                     pb.setProgress(perc);
                     pb.setProgressTintList(ColorStateList.valueOf(perc >= 100 ?
                             Color.parseColor("#4CAF50") : Color.parseColor("#FF5252")));
+                }
+
+                ChipGroup chipGroup = card.findViewById(R.id.chipGroupLinee);
+
+                if (chipGroup != null && evento.getLines() != null) {
+                    chipGroup.removeAllViews();
+
+                    for (String lineName : evento.getLines()) {
+                        String nomePulito = lineName.trim();
+                        Chip chip = new Chip(this);
+                        chip.setText(nomePulito);
+
+                        ShapeAppearanceModel cornerRadius = chip.getShapeAppearanceModel()
+                                .toBuilder()
+                                .setAllCornerSizes(10f)
+                                .build();
+
+                        chip.setShapeAppearanceModel(cornerRadius);
+                        chip.setEnsureMinTouchTargetSize(false);
+                        chip.setChipMinHeight(0f);
+
+                        chip.setChipStartPadding(10f);
+                        chip.setChipEndPadding(10f);
+
+                        chip.setTextSize(14f);
+                        chip.setTypeface(Typeface.create("@font/archivo_medium",Typeface.BOLD));
+                        chip.setTextColor(Color.WHITE);
+
+
+                        int coloreLinea = WorkAdapter.getColorForLinea(nomePulito);
+                        int coloreTesto = (coloreLinea == R.color.OTHER) ? R.color.Black : R.color.White;
+                        int coloreTestoEffettivo = ContextCompat.getColor(this, coloreTesto);
+                        int coloreEffettivo = ContextCompat.getColor(this, coloreLinea);
+                        chip.setChipBackgroundColor(ColorStateList.valueOf(coloreEffettivo));
+                        chip.setTextColor(coloreTestoEffettivo);
+
+                        chip.setCloseIconVisible(false);
+                        chip.setClickable(false);
+                        chip.setCheckable(false);
+
+                        chipGroup.addView(chip);
+
+                    }
                 }
 
                 container.addView(card);

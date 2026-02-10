@@ -162,7 +162,7 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
         }
     }
 
-    private int getColorForLinea(String nomeLinea){
+    public static int getColorForLinea(String nomeLinea){
         switch(nomeLinea){
             //S LINES
             case "S1":

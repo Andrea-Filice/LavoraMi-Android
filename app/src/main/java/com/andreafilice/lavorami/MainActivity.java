@@ -156,14 +156,10 @@ public class MainActivity extends AppCompatActivity {
 
         //*NAVBAR
         ImageButton btnLines = (ImageButton) findViewById(R.id.linesButton);
-        btnLines.setOnClickListener(v -> {
-            ActivityManager.changeActivity(this, LinesActivity.class);
-        });
+        btnLines.setOnClickListener(v -> {ActivityManager.changeActivity(this, LinesActivity.class);});
 
         ImageButton btnSettings = (ImageButton) findViewById(R.id.settingsButton);
-        btnSettings.setOnClickListener(v -> {
-            ActivityManager.changeActivity(this, SettingsActivity.class);
-        });
+        btnSettings.setOnClickListener(v -> {ActivityManager.changeActivity(this, SettingsActivity.class);});
 
         //*REFRESH BUTTON
         ImageButton btnRefresh = (ImageButton) findViewById(R.id.buttonRefresh);
