@@ -1,15 +1,22 @@
 package com.andreafilice.lavorami;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.io.File;
+import java.util.HashSet;
 
 public class AdvancedOptions extends AppCompatActivity {
 
@@ -63,5 +70,52 @@ public class AdvancedOptions extends AppCompatActivity {
             DataManager.saveBoolData(this, DataKeys.KEY_REQUIRE_BIOMETRICS, biometricsSwitch.isChecked());
             biometricsSwitch.setTrackTintMode((biometricsSwitch.isChecked()) ? PorterDuff.Mode.ADD : PorterDuff.Mode.MULTIPLY);
         });
+
+        //*CACHE MEMORY
+        CardView btnCacheMemory = findViewById(R.id.btnCacheMemory);
+        btnCacheMemory.setOnClickListener(v -> {
+            new AlertDialog.Builder(this)
+                    .setTitle("Sei sicuro?")
+                    .setMessage("Sei sicuro di voler eliminare la memoria Cache dell'app?")
+                    .setNegativeButton("Annulla", null)
+                    .setPositiveButton("Conferma", (dialog, which) -> {
+                        deleteCache(this);
+                    }).show();
+        });
+    }
+
+    public static void deleteCache(Context context) {
+        /// In this method, we catch from the Context the current CacheDirectory.
+        /// @PARAMETERS
+        /// Context context is the Activity from take the Directory Path to the Cache Memory.
+
+        try {
+            File dir = context.getCacheDir();
+            deleteDir(dir);
+        }
+        catch (Exception e) {e.printStackTrace();}
+    }
+
+    public static boolean deleteDir(File dir) {
+        /// In this method, we delete effectually the Cache memory Partition.
+        /// @PARAMETERS
+        /// File dir is the directory to delete (Cache Directory in this case).
+
+        if (dir != null && dir.isDirectory()) {
+            String[] children = dir.list();
+
+            for (int i = 0; i < children.length; i++) {
+                boolean success = deleteDir(new File(dir, children[i]));
+
+                if (!success)
+                    return false;
+            }
+
+            return dir.delete();
+        }
+        else if(dir!= null && dir.isFile())
+            return dir.delete();
+        else
+            return false;
     }
 }

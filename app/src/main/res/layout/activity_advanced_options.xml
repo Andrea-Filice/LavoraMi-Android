@@ -220,6 +220,51 @@
                 android:text="Richiedi la Biometria per sbloccare la sezione del tuo Account."
                 android:textColor="#8E8E93"
                 android:textSize="13sp" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btnCacheMemory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
+                app:cardBackgroundColor="@color/disclosureBg"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:paddingHorizontal="16dp">
+
+                    <ImageView
+                        android:id="@+id/iconCacheMemory"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_trash"
+                        app:tint="#FF453A" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="16dp"
+                        android:layout_toEndOf="@id/iconCacheMemory"
+                        android:fontFamily="@font/archivo_medium"
+                        android:text="Pulisci memoria Cache"
+                        android:textColor="@color/redMetro"
+                        android:textSize="17sp" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginTop="8dp"
+                android:text="Elimina la memoria Cache dal dispositivo, liberando spazio su disco."
+                android:textColor="#8E8E93"
+                android:textSize="13sp" />
         </LinearLayout>
     </ScrollView>
 
