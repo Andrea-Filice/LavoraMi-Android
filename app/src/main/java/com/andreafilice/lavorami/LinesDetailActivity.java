@@ -374,7 +374,7 @@ public class LinesDetailActivity extends AppCompatActivity implements OnMapReady
         container.removeAllViews();
         boolean foundAtLeastOne = false;
 
-        String searchTag = nomeLinea.trim().toUpperCase();
+        String searchTag = (nomeLinea.contains("MXP")) ? "MXP" : nomeLinea.trim().toUpperCase();
 
         for (EventDescriptor evento : EventData.listaEventiCompleta) {
             if (evento.getLines() == null) continue;
