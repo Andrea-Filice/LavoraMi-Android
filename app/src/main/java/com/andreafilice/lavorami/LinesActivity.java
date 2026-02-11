@@ -1,10 +1,12 @@
 package com.andreafilice.lavorami;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -246,10 +248,32 @@ public class LinesActivity extends AppCompatActivity {
                     else
                         tvNoResults.setVisibility(View.GONE);
                 }
+
+                if (s.length() > 0)
+                    searchLines.setCompoundDrawablesWithIntrinsicBounds(
+                            android.R.drawable.ic_menu_search, 0,
+                            R.drawable.ic_close, 0);
+                else
+                    searchLines.setCompoundDrawablesWithIntrinsicBounds(
+                            android.R.drawable.ic_menu_search, 0, 0, 0);
             }
 
             @Override
             public void afterTextChanged(Editable s) {}
+        });
+
+        /// If the "X" button is clicked, clean all the text into the EditText
+        searchLines.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                Drawable drawableEnd = searchLines.getCompoundDrawables()[2];
+                if (drawableEnd != null) {
+                    if (event.getRawX() >= (searchLines.getRight() - drawableEnd.getBounds().width())) {
+                        searchLines.setText("");
+                        return true;
+                    }
+                }
+            }
+            return false;
         });
 
         //*NAVBAR

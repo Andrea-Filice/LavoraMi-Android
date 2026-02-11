@@ -4,10 +4,12 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -229,14 +231,36 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() > 0 && filterGroup != null)
+                if (s.length() > 0 && filterGroup != null) {
                     filterGroup.clearCheck();
+                    editSearch.setCompoundDrawablesWithIntrinsicBounds(
+                            android.R.drawable.ic_menu_search, 0,
+                            R.drawable.ic_close, 0);
+                }
+                else{
+                    editSearch.setCompoundDrawablesWithIntrinsicBounds(
+                            android.R.drawable.ic_menu_search, 0, 0, 0);
+                }
                 String testoRicerca = s.toString().toLowerCase().trim();
                 filtra(testoRicerca);
             }
 
             @Override
             public void afterTextChanged(Editable s) {}
+        });
+
+        /// If the "X" button is clicked, clean all the text into the EditText
+        editSearch.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                Drawable drawableEnd = editSearch.getCompoundDrawables()[2];
+                if (drawableEnd != null) {
+                    if (event.getRawX() >= (editSearch.getRight() - drawableEnd.getBounds().width())) {
+                        editSearch.setText("");
+                        return true;
+                    }
+                }
+            }
+            return false;
         });
 
         //* LISTENER PER I FILTRI (CHIP)
@@ -444,9 +468,8 @@ public class MainActivity extends AppCompatActivity {
             for (EventDescriptor item : events){
                 long now = System.currentTimeMillis();
                 long terminated = getDateMillis(item.getEndDate());
-                if(terminated > now){
+                if(terminated > now)
                     listaFiltrata.add(item);
-                }
             }
             adapter.setFilteredList(listaFiltrata);
 
@@ -588,6 +611,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     }
+
     public long getDateMillis(String dateString) {
         if (dateString == null) return 0;
         String serverFormat = "yyyy-MM-dd'T'HH:mm:ss'+01:00'";
