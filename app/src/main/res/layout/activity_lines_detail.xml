@@ -93,7 +93,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/text_primary"
             android:textSize="20sp"
-            android:text="Negri"
+            android:text=""
             android:textStyle="bold" />
 
         <TextView
@@ -148,6 +148,15 @@
                 android:textColor="@color/text_primary"
                 android:text="Lavori in corso"
                 app:chipBackgroundColor="@color/selector_chip_filter" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipInterscambi"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:text="Interscambi"
+                app:chipBackgroundColor="@color/selector_chip_filter" />
         </com.google.android.material.chip.ChipGroup>
 
         <androidx.cardview.widget.CardView
@@ -175,6 +184,20 @@
 
             <LinearLayout
                 android:id="@+id/containerLavori"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/interscambiWrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/containerInterscambi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" />

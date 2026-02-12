@@ -55,8 +55,11 @@ public class LinesDetailActivity extends AppCompatActivity implements OnMapReady
         setContentView(R.layout.activity_lines_detail);
         Chip chipMappa = findViewById(R.id.chipMappa);
         Chip chipLavori = findViewById(R.id.chipLavoriInCorso);
+        Chip chipInterscambi = findViewById(R.id.chipInterscambi);
+
         CardView cardMappa = findViewById(R.id.mapCard);
         LinearLayout containerLavori = findViewById(R.id.containerLavori);
+        LinearLayout containerInterscambi = findViewById(R.id.containerInterscambi);
         chipMappa.setChecked(true);
 
         /// Take the EXTRA Arguments from the Intent.
@@ -68,11 +71,11 @@ public class LinesDetailActivity extends AppCompatActivity implements OnMapReady
         if (tipoDiLinea.contains("Tram") || nomeLinea.contains("z")){
             chipMappa.setVisibility(View.GONE);
             cardMappa.setVisibility(View.GONE);
-            findViewById(R.id.lavoriSezioneWrapper).setVisibility(View.VISIBLE);
             containerLavori.setVisibility(View.VISIBLE);
             caricaEventiFiltrati();
             chipMappa.setChecked(false);
             chipLavori.setChecked(true);
+            chipInterscambi.setChecked(false);
         }
 
         aggiornaUI();
@@ -89,40 +92,71 @@ public class LinesDetailActivity extends AppCompatActivity implements OnMapReady
         chipMappa.setChipStrokeColor(ColorStateList.valueOf(Color.parseColor("#CCCCCC")));
         chipLavori.setChipStrokeWidth(3f);
         chipLavori.setChipStrokeColor(ColorStateList.valueOf(Color.parseColor("#CCCCCC")));
+        chipInterscambi.setChipStrokeWidth(3f);
+        chipInterscambi.setChipStrokeColor(ColorStateList.valueOf(Color.parseColor("#CCCCCC")));
 
         chipMappa.setOnClickListener(v -> {
             cardMappa.setVisibility(View.VISIBLE);
             containerLavori.setVisibility(View.GONE);
+            containerInterscambi.setVisibility(View.GONE);
             findViewById(R.id.lavoriSezioneWrapper).setVisibility(View.GONE);
             findViewById(R.id.emptyView).setVisibility(View.GONE);
 
-            if(!chipLavori.isChecked() && !chipMappa.isChecked()){
+            if(!chipLavori.isChecked() && !chipMappa.isChecked() && !chipInterscambi.isChecked()){
                 chipMappa.setChecked(true);
                 chipLavori.setChecked(false);
+                chipInterscambi.setChecked(false);
             }
         });
 
         chipLavori.setOnClickListener(v -> {
             cardMappa.setVisibility(View.GONE);
-            findViewById(R.id.lavoriSezioneWrapper).setVisibility(View.VISIBLE);
             containerLavori.setVisibility(View.VISIBLE);
+            containerInterscambi.setVisibility(View.GONE);
             caricaEventiFiltrati();
 
-            if(!chipLavori.isChecked() && !chipMappa.isChecked() && !haveMapAvailable()){
+            if(!chipLavori.isChecked() && !chipMappa.isChecked() && !chipInterscambi.isChecked() && !haveMapAvailable()){
                 chipMappa.setChecked(true);
                 chipLavori.setChecked(false);
                 cardMappa.setVisibility(View.VISIBLE);
                 containerLavori.setVisibility(View.GONE);
-                findViewById(R.id.lavoriSezioneWrapper).setVisibility(View.GONE);
+                containerInterscambi.setVisibility(View.GONE);
                 findViewById(R.id.emptyView).setVisibility(View.GONE);
             }
-            else if(!chipLavori.isChecked() && !chipMappa.isChecked() && haveMapAvailable()){
+            else if(!chipLavori.isChecked() && !chipMappa.isChecked() && !chipInterscambi.isChecked() && haveMapAvailable()){
                 chipMappa.setChecked(false);
                 chipLavori.setChecked(true);
                 cardMappa.setVisibility(View.GONE);
                 containerLavori.setVisibility(View.VISIBLE);
-                findViewById(R.id.lavoriSezioneWrapper).setVisibility(View.VISIBLE);
+                containerInterscambi.setVisibility(View.GONE);
+                containerInterscambi.setVisibility(View.GONE);
                 findViewById(R.id.emptyView).setVisibility(View.VISIBLE);
+            }
+        });
+
+        chipInterscambi.setOnClickListener(v -> {
+            cardMappa.setVisibility(View.GONE);
+            containerLavori.setVisibility(View.GONE);
+            containerInterscambi.setVisibility(View.VISIBLE);
+            findViewById(R.id.emptyView).setVisibility(View.GONE);
+            caricaInterscambiLinee();
+
+            if(!chipLavori.isChecked() && !chipMappa.isChecked() && !chipInterscambi.isChecked() && haveMapAvailable()){
+                chipMappa.setChecked(false);
+                chipLavori.setChecked(true);
+                cardMappa.setVisibility(View.GONE);
+                containerLavori.setVisibility(View.VISIBLE);
+                containerInterscambi.setVisibility(View.GONE);
+                containerInterscambi.setVisibility(View.GONE);
+                findViewById(R.id.emptyView).setVisibility(View.VISIBLE);
+            }
+            else if (!chipLavori.isChecked() && !chipMappa.isChecked() && !chipInterscambi.isChecked() && !haveMapAvailable()){
+                chipMappa.setChecked(true);
+                chipLavori.setChecked(false);
+                cardMappa.setVisibility(View.VISIBLE);
+                containerLavori.setVisibility(View.GONE);
+                containerInterscambi.setVisibility(View.GONE);
+                findViewById(R.id.emptyView).setVisibility(View.GONE);
             }
         });
 
@@ -450,6 +484,98 @@ public class LinesDetailActivity extends AppCompatActivity implements OnMapReady
                         chip.setTypeface(Typeface.create("@font/archivo_medium",Typeface.BOLD));
                         chip.setTextColor(Color.WHITE);
 
+
+                        int coloreLinea = WorkAdapter.getColorForLinea(nomePulito);
+                        int coloreTesto = (coloreLinea == R.color.OTHER) ? R.color.Black : R.color.White;
+                        int coloreTestoEffettivo = ContextCompat.getColor(this, coloreTesto);
+                        int coloreEffettivo = ContextCompat.getColor(this, coloreLinea);
+                        chip.setChipBackgroundColor(ColorStateList.valueOf(coloreEffettivo));
+                        chip.setTextColor(coloreTestoEffettivo);
+
+                        chip.setCloseIconVisible(false);
+                        chip.setClickable(false);
+                        chip.setCheckable(false);
+
+                        chipGroup.addView(chip);
+                    }
+                }
+                container.addView(card);
+            }
+        }
+
+        wrapper.setVisibility((foundAtLeastOne) ? View.VISIBLE : View.GONE);
+        emptyView.setVisibility((foundAtLeastOne) ? View.GONE : View.VISIBLE);
+    }
+
+    private void caricaInterscambiLinee() {
+        LinearLayout container = findViewById(R.id.containerInterscambi);
+        View wrapper = findViewById(R.id.interscambiWrapper);
+        TextView emptyView = findViewById(R.id.emptyView);
+
+        if (container == null || wrapper == null) return;
+
+        container.removeAllViews();
+        boolean foundAtLeastOne = false;
+
+        String searchTag = (nomeLinea.contains("MXP")) ? "MXP" : nomeLinea.trim().toUpperCase();
+
+        for (InterchangeInfo evento : StationDB.getInterchanges()) {
+            if (evento.getLines() == null) continue;
+
+            boolean matchFound = false;
+            for (String lineInEvent : evento.getLines()) {
+                if (lineInEvent != null) {
+                    if (lineInEvent.trim().toUpperCase().equals(searchTag)) {
+                        matchFound = true;
+                        break;
+                    }
+                }
+            }
+
+            if (matchFound) {
+                foundAtLeastOne = true;
+
+                View card = getLayoutInflater().inflate(R.layout.item_interchange, container, false);
+
+                ImageView icona = card.findViewById(R.id.iconTransport);
+                if (icona != null) {
+                    icona.setImageResource(evento.getCardImageID());
+                    icona.setImageTintList(ColorStateList.valueOf(Color.WHITE));
+                }
+
+                TextView titolo = card.findViewById(R.id.txtTitle);
+                TextView desc = card.findViewById(R.id.txtLineCode);
+                if (titolo != null) titolo.setText(evento.getKey());
+                if (desc != null) desc.setText(nomeLinea);
+
+                int color = ContextCompat.getColor(this, R.color.text_primary);
+                ImageViewCompat.setImageTintList(card.findViewById(R.id.iconTransport), ColorStateList.valueOf(color));
+
+                ChipGroup chipGroup = card.findViewById(R.id.chipGroupLinee);
+
+                if (chipGroup != null && evento.getLines() != null) {
+                    chipGroup.removeAllViews();
+
+                    for (String lineName : evento.getLines()) {
+                        String nomePulito = lineName.trim();
+                        Chip chip = new Chip(this);
+                        chip.setText(nomePulito);
+
+                        ShapeAppearanceModel cornerRadius = chip.getShapeAppearanceModel()
+                                .toBuilder()
+                                .setAllCornerSizes(10f)
+                                .build();
+
+                        chip.setShapeAppearanceModel(cornerRadius);
+                        chip.setEnsureMinTouchTargetSize(false);
+                        chip.setChipMinHeight(0f);
+
+                        chip.setChipStartPadding(10f);
+                        chip.setChipEndPadding(10f);
+
+                        chip.setTextSize(14f);
+                        chip.setTypeface(Typeface.create("@font/archivo_medium",Typeface.BOLD));
+                        chip.setTextColor(Color.WHITE);
 
                         int coloreLinea = WorkAdapter.getColorForLinea(nomePulito);
                         int coloreTesto = (coloreLinea == R.color.OTHER) ? R.color.Black : R.color.White;

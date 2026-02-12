@@ -195,6 +195,10 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
                 return R.color.S31;
             case "MXP":
                 return R.color.MXP;
+            case "MXP1":
+                return R.color.MXP;
+            case "MXP2":
+                return R.color.MXP;
             case "AV":
                 return R.color.AV;
 
@@ -223,6 +227,8 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
                 return R.color.M5;
 
             //OTHERS
+            case "Aereoporto":
+                return R.color.airport;
             default:
                 if(nomeLinea.contains("z")||nomeLinea.contains("k"))
                     return R.color.BUS;

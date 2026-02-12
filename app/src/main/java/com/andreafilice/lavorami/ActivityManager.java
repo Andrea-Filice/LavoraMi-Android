@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 
 public class ActivityManager {
-    public static void changeActivity(Context context, Class<?> destinationLayout){
+    public static void changeActivity(Context context, Class<?> destinationLayout) {
         ///@PARAMETER
         /// Class<?> destinationLayout is a destination activity which this function change.
 
@@ -19,7 +19,7 @@ public class ActivityManager {
             ((Activity) context).overridePendingTransition(0, 0);
     }
 
-    public static void openURL(Context context, String url){
+    public static void openURL(Context context, String url) {
         ///@PARAMETER
         ///String url is the URL to open in Browser.
 

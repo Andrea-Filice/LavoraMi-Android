@@ -33,6 +33,7 @@ public class EventDescriptor {
     public int getCardImageID() {
         return getTitleIconID(this.titleIcon);
     }
+
     public int getTitleIconID(String swiftIconName){
         switch(swiftIconName) {
             case "arrow.branch":
