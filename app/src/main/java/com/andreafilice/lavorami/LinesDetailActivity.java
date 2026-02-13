@@ -641,7 +641,7 @@ public class LinesDetailActivity extends AppCompatActivity implements OnMapReady
         chipGroupLinee.setVisibility(View.VISIBLE);
 
         for (InterchangeInfo info : StationDB.getBusInterchanges()){
-            if(info.getLinesToShow() == null) continue;
+            if(info.getLinesToShow() == null || info == null) continue;
 
             String searchTag = (nomeLinea.contains("MXP")) ? "MXP" : nomeLinea.trim().toUpperCase();
             boolean matchFound = false;
