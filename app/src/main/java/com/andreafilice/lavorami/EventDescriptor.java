@@ -1,9 +1,11 @@
 package com.andreafilice.lavorami;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
+import java.util.stream.Collectors;
 
 public class EventDescriptor {
     protected String title;
@@ -80,8 +82,17 @@ public class EventDescriptor {
     public String getRoads() {
         return roads;
     }
+
     public String[] getLines() {
         return lines;
+    }
+
+    public String getStringLines(){
+        if(this.lines == null)
+            return "";
+
+        return Arrays.stream(this.lines)
+                .collect(Collectors.joining(", "));
     }
     public String getStartDate() {
         return startDate;

@@ -21,9 +21,7 @@ public class NotificationScheduler {
         if (!isEnabled)  return;
 
         Set<String> favorites = DataManager.getStringArray(context, DataKeys.KEY_FAVORITE_LINES, null);
-
         if (favorites == null || favorites.isEmpty()) return;
-
         if (eventList == null || eventList.isEmpty()) return;
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
@@ -142,18 +140,18 @@ public class NotificationScheduler {
                 if (notifyStart) {
                     if (startMillis > now) {
                         schedule(context, alarmManager, event.title.hashCode(), startMillis,
-                                "Inizio Lavori", "Iniziano oggi i lavori per: " + event.title);
+                                "Lavori Iniziati!", String.format("I lavori in %s delle linee %s sono iniziati oggi. Consulta il sito di %s per maggiori info.", event.roads, event.getStringLines(), event.company));
                     }
                     if (startMillis - oneDayMillis > now) {
                         schedule(context, alarmManager, event.title.hashCode() + 1, startMillis - oneDayMillis,
-                                "Domani iniziano i lavori", "Preparati! Domani iniziano i lavori: " + event.title);
+                                "⚠\uFE0F I lavori iniziano domani!", String.format("Domani iniziano i lavori in %s per %s. Consulta il sito di %s", event.roads, event.getStringLines(), event.company));
                     }
                 }
 
                 if (notifyEnd) {
                     if (endMillis > now) {
                         schedule(context, alarmManager, event.title.hashCode() + 2, endMillis,
-                                "Fine Lavori", "I lavori su " + event.title + " terminano oggi.");
+                                "Lavori terminati!", String.format("I lavori in %s delle linee %s dovrebbero terminare oggi. Consulta il sito di %s per gli ultimi aggiornamenti.", event.roads, event.getStringLines(), event.company));
                     }
                 }
             }
