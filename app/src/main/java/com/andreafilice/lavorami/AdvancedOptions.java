@@ -21,10 +21,56 @@ import androidx.cardview.widget.CardView;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.io.File;
+import java.security.KeyStore;
 import java.util.HashSet;
 import java.util.concurrent.Executor;
 
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+
+import android.security.keystore.KeyGenParameterSpec;
+import android.security.keystore.KeyProperties;
+
 public class AdvancedOptions extends AppCompatActivity {
+
+    private static final String BIOMETRIC_KEY_ALIAS = "AdvancedOptionsBiometricKey";
+
+    private void generateSecretKey() throws Exception {
+        KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
+        keyStore.load(null);
+        if (keyStore.containsAlias(BIOMETRIC_KEY_ALIAS)) {
+            return;
+        }
+        KeyGenParameterSpec keyGenParameterSpec = new KeyGenParameterSpec.Builder(
+                BIOMETRIC_KEY_ALIAS,
+                KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
+                .setBlockModes(KeyProperties.BLOCK_MODE_CBC)
+                .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_PKCS7)
+                .setUserAuthenticationRequired(true)
+                .setInvalidatedByBiometricEnrollment(true)
+                .build();
+        KeyGenerator keyGenerator = KeyGenerator.getInstance(
+                KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore");
+        keyGenerator.init(keyGenParameterSpec);
+        keyGenerator.generateKey();
+    }
+
+    private SecretKey getSecretKey() throws Exception {
+        KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
+        keyStore.load(null);
+        return (SecretKey) keyStore.getKey(BIOMETRIC_KEY_ALIAS, null);
+    }
+
+    private Cipher getCipher() throws Exception {
+        Cipher cipher = Cipher.getInstance(
+                KeyProperties.KEY_ALGORITHM_AES + "/" +
+                        KeyProperties.BLOCK_MODE_CBC + "/" +
+                        KeyProperties.ENCRYPTION_PADDING_PKCS7);
+        SecretKey secretKey = getSecretKey();
+        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+        return cipher;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,6 +198,14 @@ public class AdvancedOptions extends AppCompatActivity {
             return;
         }
 
+        Cipher cipherForPrompt = null;
+        try {
+            generateSecretKey();
+            cipherForPrompt = getCipher();
+        } catch (Exception e) {
+            Log.e("AdvancedOptions", "Errore durante l'inizializzazione della chiave biometrica", e);
+        }
+
         /// In this section of the code, we create the PopUp for log-in with Biometric Auth.
         /// The pop-up UI is different base by Manufacture Implementation.
         /// @FALLBACK
@@ -168,9 +222,23 @@ public class AdvancedOptions extends AppCompatActivity {
             @Override
             public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
-                biometricsSwitch.setChecked(false);
-                DataManager.saveBoolData(AdvancedOptions.this, DataKeys.KEY_REQUIRE_BIOMETRICS, biometricsSwitch.isChecked());
-                biometricsSwitch.setTrackTintMode((biometricsSwitch.isChecked()) ? PorterDuff.Mode.ADD : PorterDuff.Mode.MULTIPLY);
+                try {
+                    Cipher cipher = result.getCryptoObject() != null ? result.getCryptoObject().getCipher() : null;
+                    if (cipher != null) {
+                        byte[] payload = "biometric_toggle".getBytes("UTF-8");
+                        byte[] encrypted = cipher.doFinal(payload);
+                        if (encrypted != null && encrypted.length > 0) {
+                            biometricsSwitch.setChecked(false);
+                            DataManager.saveBoolData(AdvancedOptions.this, DataKeys.KEY_REQUIRE_BIOMETRICS, biometricsSwitch.isChecked());
+                            biometricsSwitch.setTrackTintMode((biometricsSwitch.isChecked()) ? PorterDuff.Mode.ADD : PorterDuff.Mode.MULTIPLY);
+                        }
+                    } else {
+                        Toast.makeText(AdvancedOptions.this, "Impossibile verificare l'autenticazione biometrica.", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    Log.e("AdvancedOptions", "Errore durante l'operazione crittografica biometrica", e);
+                    Toast.makeText(AdvancedOptions.this, "Errore di sicurezza durante l'autenticazione.", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -186,7 +254,11 @@ public class AdvancedOptions extends AppCompatActivity {
                     .setAllowedAuthenticators(authenticators)
                     .build();
 
-            biometricPrompt.authenticate(promptInfo);
+            if (cipherForPrompt != null) {
+                biometricPrompt.authenticate(new BiometricPrompt.CryptoObject(cipherForPrompt), promptInfo);
+            } else {
+                biometricPrompt.authenticate(promptInfo);
+            }
         }
         else {
             biometricsSwitch.setChecked(true);
